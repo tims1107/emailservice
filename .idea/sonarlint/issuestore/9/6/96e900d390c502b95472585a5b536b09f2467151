@@ -1,0 +1,52 @@
+
+F
+java:S3740€"/Provide the parametrized type for this generic.(ÊãþË
+V	java:S125#"<This block of commented-out lines of code should be removed.(à—¼ñùÿÿÿÿ
+n
+java:S3776*"SRefactor this method to reduce its Cognitive Complexity from 120 to the 15 allowed.(º—›ùÿÿÿÿ
+g
+java:S1854A"QRemove this useless assignment to local variable "abnormalHL7NoaddrLocalService".(ƒÍþŽ
+b
+java:S1854<"GRemove this useless assignment to local variable "notificationService".(Ùó™¥þÿÿÿÿ
+Y
+java:S1854°"=Remove this useless assignment to local variable "isWritten".(ïœìšþÿÿÿÿ
+V	java:S125&"<This block of commented-out lines of code should be removed.(âõÈ¡ûÿÿÿÿ
+S
+java:S1481<"8Remove this unused "notificationService" local variable.(Ùó™¥þÿÿÿÿ
+X
+java:S1481A"BRemove this unused "abnormalHL7NoaddrLocalService" local variable.(ƒÍþŽ
+Q	java:S125B"<This block of commented-out lines of code should be removed.(¾ÜÀá
+V	java:S125Q"<This block of commented-out lines of code should be removed.(õþÛþÿÿÿÿ
+V	java:S125f"<This block of commented-out lines of code should be removed.(¬À¿šùÿÿÿÿ
+V	java:S125l"<This block of commented-out lines of code should be removed.(®ÝÆ¬ûÿÿÿÿ
+P	java:S125n"<This block of commented-out lines of code should be removed.(ä¿Õt
+Q	java:S125u"<This block of commented-out lines of code should be removed.(¹¨üä
+Q	java:S125z"<This block of commented-out lines of code should be removed.(ÈÝê
+W	java:S125„"<This block of commented-out lines of code should be removed.(Š†Ÿóüÿÿÿÿ
+W	java:S125ˆ"<This block of commented-out lines of code should be removed.(ØÙÏýÿÿÿÿ
+T	java:S106"9Replace this use of System.out or System.err by a logger.(¬Íõûÿÿÿÿ
+R	java:S125”"<This block of commented-out lines of code should be removed.(ÈÝê
+R	java:S125˜"<This block of commented-out lines of code should be removed.(õ»î·
+R	java:S125œ"<This block of commented-out lines of code should be removed.(®þãõ
+R	java:S125¨"<This block of commented-out lines of code should be removed.(—¹Ÿ“
+J
+java:S1481°".Remove this unused "isWritten" local variable.(ïœìšþÿÿÿÿ
+W	java:S125±"<This block of commented-out lines of code should be removed.(‘¶üàÿÿÿÿÿ
+W	java:S125Ð"<This block of commented-out lines of code should be removed.(ÕíúÈøÿÿÿÿ
+R	java:S125á"<This block of commented-out lines of code should be removed.(‚Ã†ã
+W	java:S125„"<This block of commented-out lines of code should be removed.(®Â•Êúÿÿÿÿ
+=
+java:S2129‹"!Remove this "Boolean" constructor(ŽÎˆûÿÿÿÿ
+K
+java:S1874‹"/Remove this use of "Boolean"; it is deprecated.(ŽÎˆûÿÿÿÿ
+W	java:S125"<This block of commented-out lines of code should be removed.(ƒ¶É¬úÿÿÿÿ
+p
+java:S2293ê"YReplace the type specification in this constructor call with the diamond operator ("<>").(û×ÛÂ
+\
+java:S1192I"GDefine a constant instead of duplicating this literal "active" 3 times.(ñ¥µ
+Z
+java:S1155Ž">Use isEmpty() to check whether the collection is empty or not.(²êÆöùÿÿÿÿ
+`
+java:S2259M"EA "NullPointerException" could be thrown; "stdList" is nullable here.(º›·Ôÿÿÿÿÿ
+j
+java:S2259§"NA "NullPointerException" could be thrown; "generatorContext" is nullable here.(ÄÇ€Ãýÿÿÿÿ

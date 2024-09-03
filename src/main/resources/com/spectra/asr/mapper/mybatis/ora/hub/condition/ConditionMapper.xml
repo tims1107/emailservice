@@ -1,0 +1,328 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!-- Created by: http://blog.idleworx.com, http://www.idleworx.com -->
+<mapper namespace="com.spectra.asr.mapper.mybatis.ora.hub.condition.ConditionMapper">
+	<resultMap id="conditionMasterDtoMap" type="ConditionMasterDto">
+		<result property="state" column="STATE" />
+		<result property="stateAbbreviation" column="STATE_ABBREVIATION" />
+		<result property="conditionMasterPk" column="CONDITION_MASTER_PK" />
+		<result property="stateFk" column="STATE_FK" />
+		<result property="conditionFilterFk" column="CONDITION_FILTER_FK" />
+		<result property="orderTestCode" column="ORDER_TEST_CODE" />
+		<result property="resultTestCode" column="RESULT_TEST_CODE" />
+		<result property="condition" column="CONDITION" />
+		<result property="valueType" column="VALUE_TYPE" />
+		<result property="conditionValue" column="CONDITION_VALUE" />
+		<result property="status" column="STATUS" />
+		<result property="createdDate" column="CREATED_DATE" />
+		<result property="createdBy" column="CREATED_BY" />
+		<result property="lastUpdatedDate" column="LAST_UPDATED_DATE" />
+		<result property="lastUpdatedBy" column="LAST_UPDATED_BY" />
+	</resultMap>
+	
+	<resultMap id="conditionFilterDtoMap" type="ConditionFilterDto">
+		<result property="conditionFilterPk" column="CONDITION_FILTER_PK" />
+		<result property="condition" column="CONDITION" />
+		<result property="filter" column="FILTER" />
+		<result property="valueType" column="VALUE_TYPE" />
+		<result property="status" column="STATUS" />
+		<result property="createdDate" column="CREATED_DATE" />
+		<result property="createdBy" column="CREATED_BY" />
+		<result property="lastUpdatedDate" column="LAST_UPDATED_DATE" />
+		<result property="lastUpdatedBy" column="LAST_UPDATED_BY" />
+	</resultMap>	
+
+	<select id="selectLastConditionFilter" parameterType="java.lang.String"  resultMap="conditionFilterDtoMap">
+		select
+			*
+		from
+			STATERPT_OWNER.CONDITION_FILTERS
+		where
+			CONDITION_FILTER_PK = (
+				select
+					max(CONDITION_FILTER_PK)
+				from
+					STATERPT_OWNER.CONDITION_FILTERS
+				where
+					status = 'active'
+			)	
+	</select>
+
+	<select id="selectConditionFilters" parameterType="java.util.Map"  resultMap="conditionFilterDtoMap">
+		select
+			*
+		from
+			STATERPT_OWNER.CONDITION_FILTERS
+		where
+			condition is not null
+			<if test="conditionFilterPk != null">
+				and condition_filter_pk = #{conditionFilterPk}
+			</if>
+			<if test="condition != null">
+				and condition = #{condition}
+			</if>
+			<if test="filter != null">
+				and filter = #{filter}
+			</if>
+			<if test="valueType != null">
+				and value_type = #{valueType}
+			</if>
+			<if test="status != null">
+				and status = #{status}
+			</if>			
+	</select>
+	
+	<insert id="insertConditionFilter" parameterType="ConditionFilterDto">
+		INSERT INTO STATERPT_OWNER.CONDITION_FILTERS(
+			CONDITION,
+			FILTER,
+			VALUE_TYPE,
+			STATUS,
+			CREATED_DATE,
+			CREATED_BY,
+			LAST_UPDATED_DATE,
+			LAST_UPDATED_BY
+		) VALUES (
+			#{condition},
+			#{filter},
+			#{valueType},
+			#{status},
+			CURRENT_TIMESTAMP,
+			#{createdBy},
+			CURRENT_TIMESTAMP,
+			#{lastUpdatedBy}
+		)
+	</insert>	
+
+	<update id="updateConditionFilter" parameterType="ConditionFilterDto">
+		update 
+			STATERPT_OWNER.CONDITION_FILTERS
+		set
+			<if test="condition != null">
+				CONDITION = #{condition},
+			</if>
+			<if test="filter != null">
+				FILTER = #{filter},
+			</if>
+			<if test="valueType != null">
+				VALUE_TYPE = #{valueType},
+			</if>
+			<if test="status != null">
+				STATUS = #{status},
+			</if>			
+			<if test="lastUpdatedBy != null">
+				LAST_UPDATED_BY = #{lastUpdatedBy},
+			</if>
+			LAST_UPDATED_DATE = SYSTIMESTAMP(6)
+		where 
+			CONDITION_FILTER_PK = #{conditionFilterPk}
+	</update>
+
+	<select id="selectDistinctOTCByEntity" parameterType="java.util.Map"  resultType="java.lang.String">
+		select
+			distinct(c.order_test_code)
+		from
+			"STATERPT_OWNER"."CONDITION_MASTER" c,
+			"STATERPT_OWNER"."STATE_MASTER" s
+		where
+			c.state_fk is not null
+			and c.state_fk = s.state_master_pk	
+			and c.order_test_code is not null	
+			<if test="state != null">
+				and s.state = #{state}
+			</if>
+			<if test="stateAbbreviation != null">
+				and s.state_abbreviation = #{stateAbbreviation}
+			</if>
+			<if test="stateFk != null">
+				and c.state_fk = #{stateFk}
+			</if>			
+			<if test="conditionFilterFk != null">
+				and c.condition_filter_fk = #{conditionFilterFk}
+			</if>
+			<if test="orderTestCode != null">
+				and c.order_test_code = #{orderTestCode}
+			</if>
+			<if test="resultTestCode != null">
+				and c.result_test_code = #{resultTestCode}
+			</if>
+			<if test="condition != null">
+				and c.condition = #{condition}
+			</if>
+			<if test="valueType != null">
+				and c.value_type = #{valueType}
+			</if>
+			<if test="conditionValue != null">
+				and c.condition_value = #{conditionValue}
+			</if>
+			<if test="status != null">
+				and c.status = #{status}
+			</if>			
+	</select>
+	
+	<select id="selectLastConditionMaster" parameterType="java.lang.String"  resultMap="conditionMasterDtoMap">
+		select
+			*
+		from
+			STATERPT_OWNER.CONDITION_MASTER
+		where
+			CONDITION_MASTER_PK = (
+				select
+					max(CONDITION_MASTER_PK)
+				from
+					STATERPT_OWNER.CONDITION_MASTER
+				where
+					status = 'active'
+			)		
+	</select>
+
+	<select id="selectConditionFromConditionMaster" parameterType="java.util.Map"  resultMap="conditionMasterDtoMap">
+		select
+			distinct(condition),
+			condition_filter_fk
+		from
+			STATERPT_OWNER.CONDITION_MASTER
+		where
+			condition_master_pk is not null
+			<if test="state != null">
+				and state_fk = (
+					select
+						state_master_pk
+					from
+						STATERPT_OWNER.STATE_MASTER
+					where
+						state = #{state}
+						and status = 'active'
+				)	
+			</if>	
+	</select>
+
+	<select id="selectConditionMaster" parameterType="java.util.Map"  resultMap="conditionMasterDtoMap">
+		select
+			s.state,
+			s.state_abbreviation,
+			c.*
+		from	
+			STATERPT_OWNER.CONDITION_MASTER c,
+			STATERPT_OWNER.STATE_MASTER s
+		where
+			c.state_fk is not null
+			and c.state_fk = s.state_master_pk
+			<if test="excludeConditionList != null">
+				and (c.condition not in 
+				<foreach item="excludeCondition" index="index" collection="excludeConditionList" open="(" separator="," close=")">
+					#{excludeCondition}
+				</foreach>
+				)
+			</if>
+			<if test="includeConditionList != null">
+				and (c.condition in 
+				<foreach item="includeCondition" index="index" collection="includeConditionList" open="(" separator="," close=")">
+					#{includeCondition}
+				</foreach>
+				)
+			</if>			
+			<if test="conditionMasterPk != null">
+				and c.condition_master_pk = #{conditionMasterPk}
+			</if>
+			<if test="state != null">
+				and s.state = #{state}
+			</if>
+			<if test="stateAbbreviation != null">
+				and s.state_abbreviation = #{stateAbbreviation}
+			</if>
+			<if test="stateFk != null">
+				and c.state_fk = #{stateFk}
+			</if>			
+			<if test="conditionFilterFk != null">
+				and c.condition_filter_fk = #{conditionFilterFk}
+			</if>
+			<if test="orderTestCode != null">
+				and c.order_test_code = #{orderTestCode}
+			</if>
+			<if test="resultTestCode != null">
+				and c.result_test_code = #{resultTestCode}
+			</if>
+			<if test="condition != null">
+				and c.condition = #{condition}
+			</if>
+			<if test="valueType != null">
+				and c.value_type = #{valueType}
+			</if>
+			<if test="conditionValue != null">
+				and c.condition_value = #{conditionValue}
+			</if>
+			<if test="status != null">
+				and c.status = #{status}
+			</if>			
+		order by
+			order_test_code,
+			result_test_code
+	</select>
+
+	<insert id="insertConditionMaster" parameterType="ConditionMasterDto">
+		INSERT INTO STATERPT_OWNER.CONDITION_MASTER(
+			STATE_FK,
+			CONDITION_FILTER_FK,
+			ORDER_TEST_CODE,
+			RESULT_TEST_CODE,
+			CONDITION,
+			VALUE_TYPE,
+			CONDITION_VALUE,
+			STATUS,
+			CREATED_DATE,
+			CREATED_BY,
+			LAST_UPDATED_DATE,
+			LAST_UPDATED_BY
+		) VALUES (
+			#{stateFk},
+			#{conditionFilterFk},
+			#{orderTestCode}, 
+			#{resultTestCode},
+			#{condition},
+			#{valueType},
+			#{conditionValue},
+			#{status},
+			CURRENT_TIMESTAMP,
+			#{createdBy},
+			CURRENT_TIMESTAMP,
+			#{lastUpdatedBy}
+		)
+	</insert>
+
+	<update id="updateConditionMaster" parameterType="ConditionMasterDto">
+		update 
+			STATERPT_OWNER.CONDITION_MASTER
+		set
+			<if test="stateFk != null">
+				STATE_FK = #{stateFk},
+			</if>
+			<if test="conditionFilterFk != null">
+				CONDITION_FILTER_FK = #{conditionFilterFk},
+			</if>
+			<if test="orderTestCode != null">
+				ORDER_TEST_CODE = #{orderTestCode},
+			</if>
+			<if test="resultTestCode != null">
+				RESULT_TEST_CODE = #{resultTestCode},
+			</if>
+			<if test="condition != null">
+				CONDITION = #{condition},
+			</if>			
+			<if test="valueType != null">
+				VALUE_TYPE = #{valueType},
+			</if>
+			<if test="conditionValue != null">
+				CONDITION_VALUE = #{conditionValue},
+			</if>
+			<if test="status != null">
+				STATUS = #{status},
+			</if>			
+			<if test="lastUpdatedBy != null">
+				LAST_UPDATED_BY = #{lastUpdatedBy},
+			</if>
+			LAST_UPDATED_DATE = SYSTIMESTAMP(6)
+		where 
+			CONDITION_MASTER_PK = #{conditionMasterPk}
+	</update>
+</mapper>

@@ -1,0 +1,506 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!-- Created by: http://blog.idleworx.com, http://www.idleworx.com -->
+<mapper namespace="com.spectra.asr.mapper.mybatis.ora.hub.log.ResultsSentLogMapper">
+	<resultMap id="resultsSentLogDtoMap" type="ResultsSentLogDto">
+		<result property="resultsSentLogPk" column="RESULTS_SENT_LOG_PK" />
+		<result property="resultSource" column="RESULT_SOURCE" />
+		
+		<association property="stateResultDto" javaType="StateResultDto">
+			<result property="facilityId" column="FACILITY_ID" />
+			<result property="cid" column="CID" />
+			<result property="accessionNo" column="ACCESSION_NUMBER" />
+
+			<result property="ethnicGroup" column="ETHNIC_GROUP" />
+			<result property="patientRace" column="PATIENT_RACE" />		
+
+			<result property="mrn" column="EXTERNAL_MRN" />
+			<result property="patientLastName" column="PATIENT_LAST_NAME" />
+			<result property="patientFirstName" column="PATIENT_FIRST_NAME" />
+			<result property="patientMiddleName" column="PATIENT_MIDDLE_NAME" />
+			<result property="dateOfBirth" column="DATE_OF_BIRTH" />
+			<result property="gender" column="GENDER" />
+			<result property="patientSsn" column="PATIENT_SSN" />
+			<result property="npi" column="NPI" />
+			<result property="orderingPhysicianName" column="ORDERING_PHYSICIAN_NAME" />
+
+			<result property="reportNotes" column="REPORT_NOTES" />		
+			<result property="specimenReceiveDate" column="SPECIMEN_RECEIVE_DATE" />
+			<result property="collectionDate" column="COLLECTION_DATE" />
+			<result property="collectionTime" column="COLLECTION_TIME" />
+			<result property="collectionDateTime" column="COLLECTION_DATE_TIME" />
+			<result property="drawFreq" column="DRAW_FREQ" />
+			<result property="resRprtStatusChngDtTime" column="RES_RPRT_STATUS_CHNG_DT_TIME" />
+			<result property="orderDetailStatus" column="ORDER_DETAIL_STATUS" />
+			<result property="orderTestCode" column="ORDER_TEST_CODE" />
+			<result property="orderTestName" column="ORDER_TEST_NAME" />
+			<result property="resultTestCode" column="RESULT_TEST_CODE" />
+			<result property="resultTestName" column="RESULT_TEST_NAME" />
+			<result property="resultStatus" column="RESULT_STATUS" />
+			<result property="textualResult" column="TEXTUAL_RESULT" />
+			<result property="textualResultFull" column="TEXTUAL_RESULT_FULL" />
+			<result property="numericResult" column="NUMERIC_RESULT" />
+			<result property="units" column="UNITS" />
+			<result property="referenceRange" column="REFERENCE_RANGE" />
+			<result property="abnormalFlag" column="ABNORMAL_FLAG" />
+
+			<result property="releaseDateTime" column="RELEASE_DATE_TIME" />
+			<result property="resultComments" column="RESULT_COMMENTS" jdbcType="CLOB" />
+			<result property="performingLabId" column="PERFORMING_LAB_ID" />
+			<result property="orderMethod" column="ORDER_METHOD" />
+			<result property="specimenSource" column="SPECIMEN_SOURCE" />
+			<result property="orderNumber" column="ORDER_NUMBER" />
+
+			<result property="loggingSite" column="LOGGING_SITE" />
+			<result property="age" column="AGE" />
+			<result property="facilityName" column="FACILITY_NAME" />
+			<result property="condCode" column="COND_CODE" />
+			<result property="patientType" column="PATIENT_TYPE" />
+			<result property="sourceOfComment" column="SOURCE_OF_COMMENT" />
+			<result property="patientId" column="PATIENT_ID" />
+			<result property="altPatientId" column="ALTERNATE_PATIENT_ID" />
+
+			<result property="requisitionStatus" column="REQUISITION_STATUS" />
+			<result property="facilityAddress1" column="FACILITY_ADDRESS1" />
+			<result property="facilityAddress2" column="FACILITY_ADDRESS2" />
+			<result property="facilityCity" column="FACILITY_CITY" />
+			<result property="facilityState" column="FACILITY_STATE" />
+			<result property="facilityZip" column="FACILITY_ZIP" />
+			<result property="facilityPhone" column="FACILITY_PHONE" />
+			<result property="patientAccountAddress1" column="PATIENT_ACCOUNT_ADDRESS1" />
+			<result property="patientAccountAddress2" column="PATIENT_ACCOUNT_ADDRESS2" />
+			<result property="patientAccountCity" column="PATIENT_ACCOUNT_CITY" />
+			<result property="patientAccountState" column="PATIENT_ACCOUNT_STATE" />
+			<result property="patientAccountZip" column="PATIENT_ACCOUNT_ZIP" />
+			<result property="patientHomePhone" column="PATIENT_HOME_PHONE" />
+			<result property="loincCode" column="LOINC_CODE" />
+			<result property="loincName" column="LOINC_NAME" />
+			<result property="valueType" column="VALUE_TYPE" />
+			<result property="eastWestFlag" column="EAST_WEST_FLAG" />
+			<result property="internalExternalFlag" column="INTERNAL_EXTERNAL_FLAG" />
+			<result property="lastUpdateTime" column="LAST_UPDATE_TIME" />
+
+			<result property="clinicalManager" column="CLINICAL_MANAGER" />
+			<result property="medicalDirector" column="MEDICAL_DIRECTOR" />
+			<result property="sequenceNo" column="SEQUENCE_NO" />
+
+			<result property="facilityAccountStatus" column="FACILITY_ACCOUNT_STATUS" />
+			<result property="facilityActiveFlag" column="FACILITY_ACTIVE_FLAG" />
+			<result property="microIsolate" column="MICRO_ISOLATE" />
+			<result property="microOrganismName" column="MICRO_ORGANISM_NAME" />
+			<result property="labFk" column="LAB_FK" />
+
+			<result property="actiFacilityId" column="ACTI_FACILITY_ID" />
+			<result property="fmcNumber" column="FMC_NUMBER" />
+		</association>
+
+	</resultMap>
+
+	<select id="selectResultsSentLog" parameterType="ResultsSentLogDto"  resultMap="resultsSentLogDtoMap">
+		select
+			*
+		from
+			STATERPT_OWNER.RESULTS_SENT_LOG
+		where
+			accession_number is not null
+			
+			<if test="stateResultDto.facilityId != null">
+				and FACILITY_ID = #{stateResultDto.facilityId}
+			</if>
+			<if test="stateResultDto.cid != null">
+				and CID = #{stateResultDto.cid}
+			</if>
+			<if test="stateResultDto.accessionNo != null">
+				and ACCESSION_NUMBER = #{stateResultDto.accessionNo}
+			</if>			
+			<if test="stateResultDto.ethnicGroup != null">
+				and ETHNIC_GROUP = #{stateResultDto.ethnicGroup}
+			</if>
+			<if test="stateResultDto.patientRace != null">
+				and PATIENT_RACE = #{stateResultDto.patientRace}
+			</if>			
+			<if test="stateResultDto.mrn != null">
+				and EXTERNAL_MRN = #{stateResultDto.mrn}
+			</if>						
+			<if test="stateResultDto.patientLastName != null">
+				and PATIENT_LAST_NAME = #{stateResultDto.patientLastName}
+			</if>
+			<if test="stateResultDto.patientFirstName != null">
+				and PATIENT_FIRST_NAME = #{stateResultDto.patientFirstName}
+			</if>
+			<if test="stateResultDto.patientMiddleName != null">
+				and PATIENT_MIDDLE_NAME = #{stateResultDto.patientMiddleName}
+			</if>		
+			<if test="stateResultDto.dateOfBirth != null">
+				and DATE_OF_BIRTH = #{stateResultDto.dateOfBirth}
+			</if>					
+			<if test="stateResultDto.gender != null">
+				and GENDER = #{stateResultDto.gender}
+			</if>
+			<if test="stateResultDto.patientSsn != null">
+				and PATIENT_SSN = #{stateResultDto.patientSsn}
+			</if>
+			<if test="stateResultDto.npi != null">
+				and NPI = #{stateResultDto.npi}
+			</if>
+			<if test="stateResultDto.orderingPhysicianName != null">
+				and ORDERING_PHYSICIAN_NAME = #{stateResultDto.orderingPhysicianName}
+			</if>			
+			<if test="stateResultDto.reportNotes != null">
+				and REPORT_NOTES = #{stateResultDto.reportNotes}
+			</if>
+			<if test="stateResultDto.specimenReceiveDate != null">
+				and SPECIMEN_RECEIVE_DATE = #{stateResultDto.specimenReceiveDate}
+			</if>
+			<if test="stateResultDto.collectionDate != null">
+				and COLLECTION_DATE = #{stateResultDto.collectionDate}
+			</if>			
+			<if test="stateResultDto.collectionTime != null">
+				and COLLECTION_TIME = #{stateResultDto.collectionTime}
+			</if>
+			<if test="stateResultDto.collectionDateTime != null">
+				and COLLECTION_DATE_TIME = #{stateResultDto.collectionDateTime}
+			</if>
+			<if test="stateResultDto.drawFreq != null">
+				and DRAW_FREQ = #{stateResultDto.drawFreq}
+			</if>
+			<if test="stateResultDto.resRprtStatusChngDtTime != null">
+				and RES_RPRT_STATUS_CHNG_DT_TIME = #{stateResultDto.resRprtStatusChngDtTime}
+			</if>
+			<if test="stateResultDto.orderDetailStatus != null">
+				and ORDER_DETAIL_STATUS = #{stateResultDto.orderDetailStatus}
+			</if>
+			<if test="stateResultDto.orderTestCode != null">
+				and ORDER_TEST_CODE = #{stateResultDto.orderTestCode}
+			</if>
+			<if test="stateResultDto.orderTestName != null">
+				and ORDER_TEST_NAME = #{stateResultDto.orderTestName}
+			</if>
+			<if test="stateResultDto.resultTestCode != null">
+				and RESULT_TEST_CODE = #{stateResultDto.resultTestCode}
+			</if>
+			<if test="stateResultDto.resultTestName != null">
+				and RESULT_TEST_NAME = #{stateResultDto.resultTestName}
+			</if>
+			<if test="stateResultDto.resultStatus != null">
+				and RESULT_STATUS = #{stateResultDto.resultStatus}
+			</if>
+			<if test="stateResultDto.textualResult != null">
+				and TEXTUAL_RESULT = #{stateResultDto.textualResult}
+			</if>
+			<if test="stateResultDto.textualResultFull != null">
+				and TEXTUAL_RESULT_FULL = #{stateResultDto.textualResultFull}
+			</if>
+			<if test="stateResultDto.numericResult != null">
+				and NUMERIC_RESULT = #{stateResultDto.numericResult}
+			</if>
+			<if test="stateResultDto.units != null">
+				and UNITS = #{stateResultDto.units}
+			</if>
+			<if test="stateResultDto.referenceRange != null">
+				and REFERENCE_RANGE = #{stateResultDto.referenceRange}
+			</if>
+			<if test="stateResultDto.abnormalFlag != null">
+				and ABNORMAL_FLAG = #{stateResultDto.abnormalFlag}
+			</if>			
+			<if test="stateResultDto.releaseDateTime != null">
+				and RELEASE_DATE_TIME = #{stateResultDto.releaseDateTime}
+			</if>			
+			<if test="stateResultDto.resultComments != null">
+				and RESULT_COMMENTS = #{stateResultDto.resultComments}
+			</if>		
+			<if test="stateResultDto.performingLabId != null">
+				and PERFORMING_LAB_ID = #{stateResultDto.performingLabId}
+			</if>
+			<if test="stateResultDto.orderMethod != null">
+				and ORDER_METHOD = #{stateResultDto.orderMethod}
+			</if>		
+			<if test="stateResultDto.specimenSource != null">
+				and SPECIMEN_SOURCE = #{stateResultDto.specimenSource}
+			</if>	
+			<if test="stateResultDto.orderNumber != null">
+				and ORDER_NUMBER = #{stateResultDto.orderNumber}
+			</if>	
+			<if test="stateResultDto.loggingSite != null">
+				and LOGGING_SITE = #{stateResultDto.loggingSite}
+			</if>	
+			<if test="stateResultDto.age != null">
+				and AGE = #{stateResultDto.age}
+			</if>	
+			<if test="stateResultDto.facilityName != null">
+				and FACILITY_NAME = #{stateResultDto.facilityName}
+			</if>
+			<if test="stateResultDto.condCode != null">
+				and COND_CODE = #{stateResultDto.condCode}
+			</if>
+			<if test="stateResultDto.patientType != null">
+				and PATIENT_TYPE = #{stateResultDto.patientType}
+			</if>	
+			<if test="stateResultDto.sourceOfComment != null">
+				and SOURCE_OF_COMMENT = #{stateResultDto.sourceOfComment}
+			</if>
+			<if test="stateResultDto.patientId != null">
+				and PATIENT_ID = #{stateResultDto.patientId}
+			</if>		
+			<if test="stateResultDto.altPatientId != null">
+				and ALTERNATE_PATIENT_ID = #{stateResultDto.altPatientId}
+			</if>
+			<if test="stateResultDto.requisitionStatus != null">
+				and REQUISITION_STATUS = #{stateResultDto.requisitionStatus}
+			</if>
+			<if test="stateResultDto.facilityAddress1 != null">
+				and FACILITY_ADDRESS1 = #{stateResultDto.facilityAddress1}
+			</if>
+			<if test="stateResultDto.facilityAddress2 != null">
+				and FACILITY_ADDRESS2 = #{stateResultDto.facilityAddress2}
+			</if>	
+			<if test="stateResultDto.facilityCity != null">
+				and FACILITY_CITY = #{stateResultDto.facilityCity}
+			</if>
+			<if test="stateResultDto.facilityState != null">
+				and FACILITY_STATE = #{stateResultDto.facilityState}
+			</if>	
+			<if test="stateResultDto.facilityZip != null">
+				and FACILITY_ZIP = #{stateResultDto.facilityZip}
+			</if>	
+			<if test="stateResultDto.facilityPhone != null">
+				and FACILITY_PHONE = #{stateResultDto.facilityPhone}
+			</if>
+			<if test="stateResultDto.patientAccountAddress1 != null">
+				and PATIENT_ACCOUNT_ADDRESS1 = #{stateResultDto.patientAccountAddress1}
+			</if>	
+			<if test="stateResultDto.patientAccountAddress2 != null">
+				and PATIENT_ACCOUNT_ADDRESS2 = #{stateResultDto.patientAccountAddress2}
+			</if>
+			<if test="stateResultDto.patientAccountCity != null">
+				and PATIENT_ACCOUNT_CITY = #{stateResultDto.patientAccountCity}
+			</if>		
+			<if test="stateResultDto.patientAccountState != null">
+				and PATIENT_ACCOUNT_STATE = #{stateResultDto.patientAccountState}
+			</if>	
+			<if test="stateResultDto.patientAccountZip != null">
+				and PATIENT_ACCOUNT_ZIP = #{stateResultDto.patientAccountZip}
+			</if>
+			<if test="stateResultDto.patientHomePhone != null">
+				and PATIENT_HOME_PHONE = #{stateResultDto.patientHomePhone}
+			</if>	
+			<if test="stateResultDto.loincCode != null">
+				and LOINC_CODE = #{stateResultDto.loincCode}
+			</if>
+			<if test="stateResultDto.loincName != null">
+				and LOINC_NAME = #{stateResultDto.loincName}
+			</if>
+			<if test="stateResultDto.valueType != null">
+				and VALUE_TYPE = #{stateResultDto.valueType}
+			</if>
+			<if test="stateResultDto.eastWestFlag != null">
+				and EAST_WEST_FLAG = #{stateResultDto.eastWestFlag}
+			</if>
+			<if test="stateResultDto.internalExternalFlag != null">
+				and INTERNAL_EXTERNAL_FLAG = #{stateResultDto.internalExternalFlag}
+			</if>
+			<if test="stateResultDto.clinicalManager != null">
+				and CLINICAL_MANAGER = #{stateResultDto.clinicalManager}
+			</if>
+			<if test="stateResultDto.medicalDirector != null">
+				and MEDICAL_DIRECTOR = #{stateResultDto.medicalDirector}
+			</if>	
+			<if test="stateResultDto.sequenceNo != null">
+				and SEQUENCE_NO = #{stateResultDto.sequenceNo}
+			</if>
+			<if test="stateResultDto.facilityAccountStatus != null">
+				and FACILITY_ACCOUNT_STATUS = #{stateResultDto.facilityAccountStatus}
+			</if>
+			<if test="stateResultDto.facilityActiveFlag != null">
+				and FACILITY_ACTIVE_FLAG = #{stateResultDto.facilityActiveFlag}
+			</if>
+			<if test="stateResultDto.microIsolate != null">
+				and MICRO_ISOLATE = #{stateResultDto.microIsolate}
+			</if>
+			<if test="stateResultDto.microOrganismName != null">
+				and MICRO_ORGANISM_NAME = #{stateResultDto.microOrganismName}
+			</if>
+			<if test="stateResultDto.labFk != null">
+				and LAB_FK = #{stateResultDto.labFk}
+			</if>
+			<if test="stateResultDto.actiFacilityId != null">
+				and ACTI_FACILITY_ID = #{stateResultDto.actiFacilityId}
+			</if>
+			<if test="stateResultDto.fmcNumber != null">
+				and FMC_NUMBER = #{stateResultDto.fmcNumber}
+			</if>
+			<if test="resultSource != null">
+				and RESULT_SOURCE = #{resultSource}
+			</if>			
+			<if test="stateResultDto.lastUpdateTime != null">
+			<![CDATA[
+				and last_update_time >= #{stateResultDto.lastUpdateTime}
+			]]>	
+			</if>
+			<if test="endLastUpdateTime != null">
+			<![CDATA[
+				and last_update_time < #{endLastUpdateTime}
+			]]>	
+			</if>
+	</select>		
+
+	<insert id="insertResultsSentLog" parameterType="ResultsSentLogDto">
+		INSERT INTO STATERPT_OWNER.RESULTS_SENT_LOG(
+			ACCESSION_NUMBER,
+			FACILITY_ID,
+			CID,
+			ETHNIC_GROUP,
+			PATIENT_RACE,
+			EXTERNAL_MRN,
+			PATIENT_LAST_NAME,
+			PATIENT_FIRST_NAME,
+			PATIENT_MIDDLE_NAME,
+			DATE_OF_BIRTH,
+			GENDER,
+			PATIENT_SSN,
+			NPI,
+			ORDERING_PHYSICIAN_NAME,
+			REPORT_NOTES,
+			SPECIMEN_RECEIVE_DATE,
+			COLLECTION_DATE,
+			COLLECTION_TIME,
+			COLLECTION_DATE_TIME,
+			DRAW_FREQ,
+			RES_RPRT_STATUS_CHNG_DT_TIME,
+			ORDER_DETAIL_STATUS,
+			ORDER_TEST_CODE,
+			ORDER_TEST_NAME,
+			RESULT_TEST_CODE,
+			RESULT_TEST_NAME,
+			RESULT_STATUS,
+			TEXTUAL_RESULT,
+			TEXTUAL_RESULT_FULL,
+			NUMERIC_RESULT,
+			UNITS,
+			REFERENCE_RANGE,
+			ABNORMAL_FLAG,
+			RELEASE_DATE_TIME,
+			RESULT_COMMENTS,
+			PERFORMING_LAB_ID,
+			ORDER_METHOD,
+			SPECIMEN_SOURCE,
+			ORDER_NUMBER,
+			LOGGING_SITE,
+			AGE,
+			FACILITY_NAME,
+			COND_CODE,
+			PATIENT_TYPE,
+			SOURCE_OF_COMMENT,
+			PATIENT_ID,
+			ALTERNATE_PATIENT_ID,
+			REQUISITION_STATUS,
+			FACILITY_ADDRESS1,
+			FACILITY_ADDRESS2,
+			FACILITY_CITY,
+			FACILITY_STATE,
+			FACILITY_ZIP,
+			FACILITY_PHONE,
+			PATIENT_ACCOUNT_ADDRESS1,
+			PATIENT_ACCOUNT_ADDRESS2,
+			PATIENT_ACCOUNT_CITY,
+			PATIENT_ACCOUNT_STATE,
+			PATIENT_ACCOUNT_ZIP,
+			PATIENT_HOME_PHONE,
+			LOINC_CODE,
+			LOINC_NAME,
+			VALUE_TYPE,
+			EAST_WEST_FLAG,
+			INTERNAL_EXTERNAL_FLAG,
+			LAST_UPDATE_TIME,
+			SEQUENCE_NO,
+			FACILITY_ACCOUNT_STATUS,
+			FACILITY_ACTIVE_FLAG,
+			MICRO_ISOLATE,
+			MICRO_ORGANISM_NAME,
+			LAB_FK,
+			CLINICAL_MANAGER,
+			MEDICAL_DIRECTOR,
+			ACTI_FACILITY_ID,
+			FMC_NUMBER,
+			RESULT_SOURCE
+		) VALUES (
+			#{stateResultDto.accessionNo},
+			#{stateResultDto.facilityId},
+			#{stateResultDto.cid},
+			#{stateResultDto.ethnicGroup},
+			#{stateResultDto.patientRace},
+			#{stateResultDto.mrn},
+			#{stateResultDto.patientLastName},
+			#{stateResultDto.patientFirstName},
+			#{stateResultDto.patientMiddleName},
+			#{stateResultDto.dateOfBirth},
+			#{stateResultDto.gender},
+			#{stateResultDto.patientSsn},
+			#{stateResultDto.npi},
+			#{stateResultDto.orderingPhysicianName},
+			#{stateResultDto.reportNotes},
+			#{stateResultDto.specimenReceiveDate},
+			#{stateResultDto.collectionDate},
+			#{stateResultDto.collectionTime},
+			#{stateResultDto.collectionDateTime},
+			#{stateResultDto.drawFreq},
+			#{stateResultDto.resRprtStatusChngDtTime},
+			#{stateResultDto.orderDetailStatus},
+			#{stateResultDto.orderTestCode},
+			#{stateResultDto.orderTestName},
+			#{stateResultDto.resultTestCode},
+			#{stateResultDto.resultTestName},
+			#{stateResultDto.resultStatus},
+			#{stateResultDto.textualResult},
+			#{stateResultDto.textualResultFull},
+			#{stateResultDto.numericResult},
+			#{stateResultDto.units},
+			#{stateResultDto.referenceRange},
+			#{stateResultDto.abnormalFlag},
+			#{stateResultDto.releaseDateTime},
+			#{stateResultDto.resultComments},
+			#{stateResultDto.performingLabId},
+			#{stateResultDto.orderMethod},
+			#{stateResultDto.specimenSource},
+			#{stateResultDto.orderNumber},
+			#{stateResultDto.loggingSite},
+			#{stateResultDto.age},
+			#{stateResultDto.facilityName},
+			#{stateResultDto.condCode},
+			#{stateResultDto.patientType},
+			#{stateResultDto.sourceOfComment},
+			#{stateResultDto.patientId},
+			#{stateResultDto.altPatientId},
+			#{stateResultDto.requisitionStatus},
+			#{stateResultDto.facilityAddress1},
+			#{stateResultDto.facilityAddress2},
+			#{stateResultDto.facilityCity},
+			#{stateResultDto.facilityState},
+			#{stateResultDto.facilityZip},
+			#{stateResultDto.facilityPhone},
+			#{stateResultDto.patientAccountAddress1},
+			#{stateResultDto.patientAccountAddress2},
+			#{stateResultDto.patientAccountCity},
+			#{stateResultDto.patientAccountState},
+			#{stateResultDto.patientAccountZip},
+			#{stateResultDto.patientHomePhone},
+			#{stateResultDto.loincCode},
+			#{stateResultDto.loincName},
+			#{stateResultDto.valueType},
+			#{stateResultDto.eastWestFlag},
+			#{stateResultDto.internalExternalFlag},
+			CURRENT_TIMESTAMP,
+			#{stateResultDto.sequenceNo},
+			#{stateResultDto.facilityAccountStatus},
+			#{stateResultDto.facilityActiveFlag},
+			#{stateResultDto.microIsolate},
+			#{stateResultDto.microOrganismName},
+			#{stateResultDto.labFk},
+			#{stateResultDto.clinicalManager},
+			#{stateResultDto.medicalDirector},
+			#{stateResultDto.actiFacilityId},
+			#{stateResultDto.fmcNumber},
+			#{resultSource}
+		)
+	</insert>
+</mapper>

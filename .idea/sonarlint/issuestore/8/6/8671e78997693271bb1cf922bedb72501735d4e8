@@ -1,0 +1,73 @@
+
+o
+java:S3008*"TRename this field "micro_qry" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(š®á›ıÿÿÿÿ
+o
+java:S3008+"TRename this field "BATCH_QRY" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(âìüÿÿÿÿ
+V	java:S1257"<This block of commented-out lines of code should be removed.(ÆÃÚèşÿÿÿÿ
+V	java:S125:"<This block of commented-out lines of code should be removed.(ÚÅÈİûÿÿÿÿ
+V	java:S125<"<This block of commented-out lines of code should be removed.(Ğ¾ÿÿÿÿÿ
+W
+java:S1128"<Remove this unused import 'ca.uhn.hl7v2.DefaultHapiContext'.(™¹şŸüÿÿÿÿ
+K
+java:S1128"6Remove this unused import 'ca.uhn.hl7v2.HL7Exception'.(ºˆµ,
+K
+java:S1128"5Remove this unused import 'ca.uhn.hl7v2.HapiContext'.(ÆÔ˜Œ
+M
+java:S1128"7Remove this unused import 'ca.uhn.hl7v2.model.Message'.(ÊşÓÕ
+M
+java:S1128"7Remove this unused import 'ca.uhn.hl7v2.model.Segment'.(•ò‰Ì
+O
+java:S1128"9Remove this unused import 'ca.uhn.hl7v2.model.Structure'.(À†Çñ
+d
+java:S1128	"NRemove this unused import 'ca.uhn.hl7v2.model.v251.group.ORU_R01_OBSERVATION'.(Ş…üğ
+j
+java:S1128
+"TRemove this unused import 'ca.uhn.hl7v2.model.v251.group.ORU_R01_ORDER_OBSERVATION'.(õäüĞ
+`
+java:S1128"JRemove this unused import 'ca.uhn.hl7v2.model.v251.group.ORU_R01_PATIENT'.(¸ì²
+f
+java:S1128"QRemove this unused import 'ca.uhn.hl7v2.model.v251.group.ORU_R01_PATIENT_RESULT'.(»«Ğ,
+Z
+java:S1128"DRemove this unused import 'ca.uhn.hl7v2.model.v251.message.ORU_R01'.(Áù û
+R
+java:S1128"<Remove this unused import 'ca.uhn.hl7v2.model.v251.segment'.(Çı 
+f
+java:S1128"KRemove this unused import 'ca.uhn.hl7v2.parser.CanonicalModelClassFactory'.(˜ù”œúÿÿÿÿ
+M
+java:S1128"7Remove this unused import 'ca.uhn.hl7v2.parser.Parser'.(á·ƒÂ
+Z
+java:S1128"DRemove this unused import 'ca.uhn.hl7v2.parser.ParserConfiguration'.(îù±­
+V
+java:S1128";Remove this unused import 'ca.uhn.hl7v2.parser.PipeParser'.(°êµÛÿÿÿÿÿ
+K
+java:S1128"5Remove this unused import 'ca.uhn.hl7v2.util.Terser'.(Ç÷‰ã
+H
+java:S1128"2Remove this unused import 'com.opencsv.CSVWriter'.(¦²Ö
+Z
+java:S1128"?Remove this unused import 'com.opencsv.bean.StatefulBeanToCsv'.(Œ€·úÿÿÿÿ
+\
+java:S1128"FRemove this unused import 'com.opencsv.bean.StatefulBeanToCsvBuilder'.(–œÀß
+f
+java:S1128"PRemove this unused import 'com.opencsv.exceptions.CsvDataTypeMismatchException'.(¢õîú
+m
+java:S1128"RRemove this unused import 'com.opencsv.exceptions.CsvRequiredFieldEmptyException'.(øÖŠÄşÿÿÿÿ
+e
+java:S1128"JRemove this unused import 'com.spectra.asr.hl7.creator.v251.ILHL7Creator'.(–åƒ‡ùÿÿÿÿ
+b
+java:S1128"LRemove this unused import 'com.spectra.asr.utils.file.writer.AsrFileWriter'.(§Šı
+Z
+java:S1128"?Remove this unused import 'com.spectra.dto.test.PatientRecord'.(şª£´ùÿÿÿÿ
+9
+java:S1128"$Remove this unused import 'java.io'.(¬›ãD
+M
+java:S1128 "7Remove this unused import 'java.text.SimpleDateFormat'.(ú¡ÙÛ
+<
+java:S1128!"&Remove this unused import 'java.util'.(Î€ŒÙ
+N
+java:S1128""8Remove this unused import 'java.util.function.Function'.(»³Í
+S
+java:S1128#"8Remove this unused import 'java.util.stream.Collectors'.(Óóº´úÿÿÿÿ
+A
+java:S1068("+Remove this unused "pathway" private field.(÷Â©™
+H
+java:S1068*"-Remove this unused "micro_qry" private field.(š®á›ıÿÿÿÿ

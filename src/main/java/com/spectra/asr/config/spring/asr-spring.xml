@@ -1,0 +1,852 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"       
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+       http://www.springframework.org/schema/beans/spring-beans-2.0.xsd">    
+
+	<bean id="mybatisPropertyConfigurator" class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
+		<property name="locations">
+			<list>
+				<value>classpath*:com/spectra/asr/config/mybatis/devdatabase.properties</value>
+			</list>
+		</property>
+	</bean>
+
+    <bean id="configurations"
+        class="org.springmodules.commons.configuration.CommonsConfigurationFactoryBean">
+        <property name="configurations">
+            <list>
+				<bean class="com.spectra.result.transporter.commons.configuration.ClasspathAwareXMLConfiguration" init-method="load">
+<!--
+					<property name="url" value="/com/spectra/result/transporter/config/resultTransporter.xml">
+					</property>
+-->					
+					<property name="url" value="/asr.xml"/>
+					<!-- <constructor-arg type="java.net.URL" value="classpath:resultTransporter.xml" /> -->
+					<property name="reloadingStrategy">
+						<bean class="org.apache.commons.configuration.reloading.FileChangedReloadingStrategy"/>
+					</property>
+				</bean>
+<!--				
+				<bean class="com.spectra.result.transporter.commons.configuration.ClasspathAwarePropertiesConfiguration" init-method="load">
+					<property name="url" value="/com/spectra/result/transporter/config/resultTransporter.properties">
+					</property>
+					<property name="reloadingStrategy">
+						<bean class="org.apache.commons.configuration.reloading.FileChangedReloadingStrategy"/>
+					</property>
+				</bean>	
+-->				
+				<bean class="com.spectra.result.transporter.commons.configuration.ClasspathAwarePropertiesConfiguration" init-method="load">
+<!--
+					<property name="url" value="/properties/resultTransporter.properties">
+					</property>
+-->					
+					<property name="url" value="/asr.properties"/>
+					<!-- <constructor-arg type="java.net.URL" value="classpath:resultTransporter.properties" /> -->
+					<property name="reloadingStrategy">
+						<bean class="org.apache.commons.configuration.reloading.FileChangedReloadingStrategy"/>
+					</property>
+				</bean>
+<!--
+				<bean class="com.spectra.result.transporter.commons.configuration.ClasspathAwarePropertiesConfiguration" init-method="load">
+					<property name="url" value="/${state}_Process.properties"/>
+					<property name="reloadingStrategy">
+						<bean class="org.apache.commons.configuration.reloading.FileChangedReloadingStrategy"/>
+					</property>
+				</bean>				
+-->				
+            </list>
+        </property>
+    </bean>    
+
+    <bean id="configuration" factory-bean="&amp;configurations" factory-method="getConfiguration"/>
+    
+	<bean id="configService" class="com.spectra.framework.service.config.ConfigServiceImpl">
+	  	<property name="configuration" ref="configuration" />
+	</bean>  
+<!--	
+	<bean id="hssfService" class="com.spectra.framework.service.poi.hssf.HssfServiceImpl">
+		<property name="configService" ref="configService"/>
+	</bean>	
+-->	
+	<!-- Properties -->
+	<bean id="PropertiesUtil" class="com.spectra.result.transporter.utils.props.PropertiesUtil">
+		<property name="propFileName" value="/com/spectra/asr/config/Process.properties"/>
+		<property name="propClassName" value="com.spectra.result.transporter.properties.state.StateInterfaceProperties"/>
+	</bean>	
+	<!-- End Properties -->
+	
+	<!-- DB -->
+	<!-- hub staterpt db -->
+    <bean id="staterptDataSource" destroy-method="close"  class="org.apache.commons.dbcp.BasicDataSource">
+    	<property name="driverClassName" value="${db.hub.staterpt.connection.driver.class}"/>
+    	<property name="url" value="${db.hub.staterpt.connection.url}"/>
+    	<property name="username" value="${db.hub.staterpt.connection.username}"/>
+    	<property name="password" value="${db.hub.staterpt.connection.password}"/>
+    	<property name="maxActive">
+      			<value>${db.connection.maxActive}</value>
+    	</property>
+    	<property name="maxWait">
+      		<value>${db.connection.maxWait}</value>
+    	</property>
+    	<property name="accessToUnderlyingConnectionAllowed" value="false"/>
+	</bean>       
+
+    <bean id="staterptTransactionManager" class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
+    	<property name="dataSource" ref="staterptDataSource" />
+    </bean>       
+    
+    <bean id="staterptSqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
+        <property name="dataSource" ref="staterptDataSource" />
+        <property name="configLocation" value="classpath:com/spectra/asr/config/spring/mybatisSpringConfig.xml" />
+    </bean>
+	<bean id="staterptSqlSession" class="org.mybatis.spring.SqlSessionTemplate">
+		<constructor-arg index="0" ref="staterptSqlSessionFactory" />
+	</bean>		
+	<!-- end hub staterpt db -->	
+	<!-- END DB -->
+	
+	<!-- Mybatis Mappers -->
+	<bean id="StaterptMapper" class="org.mybatis.spring.mapper.MapperFactoryBean">
+	  <property name="mapperInterface" value="com.spectra.asr.mapper.mybatis.ora.hub.StaterptMapper" />
+	  <property name="sqlSessionFactory" ref="staterptSqlSessionFactory" />
+	</bean>	
+<!--
+	<bean id="ResultRepositoryMapper" class="org.mybatis.spring.mapper.MapperFactoryBean">
+	  <property name="mapperInterface" value="com.spectra.result.transporter.mapper.mybatis.ora.rr.ResultRepositoryMapper" />
+	  <property name="sqlSessionFactory" ref="rrSqlSessionFactory" />
+	</bean>
+-->
+	<!-- End Mybatis Mappers -->	
+	
+	<!-- Validator -->
+  	<!--
+  	<bean id="ShieldValidator" class="com.spectra.result.transporter.dataaccess.spring.netlims.validator.ShieldValidatorImpl">
+  		<property name="configService" ref="configService" />
+  	</bean>	
+  	-->
+	<!-- End Validator -->
+	
+	<!-- Dao -->
+  	<bean id="StaterptDao" class="com.spectra.asr.dao.ora.hub.StaterptDaoImpl">
+  		<property name="mapper" ref="StaterptMapper" />
+  	</bean>  	
+  	<bean id="StaterptDaoFactory" class="com.spectra.asr.dao.factory.StaterptDaoFactory"/>
+
+<!--  	
+  	<bean id="ResultRepositoryDao" class="com.spectra.result.transporter.dao.ora.rr.ResultRepositoryDaoImpl">
+  		<property name="mapper" ref="ResultRepositoryMapper" />
+  	</bean>	
+  	<bean id="NetlimsFileDao" class="com.spectra.result.transporter.dao.netlims.NetlimsFileDaoImpl">
+  		<property name="configService" ref="configService" />
+  		<property name="validator" ref="ShieldValidator" />
+  	</bean>
+  	<bean id="WebservicexDataDao" class="com.spectra.result.transporter.dao.ws.webservicex.WebservicexDataDaoImpl">
+  		<property name="configService" ref="configService" />
+  		<property name="castorUtils" ref="CastorUtils" />
+  	</bean>  	
+  	<bean id="RepositoryDAOFactory" class="com.spectra.result.transporter.dataaccess.spring.ora.rr.RepositoryDAOFactory"/>
+-->  	
+  	<!-- End Dao -->
+  	
+	<!-- Bo -->
+<!--	
+	<bean id="RepositoryBo" class="com.spectra.result.transporter.businessobject.spring.ora.rr.RepositoryBoImpl">
+		<property name="daoFactory" ref="RepositoryDAOFactory" />
+	</bean>
+	<bean id="HL7WriterBo" class="com.spectra.result.transporter.businessobject.spring.hl7.HL7WriterBoImpl">
+		<property name="propertiesUtil" ref="PropertiesUtil" />
+	</bean>
+	<bean id="ResultFileTransportBo" class="com.spectra.result.transporter.businessobject.spring.file.ResultFileTransportBoImpl">
+		<property name="propertiesUtil" ref="PropertiesUtil" />
+		<property name="writerBo" ref="HL7WriterBo" />
+		<property name="repositoryBo" ref="RepositoryBo" />
+	</bean>
+	<bean id="StateHL7WriterBo" class="com.spectra.result.transporter.businessobject.spring.hl7.state.StateHL7WriterBoImpl">
+		<property name="configService" ref="configService" />
+	</bean>
+	<bean id="StateBatchHL7WriterBo" class="com.spectra.result.transporter.businessobject.spring.hl7.state.StateBatchHL7WriterBoImpl">
+		<property name="configService" ref="configService" />
+	</bean>
+	<bean id="WorkbookBo" class="com.spectra.result.transporter.businessobject.spring.poi.WorkbookBoImpl">
+		<property name="configService" ref="configService" />
+	</bean>
+	<bean id="DailyReportWorkbookBo" class="com.spectra.result.transporter.businessobject.spring.poi.DailyReportWorkbookBoImpl">
+		<property name="configService" ref="configService" />
+		<property name="daoFactory" ref="RepositoryDAOFactory" />
+	</bean>
+	<bean id="DailyAbnReportWorkbookBo" class="com.spectra.result.transporter.businessobject.spring.poi.daily.DailyAbnReportWorkbookBoImpl">
+		<property name="configService" ref="configService" />
+		<property name="daoFactory" ref="RepositoryDAOFactory" />
+	</bean>	
+	<bean id="RepositoryBoFactory" class="com.spectra.result.transporter.businessobject.spring.ora.rr.RepositoryBoFactory"/>
+-->	
+<!--
+	<bean id="ProviderBo" class="com.spectra.physician.master.businessobject.spring.provider.ProviderBoImpl">
+		<property name="daoFactory" ref="ProviderDAOFactory" />
+	</bean>
+	<bean id="CMProviderBo" class="com.spectra.physician.master.businessobject.spring.provider.cm.CMProviderBoImpl">
+		<property name="daoFactory" ref="ProviderDAOFactory" />
+	</bean>	
+	<bean id="ProviderBoFactory" class="com.spectra.physician.master.businessobject.spring.provider.ProviderBoFactory"/>
+-->
+	<!-- End Bo -->   	
+	
+	<!-- Win -->
+	<bean id="WinCmdExecutor" class="com.spectra.result.transporter.executor.WinCmdExecutor"/>		
+	<!-- end Win -->
+	
+  	<!-- Service -->
+<!--  	
+	<bean id="ResultFileTransportService" class="com.spectra.result.transporter.service.file.ResultFileTransportServiceImpl">
+		<property name="boFactory" ref="RepositoryBoFactory" />
+	</bean>
+	<bean id="RepositoryService" class="com.spectra.result.transporter.service.spring.rr.RepositoryServiceImpl">
+		<property name="boFactory" ref="RepositoryBoFactory" />
+	</bean>
+	<bean id="StateResultService" class="com.spectra.result.transporter.service.spring.state.StateResultServiceImpl">
+		<property name="configService" ref="configService" />
+		<property name="conversionContextFactory" ref="ConversionContextFactory" />
+		<property name="resultSchedulerServiceFactory" ref="ResultSchedulerServiceFactory" />
+		<property name="writerContextFactory" ref="WriterContextFactory" />
+	</bean>
+	<bean id="WinCmdExecutorService" class="com.spectra.result.transporter.service.spring.executor.WinCmdExecutorServiceImpl">
+		<property name="winCmdExecutor" ref="WinCmdExecutor" />
+	</bean>
+	<bean id="StateEipResultService" class="com.spectra.result.transporter.service.spring.state.eip.StateEipResultServiceImpl">
+		<property name="configService" ref="configService" />
+		<property name="conversionContextFactory" ref="ConversionContextFactory" />
+		<property name="resultSchedulerServiceFactory" ref="ResultSchedulerServiceFactory" />
+		<property name="writerContextFactory" ref="WriterContextFactory" />
+	</bean>
+	<bean id="DailyEipResultService" class="com.spectra.result.transporter.service.spring.state.eip.daily.DailyEipResultServiceImpl">
+		<property name="configService" ref="configService" />
+		<property name="conversionContextFactory" ref="ConversionContextFactory" />
+		<property name="resultSchedulerServiceFactory" ref="ResultSchedulerServiceFactory" />
+		<property name="writerContextFactory" ref="WriterContextFactory" />
+	</bean>	
+	<bean id="ResultSchedulerServiceFactory" class="com.spectra.result.transporter.service.spring.ResultSchedulerServiceFactory"/>
+-->	
+	
+<!--
+	<bean id="ProviderService" class="com.spectra.physician.master.service.spring.provider.ProviderServiceImpl">
+		<property name="boFactory" ref="ProviderBoFactory" />
+	</bean>	
+	<bean id="ProviderServiceFactory" class="com.spectra.physician.master.service.spring.provider.ProviderServiceFactory"/>
+-->
+  	<!-- End Service -->	
+	
+  	<!-- Processors -->
+<!--
+  	<bean id="SchedulerProcessor" class="com.spectra.result.transporter.web.processor.scheduler.SchedulerProcessor">
+  		<property name="serviceFactory" ref="ResultSchedulerServiceFactory" />
+  	</bean>  	
+  	<bean id="SpringProcessorFactory" class="com.spectra.result.transporter.web.processor.spring.SpringProcessorFactory"/> 
+-->  	
+  	<!-- End Processors -->
+
+	<!-- Controller -->
+<!--
+	<bean id="SpringControllerServlet" class="com.spectra.result.transporter.web.controller.spring.SpringControllerServlet"/>
+-->	
+	<!-- End Controller -->
+	
+	<!-- Conversion Context -->
+<!--
+  	<bean id="HL7ConversionContext" class="com.spectra.result.transporter.context.ConversionContextImpl">
+  		<property name="strategy" ref="HL7ConversionStrategy" />
+  	</bean>
+  	<bean id="BatchHL7ConversionContext" class="com.spectra.result.transporter.context.ConversionContextImpl">
+  		<property name="strategy" ref="BatchHL7ConversionStrategy" />
+  	</bean>
+  	<bean id="HSSFConversionContext" class="com.spectra.result.transporter.context.poi.PoiConversionContextImpl">
+  		<property name="strategy" ref="HSSFConversionStrategy" />
+  	</bean>
+  	<bean id="HSSFDailyReportConversionContext" class="com.spectra.result.transporter.context.poi.PoiConversionContextImpl">
+  		<property name="strategy" ref="HSSFDailyReportConversionStrategy" />
+  	</bean>  	
+  	<bean id="ConversionContextFactory" class="com.spectra.result.transporter.context.factory.ConversionContextFactory"/>
+-->  	
+	<!-- End Conversion Context -->
+	
+	<!-- Conversion Strategy -->
+<!--
+	<bean id="HL7ConversionStrategy" class="com.spectra.result.transporter.context.strategy.hl7.HL7ConversionStrategy">
+		<property name="writerBo" ref="StateHL7WriterBo" />
+	</bean>
+	<bean id="BatchHL7ConversionStrategy" class="com.spectra.result.transporter.context.strategy.hl7.HL7ConversionStrategy">
+		<property name="writerBo" ref="StateBatchHL7WriterBo" />
+	</bean>
+	<bean id="HSSFConversionStrategy" class="com.spectra.result.transporter.context.strategy.poi.HSSFConversionStrategy">
+		<property name="boFactory" ref="RepositoryBoFactory" />
+	</bean>
+	<bean id="HSSFDailyReportConversionStrategy" class="com.spectra.result.transporter.context.strategy.poi.HSSFDailyReportConversionStrategy">
+		<property name="boFactory" ref="RepositoryBoFactory" />
+	</bean>	
+-->	
+	<!-- End Conversion Strategy -->
+	
+	<!-- Writer Context -->
+<!--
+  	<bean id="FileWriterContext" class="com.spectra.result.transporter.context.writer.WriterContextImpl">
+  		<property name="strategy" ref="FileWriterStrategy" />
+  	</bean>
+  	<bean id="SambaFileWriterContext" class="com.spectra.result.transporter.context.writer.WriterContextImpl">
+  		<property name="strategy" ref="SambaFileWriterStrategy" />
+  	</bean>
+  	<bean id="PoiFileWriterContext" class="com.spectra.result.transporter.context.writer.poi.PoiWriterContextImpl">
+  		<property name="strategy" ref="PoiFileWriterStrategy" />
+  	</bean>
+  	<bean id="EipPoiFileWriterContext" class="com.spectra.result.transporter.context.writer.poi.PoiWriterContextImpl">
+  		<property name="strategy" ref="EipPoiFileWriterStrategy" />
+  	</bean>  	
+  	<bean id="WriterContextFactory" class="com.spectra.result.transporter.context.writer.factory.WriterContextFactory"/>	
+-->  	
+	<!-- End Writer Context -->
+	
+	<!-- Writer Strategy -->
+<!--
+	<bean id="FileWriterStrategy" class="com.spectra.result.transporter.context.writer.strategy.file.FileWriterStrategy">
+		<property name="configService" ref="configService" />
+	</bean>
+	<bean id="SambaFileWriterStrategy" class="com.spectra.result.transporter.context.writer.strategy.file.samba.SambaFileWriterStrategy">
+		<property name="configService" ref="configService" />
+		<property name="serviceFactory" ref="ResultSchedulerServiceFactory" />
+	</bean>
+	<bean id="PoiFileWriterStrategy" class="com.spectra.result.transporter.context.writer.strategy.file.poi.PoiFileWriterStrategy">
+		<property name="configService" ref="configService" />
+		<property name="serviceFactory" ref="ResultSchedulerServiceFactory" />
+	</bean>
+	<bean id="EipPoiFileWriterStrategy" class="com.spectra.result.transporter.context.writer.strategy.file.poi.EipPoiFileWriterStrategy">
+		<property name="configService" ref="configService" />
+		<property name="serviceFactory" ref="ResultSchedulerServiceFactory" />
+	</bean>
+-->	
+	<!-- End Writer Strategy -->
+	
+	
+	<bean id="applicationContextProvider" class="com.spectra.result.transporter.context.spring.ApplicationContextProvider"/>
+	
+	
+	<!-- DB -->
+	<!-- plac east db -->
+<!--	
+    <bean id="placEastDataSource" destroy-method="close"  class="org.apache.commons.dbcp.BasicDataSource">
+    	<property name="driverClassName" value="${db.plac.east.connection.driver.class}"/>
+    	<property name="url" value="${db.plac.east.connection.url}"/>
+    	<property name="username" value="${db.plac.east.connection.username}"/>
+    	<property name="password" value="${db.plac.east.connection.password}"/>
+    	<property name="maxActive">
+      			<value>${db.connection.maxActive}</value>
+    	</property>
+    	<property name="maxWait">
+      		<value>${db.connection.maxWait}</value>
+    	</property>
+	</bean>       
+
+    <bean id="placEastTransactionManager" class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
+    	<property name="dataSource" ref="placEastDataSource" />
+    </bean>       
+    
+    <bean id="placEastSqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
+        <property name="dataSource" ref="placEastDataSource" />
+        <property name="configLocation" value="classpath:com/spectra/physician/master/dataaccess/mybatis/mybatisPlacEastSpringConfig.xml" />
+    </bean>
+	<bean id="placEastSqlSession" class="org.mybatis.spring.SqlSessionTemplate">
+		<constructor-arg index="0" ref="placEastSqlSessionFactory" />
+	</bean>	
+-->
+	<!-- end plac east db -->
+	
+	<!-- plac west db -->
+<!--
+    <bean id="placWestDataSource" destroy-method="close"  class="org.apache.commons.dbcp.BasicDataSource">
+    	<property name="driverClassName" value="${db.plac.west.connection.driver.class}"/>
+    	<property name="url" value="${db.plac.west.connection.url}"/>
+    	<property name="username" value="${db.plac.west.connection.username}"/>
+    	<property name="password" value="${db.plac.west.connection.password}"/>
+    	<property name="maxActive">
+      			<value>${db.connection.maxActive}</value>
+    	</property>
+    	<property name="maxWait">
+      		<value>${db.connection.maxWait}</value>
+    	</property>
+	</bean>       
+
+    <bean id="placWestTransactionManager" class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
+    	<property name="dataSource" ref="placWestDataSource" />
+    </bean>       
+    
+    <bean id="placWestSqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
+        <property name="dataSource" ref="placWestDataSource" />
+        <property name="configLocation" value="classpath:com/spectra/physician/master/dataaccess/mybatis/mybatisPlacWestSpringConfig.xml" />
+    </bean>
+	<bean id="placWestSqlSession" class="org.mybatis.spring.SqlSessionTemplate">
+		<constructor-arg index="0" ref="placWestSqlSessionFactory" />
+	</bean>		
+-->	
+	<!-- end plac west db -->
+	
+	<!-- rr db -->
+<!--	
+    <bean id="rrDataSource" destroy-method="close"  class="org.apache.commons.dbcp.BasicDataSource">
+    	<property name="driverClassName" value="${db.rr.connection.driver.class}"/>
+    	<property name="url" value="${db.rr.connection.url}"/>
+    	<property name="username" value="${db.rr.connection.username}"/>
+    	<property name="password" value="${db.rr.connection.password}"/>
+    	<property name="maxActive">
+      			<value>${db.connection.maxActive}</value>
+    	</property>
+    	<property name="maxWait">
+      		<value>${db.connection.maxWait}</value>
+    	</property>
+	</bean>       
+
+    <bean id="rrTransactionManager" class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
+    	<property name="dataSource" ref="rrDataSource" />
+    </bean>       
+    
+    <bean id="rrSqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
+        <property name="dataSource" ref="rrDataSource" />
+        <property name="configLocation" value="classpath:com/spectra/physician/master/dataaccess/mybatis/mybatisRRSpringConfig.xml" />
+    </bean>
+	<bean id="rrSqlSession" class="org.mybatis.spring.SqlSessionTemplate">
+		<constructor-arg index="0" ref="rrSqlSessionFactory" />
+	</bean>		
+-->	
+	<!-- end rr db -->	
+	
+	<!-- cm db -->
+<!--	
+    <bean id="cmDataSource" destroy-method="close"  class="org.apache.commons.dbcp.BasicDataSource">
+    	<property name="driverClassName" value="${db.cm.connection.driver.class}"/>
+    	<property name="url" value="${db.cm.connection.url}"/>
+    	<property name="username" value="${db.cm.connection.username}"/>
+    	<property name="password" value="${db.cm.connection.password}"/>
+    	<property name="maxActive">
+      			<value>${db.connection.maxActive}</value>
+    	</property>
+    	<property name="maxWait">
+      		<value>${db.connection.maxWait}</value>
+    	</property>
+	</bean>       
+
+    <bean id="cmTransactionManager" class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
+    	<property name="dataSource" ref="cmDataSource" />
+    </bean>       
+    
+    <bean id="cmSqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
+        <property name="dataSource" ref="cmDataSource" />
+        <property name="configLocation" value="classpath:com/spectra/physician/master/dataaccess/mybatis/mybatisCMSpringConfig.xml" />
+    </bean>
+	<bean id="cmSqlSession" class="org.mybatis.spring.SqlSessionTemplate">
+		<constructor-arg index="0" ref="cmSqlSessionFactory" />
+	</bean>		
+-->	
+	<!-- end cm db -->	
+	
+	<!-- mdm db -->
+<!--	
+    <bean id="mdmDataSource" destroy-method="close"  class="org.apache.commons.dbcp.BasicDataSource">
+    	<property name="driverClassName" value="${db.mdm.connection.driver.class}"/>
+    	<property name="url" value="${db.mdm.connection.url}"/>
+    	<property name="username" value="${db.mdm.connection.username}"/>
+    	<property name="password" value="${db.mdm.connection.password}"/>
+    	<property name="maxActive">
+      			<value>${db.connection.maxActive}</value>
+    	</property>
+    	<property name="maxWait">
+      		<value>${db.connection.maxWait}</value>
+    	</property>
+	</bean>       
+
+    <bean id="mdmTransactionManager" class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
+    	<property name="dataSource" ref="mdmDataSource" />
+    </bean>       
+    
+    <bean id="mdmSqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
+        <property name="dataSource" ref="mdmDataSource" />
+        <property name="configLocation" value="classpath:com/spectra/physician/master/dataaccess/mybatis/mybatisMDMSpringConfig.xml" />
+    </bean>
+	<bean id="mdmSqlSession" class="org.mybatis.spring.SqlSessionTemplate">
+		<constructor-arg index="0" ref="mdmSqlSessionFactory" />
+	</bean>		
+-->	
+	<!-- end mdm db -->		
+	<!-- End DB -->
+	
+	<!-- Compass Lucene store -->
+	<!--
+	<bean id="SQLServerDialect" class="org.apache.lucene.store.jdbc.dialect.SQLServerDialect"/>
+	-->
+	<!-- End Compass Lucene store -->
+	
+	<!-- Mybatis Mappers -->
+<!--	
+	<bean id="PlacEastProviderMapper" class="org.mybatis.spring.mapper.MapperFactoryBean">
+	  <property name="mapperInterface" value="com.spectra.physician.master.mapper.mybatis.ms.provider.plac.PlacEastProviderMapper" />
+	  <property name="sqlSessionFactory" ref="placEastSqlSessionFactory" />
+	</bean>
+	<bean id="PlacWestProviderMapper" class="org.mybatis.spring.mapper.MapperFactoryBean">
+	  <property name="mapperInterface" value="com.spectra.physician.master.mapper.mybatis.ms.provider.plac.PlacWestProviderMapper" />
+	  <property name="sqlSessionFactory" ref="placWestSqlSessionFactory" />
+	</bean>
+	<bean id="RRProviderMapper" class="org.mybatis.spring.mapper.MapperFactoryBean">
+	  <property name="mapperInterface" value="com.spectra.physician.master.mapper.mybatis.ms.provider.rr.RRProviderMapper" />
+	  <property name="sqlSessionFactory" ref="rrSqlSessionFactory" />
+	</bean>
+	<bean id="CMProviderMapper" class="org.mybatis.spring.mapper.MapperFactoryBean">
+	  <property name="mapperInterface" value="com.spectra.physician.master.mapper.mybatis.ms.provider.cm.CMProviderMapper" />
+	  <property name="sqlSessionFactory" ref="cmSqlSessionFactory" />
+	</bean>
+	<bean id="MDMProviderMapper" class="org.mybatis.spring.mapper.MapperFactoryBean">
+	  <property name="mapperInterface" value="com.spectra.physician.master.mapper.mybatis.ms.provider.mdm.MDMProviderMapper" />
+	  <property name="sqlSessionFactory" ref="mdmSqlSessionFactory" />
+	</bean>	
+-->
+	<!-- End Mybatis Mappers -->
+	
+	<!-- Dao -->
+<!--	
+  	<bean id="PlacEastProviderDao" class="com.spectra.physician.master.dao.ms.provider.plac.PlacEastProviderDaoImpl">
+  		<property name="mapper" ref="PlacEastProviderMapper" />
+  	</bean>
+  	<bean id="PlacWestProviderDao" class="com.spectra.physician.master.dao.ms.provider.plac.PlacWestProviderDaoImpl">
+  		<property name="mapper" ref="PlacWestProviderMapper" />
+  	</bean>  	
+  	<bean id="CorpProviderWsDao" class="com.spectra.physician.master.dao.ws.provider.CorpProviderWsDaoImpl">
+  		<property name="configService" ref="configService" />
+  		<property name="castorUtils" ref="CastorUtils" />
+  	</bean>
+  	<bean id="NationalPlanProviderEnumerationSystemDao" class="com.spectra.physician.master.dao.ws.provider.nppes.NationalPlanProviderEnumerationSystemDaoImpl">
+  		<property name="configService" ref="configService" />
+  	</bean> 
+  	<bean id="RRProviderDao" class="com.spectra.physician.master.dao.ms.provider.rr.RRProviderDaoImpl">
+  		<property name="mapper" ref="RRProviderMapper" />
+  	</bean>
+  	<bean id="CMProviderDao" class="com.spectra.physician.master.dao.ms.provider.cm.CMProviderDaoImpl">
+  		<property name="mapper" ref="CMProviderMapper" />
+  	</bean>
+  	<bean id="MDMProviderDao" class="com.spectra.physician.master.dao.ms.provider.mdm.MDMProviderDaoImpl">
+  		<property name="mapper" ref="MDMProviderMapper" />
+  	</bean>  	
+  	<bean id="ProviderDAOFactory" class="com.spectra.physician.master.dataaccess.spring.provider.ProviderDAOFactory"/>
+-->
+  	<!-- End Dao -->
+  	
+	<!-- Bo -->
+<!--
+	<bean id="ProviderBo" class="com.spectra.physician.master.businessobject.spring.provider.ProviderBoImpl">
+		<property name="daoFactory" ref="ProviderDAOFactory" />
+	</bean>
+	<bean id="CMProviderBo" class="com.spectra.physician.master.businessobject.spring.provider.cm.CMProviderBoImpl">
+		<property name="daoFactory" ref="ProviderDAOFactory" />
+	</bean>	
+	<bean id="ProviderBoFactory" class="com.spectra.physician.master.businessobject.spring.provider.ProviderBoFactory"/>
+-->
+	<!-- End Bo -->  	
+  	
+  	<!-- Service -->
+<!--
+	<bean id="ProviderService" class="com.spectra.physician.master.service.spring.provider.ProviderServiceImpl">
+		<property name="boFactory" ref="ProviderBoFactory" />
+	</bean>	
+	<bean id="ProviderServiceFactory" class="com.spectra.physician.master.service.spring.provider.ProviderServiceFactory"/>
+-->
+  	<!-- End Service -->
+  	
+  	<!-- Processors -->
+	<!--
+  	<bean id="TestMasterProcessor" class="com.spectra.test.master.processor.TestMasterProcessor">
+  		<property name="serviceFactory" ref="SpringServiceFactory" />
+  	</bean>
+  	<bean id="SkeletonTermSearchProcessor" class="com.spectra.test.master.processor.search.term.SkeletonTermSearchProcessor">
+  		<property name="serviceFactory" ref="SpringServiceFactory" />
+  	</bean>  	
+  	<bean id="SpringProcessorFactory" class="com.spectra.test.master.processor.spring.SpringProcessorFactory"/>  	
+  	-->
+  	<!-- End Processors -->
+  	
+	<!-- Controller -->
+	<!--
+	<bean id="SpringControllerServlet" class="com.spectra.test.master.processor.spring.controller.SpringControllerServlet"/>
+	-->
+	<!-- End Controller -->  	
+	
+<!-- Interceptors -->	
+	<!-- Test -->
+<!--	
+	<bean id="TestDefinitionLoaderDaoProxy" class="org.springframework.aop.framework.ProxyFactoryBean">
+ 		<property name="target" ref="TestDefinitionLoaderDao" />
+ 		<property name="interceptorNames">
+			<list>
+				<value>TestDefinitionLoaderDaoSetAdvisor</value>
+				<value>TestDefinitionLoaderDaoUpdateAdvisor</value>
+				<value>TestDefinitionLoaderDaoDeleteAdvisor</value>
+			</list>
+		</property>
+	</bean> 
+	
+	<bean id="TestDefinitionLoaderDaoSetAdvisor" class="org.springframework.aop.support.DefaultPointcutAdvisor">
+		<property name="pointcut" ref="TestDefinitionLoaderDaoSetPointcut" />
+		<property name="advice" ref="TestDefinitionLoaderDaoSetAdvice" />
+	</bean>
+	<bean id="TestDefinitionLoaderDaoSetAdvice" class="com.spectra.test.master.aop.spring.ui.test.definition.TestDefinitionLoaderDaoSetInterceptor">
+		<property name="castorUtils" ref="CastorUtils" />
+		<property name="service" ref="TestDefinitionService" />
+		<property name="historyService" ref="UIHistoryService" />
+	</bean>
+	<bean id="TestDefinitionLoaderDaoSetPointcut" class="org.springframework.aop.support.NameMatchMethodPointcut">
+		<property name="mappedName" value="setTestDefinition" />
+	</bean>
+	
+	<bean id="TestDefinitionLoaderDaoUpdateAdvisor" class="org.springframework.aop.support.DefaultPointcutAdvisor">
+		<property name="pointcut" ref="TestDefinitionLoaderDaoUpdatePointcut" />
+		<property name="advice" ref="TestDefinitionLoaderDaoUpdateAdvice" />
+	</bean>
+	<bean id="TestDefinitionLoaderDaoUpdateAdvice" class="com.spectra.test.master.aop.spring.ui.test.definition.TestDefinitionLoaderDaoUpdateInterceptor">
+		<property name="castorUtils" ref="CastorUtils" />
+		<property name="service" ref="TestDefinitionService" />
+		<property name="historyService" ref="UIHistoryService" />		
+	</bean>
+	<bean id="TestDefinitionLoaderDaoUpdatePointcut" class="org.springframework.aop.support.NameMatchMethodPointcut">
+		<property name="mappedName" value="updateTestDefinition" />
+	</bean>
+	
+
+	<bean id="TestDefinitionLoaderDaoDeleteAdvisor" class="org.springframework.aop.support.DefaultPointcutAdvisor">
+		<property name="pointcut" ref="TestDefinitionLoaderDaoDeletePointcut" />
+		<property name="advice" ref="TestDefinitionLoaderDaoDeleteAdvice" />
+	</bean>
+	<bean id="TestDefinitionLoaderDaoDeleteAdvice" class="com.spectra.test.master.aop.spring.ui.test.definition.TestDefinitionLoaderDaoDeleteInterceptor">
+		<property name="castorUtils" ref="CastorUtils" />
+		<property name="service" ref="TestDefinitionService" />
+		<property name="historyService" ref="UIHistoryService" />		
+	</bean>
+	<bean id="TestDefinitionLoaderDaoDeletePointcut" class="org.springframework.aop.support.NameMatchMethodPointcut">
+		<property name="mappedName" value="deleteTestDefinition" />
+	</bean>	
+-->	
+	<!-- End Test -->	
+	
+	<!-- CommonSequence -->
+<!--	
+	<bean id="CommonSequenceLoaderDaoProxy" class="org.springframework.aop.framework.ProxyFactoryBean">
+ 		<property name="target" ref="CommonSequenceLoaderDao" />
+ 		<property name="interceptorNames">
+			<list>
+				<value>CommonSequenceLoaderDaoSetAdvisor</value>
+				<value>CommonSequenceLoaderDaoUpdateAdvisor</value>
+				<value>CommonSequenceLoaderDaoDeleteAdvisor</value>
+			</list>
+		</property>
+	</bean> 
+	
+	<bean id="CommonSequenceLoaderDaoSetAdvisor" class="org.springframework.aop.support.DefaultPointcutAdvisor">
+		<property name="pointcut" ref="CommonSequenceLoaderDaoSetPointcut" />
+		<property name="advice" ref="CommonSequenceLoaderDaoSetAdvice" />
+	</bean>
+	<bean id="CommonSequenceLoaderDaoSetAdvice" class="com.spectra.test.master.aop.spring.ui.common.sequence.CommonSequenceLoaderDaoSetInterceptor">
+		<property name="castorUtils" ref="CastorUtils" />
+		<property name="service" ref="CommonSequenceService" />
+		<property name="historyService" ref="UIHistoryService" />
+	</bean>
+	<bean id="CommonSequenceLoaderDaoSetPointcut" class="org.springframework.aop.support.NameMatchMethodPointcut">
+		<property name="mappedName" value="setCommonSequence" />
+	</bean>
+	
+	<bean id="CommonSequenceLoaderDaoUpdateAdvisor" class="org.springframework.aop.support.DefaultPointcutAdvisor">
+		<property name="pointcut" ref="CommonSequenceLoaderDaoUpdatePointcut" />
+		<property name="advice" ref="CommonSequenceLoaderDaoUpdateAdvice" />
+	</bean>
+	<bean id="CommonSequenceLoaderDaoUpdateAdvice" class="com.spectra.test.master.aop.spring.ui.common.sequence.CommonSequenceLoaderDaoUpdateInterceptor">
+		<property name="castorUtils" ref="CastorUtils" />
+		<property name="service" ref="CommonSequenceService" />
+		<property name="historyService" ref="UIHistoryService" />		
+	</bean>
+	<bean id="CommonSequenceLoaderDaoUpdatePointcut" class="org.springframework.aop.support.NameMatchMethodPointcut">
+		<property name="mappedName" value="updateCommonSequence" />
+	</bean>
+	
+
+	<bean id="CommonSequenceLoaderDaoDeleteAdvisor" class="org.springframework.aop.support.DefaultPointcutAdvisor">
+		<property name="pointcut" ref="CommonSequenceLoaderDaoDeletePointcut" />
+		<property name="advice" ref="CommonSequenceLoaderDaoDeleteAdvice" />
+	</bean>
+	<bean id="CommonSequenceLoaderDaoDeleteAdvice" class="com.spectra.test.master.aop.spring.ui.common.sequence.CommonSequenceLoaderDaoDeleteInterceptor">
+		<property name="castorUtils" ref="CastorUtils" />
+		<property name="service" ref="CommonSequenceService" />
+		<property name="historyService" ref="UIHistoryService" />		
+	</bean>
+	<bean id="CommonSequenceLoaderDaoDeletePointcut" class="org.springframework.aop.support.NameMatchMethodPointcut">
+		<property name="mappedName" value="deleteCommonSequence" />
+	</bean>	
+-->	
+	<!-- End CommonSequence -->
+	
+	<!-- CommonSequenceMicro -->
+<!--	
+	<bean id="CommonSequenceMicroLoaderDaoProxy" class="org.springframework.aop.framework.ProxyFactoryBean">
+ 		<property name="target" ref="CommonSequenceMicroLoaderDao" />
+ 		<property name="interceptorNames">
+			<list>
+				<value>CommonSequenceMicroLoaderDaoSetAdvisor</value>
+				<value>CommonSequenceMicroLoaderDaoUpdateAdvisor</value>
+				<value>CommonSequenceMicroLoaderDaoDeleteAdvisor</value>
+			</list>
+		</property>
+	</bean> 
+	
+	<bean id="CommonSequenceMicroLoaderDaoSetAdvisor" class="org.springframework.aop.support.DefaultPointcutAdvisor">
+		<property name="pointcut" ref="CommonSequenceMicroLoaderDaoSetPointcut" />
+		<property name="advice" ref="CommonSequenceMicroLoaderDaoSetAdvice" />
+	</bean>
+	<bean id="CommonSequenceMicroLoaderDaoSetAdvice" class="com.spectra.test.master.aop.spring.ui.common.sequence.CommonSequenceMicroLoaderDaoSetInterceptor">
+		<property name="castorUtils" ref="CastorUtils" />
+		<property name="service" ref="CommonSequenceMicroService" />
+		<property name="historyService" ref="UIHistoryService" />
+	</bean>
+	<bean id="CommonSequenceMicroLoaderDaoSetPointcut" class="org.springframework.aop.support.NameMatchMethodPointcut">
+		<property name="mappedName" value="setCommonSequenceMicro" />
+	</bean>
+	
+	<bean id="CommonSequenceMicroLoaderDaoUpdateAdvisor" class="org.springframework.aop.support.DefaultPointcutAdvisor">
+		<property name="pointcut" ref="CommonSequenceMicroLoaderDaoUpdatePointcut" />
+		<property name="advice" ref="CommonSequenceMicroLoaderDaoUpdateAdvice" />
+	</bean>
+	<bean id="CommonSequenceMicroLoaderDaoUpdateAdvice" class="com.spectra.test.master.aop.spring.ui.common.sequence.CommonSequenceMicroLoaderDaoUpdateInterceptor">
+		<property name="castorUtils" ref="CastorUtils" />
+		<property name="service" ref="CommonSequenceMicroService" />
+		<property name="historyService" ref="UIHistoryService" />		
+	</bean>
+	<bean id="CommonSequenceMicroLoaderDaoUpdatePointcut" class="org.springframework.aop.support.NameMatchMethodPointcut">
+		<property name="mappedName" value="updateCommonSequenceMicro" />
+	</bean>
+	
+
+	<bean id="CommonSequenceMicroLoaderDaoDeleteAdvisor" class="org.springframework.aop.support.DefaultPointcutAdvisor">
+		<property name="pointcut" ref="CommonSequenceMicroLoaderDaoDeletePointcut" />
+		<property name="advice" ref="CommonSequenceMicroLoaderDaoDeleteAdvice" />
+	</bean>
+	<bean id="CommonSequenceMicroLoaderDaoDeleteAdvice" class="com.spectra.test.master.aop.spring.ui.common.sequence.CommonSequenceMicroLoaderDaoDeleteInterceptor">
+		<property name="castorUtils" ref="CastorUtils" />
+		<property name="service" ref="CommonSequenceMicroService" />
+		<property name="historyService" ref="UIHistoryService" />		
+	</bean>
+	<bean id="CommonSequenceMicroLoaderDaoDeletePointcut" class="org.springframework.aop.support.NameMatchMethodPointcut">
+		<property name="mappedName" value="deleteCommonSequenceMicro" />
+	</bean>	
+-->	
+	<!-- End CommonSequenceMicro -->
+	
+	<!-- Loinc -->
+<!--	
+	<bean id="TmLoincDaoProxy" class="org.springframework.aop.framework.ProxyFactoryBean">
+ 		<property name="target" ref="TmLoincDao" />
+ 		<property name="interceptorNames">
+			<list>
+				<value>TmLoincDaoSetAdvisor</value>
+				<value>TmLoincDaoUpdateAdvisor</value>
+				<value>TmLoincDaoDeleteAdvisor</value>
+			</list>
+		</property>
+	</bean> 
+	
+	<bean id="TmLoincDaoSetAdvisor" class="org.springframework.aop.support.DefaultPointcutAdvisor">
+		<property name="pointcut" ref="TmLoincDaoSetPointcut" />
+		<property name="advice" ref="TmLoincDaoSetAdvice" />
+	</bean>
+	<bean id="TmLoincDaoSetAdvice" class="com.spectra.test.master.aop.spring.ui.loinc.TmLoincDaoSetInterceptor">
+		<property name="castorUtils" ref="CastorUtils" />
+		<property name="service" ref="TmLoincService" />
+		<property name="historyService" ref="UIHistoryService" />
+	</bean>
+	<bean id="TmLoincDaoSetPointcut" class="org.springframework.aop.support.NameMatchMethodPointcut">
+		<property name="mappedName" value="setTmLoinc" />
+	</bean>
+	
+	<bean id="TmLoincDaoUpdateAdvisor" class="org.springframework.aop.support.DefaultPointcutAdvisor">
+		<property name="pointcut" ref="TmLoincDaoUpdatePointcut" />
+		<property name="advice" ref="TmLoincDaoUpdateAdvice" />
+	</bean>
+	<bean id="TmLoincDaoUpdateAdvice" class="com.spectra.test.master.aop.spring.ui.loinc.TmLoincDaoUpdateInterceptor">
+		<property name="castorUtils" ref="CastorUtils" />
+		<property name="service" ref="TmLoincService" />
+		<property name="historyService" ref="UIHistoryService" />		
+	</bean>
+	<bean id="TmLoincDaoUpdatePointcut" class="org.springframework.aop.support.NameMatchMethodPointcut">
+		<property name="mappedName" value="updateTmLoinc" />
+	</bean>
+
+	<bean id="TmLoincDaoDeleteAdvisor" class="org.springframework.aop.support.DefaultPointcutAdvisor">
+		<property name="pointcut" ref="TmLoincDaoDeletePointcut" />
+		<property name="advice" ref="TmLoincDaoDeleteAdvice" />
+	</bean>
+	<bean id="TmLoincDaoDeleteAdvice" class="com.spectra.test.master.aop.spring.ui.loinc.TmLoincDaoDeleteInterceptor">
+		<property name="castorUtils" ref="CastorUtils" />
+		<property name="service" ref="TmLoincService" />
+		<property name="historyService" ref="UIHistoryService" />		
+	</bean>
+	<bean id="TmLoincDaoDeletePointcut" class="org.springframework.aop.support.NameMatchMethodPointcut">
+		<property name="mappedName" value="deleteTmLoinc" />
+	</bean>	
+-->	
+	<!-- End Loinc -->	
+<!-- End Interceptors -->
+
+<!-- Castor -->
+	<bean id="CastorUtils" class="com.spectra.scorpion.framework.jdo.castor.CastorUtils">
+		<property name="mappingPath" value="/com/spectra/result/transporter/mapper/castor/ws/webservicex/WebservicexDataMapping.xml" />
+	</bean>	
+<!-- End Castor -->	
+
+<!-- Spring Context -->
+<!--
+	<bean id="SpringApplicationContext" class="com.spectra.physician.master.spring.SpringApplicationContext">
+	</bean>	
+-->	
+<!-- End Spring Context -->
+
+<!-- Ldaptive -->
+<!--
+  <bean id="ldapConnectionFactory"
+        class="org.ldaptive.pool.PooledConnectionFactory">
+    <constructor-arg index="0">
+      <bean class="org.ldaptive.pool.BlockingConnectionPool"
+            init-method="initialize">
+        <constructor-arg index="0">
+          <bean class="org.ldaptive.pool.PoolConfig">
+                <property name="minPoolSize" value="5" />
+                <property name="maxPoolSize" value="10" />
+                <property name="validatePeriodically" value="true" />
+          </bean>
+        </constructor-arg>
+        <constructor-arg index="1">
+          <bean class="org.ldaptive.DefaultConnectionFactory">
+            <constructor-arg index="0">
+              <bean class="org.ldaptive.ConnectionConfig">
+                    <property name="ldapUrl" value="${ldap.url}" />
+                    <property name="connectionInitializer">
+						<bean class="org.ldaptive.BindConnectionInitializer">
+							<property name="bindDn" value="${ldap.admin.dn}"/>
+							<property name="bindCredential">
+								<bean class="org.ldaptive.Credential">
+									<constructor-arg index="0" value="${ldap.admin.pwd}"/>  
+								</bean>
+							</property>
+						</bean>                    
+                    </property>
+              </bean>
+            </constructor-arg>
+          </bean>
+        </constructor-arg>
+        <property name="validator">
+          <bean class="org.ldaptive.pool.SearchValidator"/>
+        </property>
+        <property name="blockWaitTime" value="5000" />
+      </bean>
+    </constructor-arg>
+  </bean>
+-->  
+<!-- End Ldaptive -->
+</beans>

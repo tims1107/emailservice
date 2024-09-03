@@ -1,0 +1,9 @@
+<Context>
+    <Resource name="jdbc/oracle/StaterptDataSource"
+              auth="Container"
+              type="javax.sql.DataSource"
+              username="staterpt_user"
+              password="boldest496-asked"
+              driverClassName="oracle.jdbc.driver.OracleDriver"
+              url="jdbc:oracle:thin:@njdev1-scan.spectraeastnj.com:1521:ihubdev" /> 
+</Context>

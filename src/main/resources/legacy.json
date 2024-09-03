@@ -1,0 +1,152 @@
+[
+
+  {
+    "type": "oracle",
+    "name": "proxy_staterpt_owner_dev",
+    "server": "njdev1-scan.spectraeastnj.com",
+    "port": 1521,
+    "username": "tsmithers[staterpt_owner]",
+    "password": "JanihubP@$$w0rdChang4",
+    "servicename": "ihubdev",
+    "drivertype": "thin",
+    "protocol": "tcp",
+    "uri": "jdbc:oracle:thin:@//njdev1-scan.spectraeastnj.com:1521/ihubdev",
+    "driver": "oracle.jdbc.driver.OracleDriver",
+    "validquery": "select 1 from dual"
+  },
+  {
+    "type": "oracle",
+    "name": "staterpt_user_dev",
+    "server": "njdev1-scan.spectraeastnj.com",
+    "port": 1521,
+    "username": "staterpt_user",
+    "password": "boldest496-asked",
+    "servicename": "ihubdev",
+    "drivertype": "thin",
+    "protocol": "tcp",
+    "uri": "jdbc:oracle:thin:@//njdev1-scan.spectraeastnj.com:1521/ihubdev",
+    "driver": "oracle.jdbc.driver.OracleDriver",
+    "validquery": "select 1 from dual"
+  },
+  {
+    "type": "oracle",
+    "name": "staterpt_user_",
+    "server": "korusdb1-scan.spectraeastnj.com",
+    "port": 1521,
+    "username": "staterpt_user",
+    "password": "madly81-expelled",
+    "servicename": "ihubprd",
+    "drivertype": "thin",
+    "protocol": "tcp",
+    "uri": "jdbc:oracle:thin:@//korusdb1-scan.spectraeastnj.com:1521/ihubprd",
+    "driver": "oracle.jdbc.driver.OracleDriver",
+    "validquery": "select 1 from dual"
+  },
+  {
+    "type": "oracle",
+    "name": "proxy_staterpt_owner_prod",
+    "server": "korusdb1-scan.spectraeastnj.com",
+    "port": 1521,
+    "username": "tsmithers[staterpt_owner]",
+    "password": "IhubP@$$w0rdChang4",
+    "servicename": "ihubprd",
+    "drivertype": "thin",
+    "protocol": "tcp",
+    "uri": "jdbc:oracle:thin:@//korusdb1-scan.spectraeastnj.com:1521/ihubprd",
+    "driver": "oracle.jdbc.driver.OracleDriver",
+    "validquery": "select 1 from dual"
+  },
+  {
+    "type": "oracle",
+    "name": "proxy_cm_owner_dev",
+    "server": "njdev1-scan.spectraeastnj.com",
+    "port": 1521,
+    "username": "tsmithers[CM_OWNER]",
+    "password": "MdmdevP@$$w0rdChang4",
+    "servicename": "mdmdeve",
+    "drivertype": "thin",
+    "protocol": "tcp",
+    "uri": "jdbc:oracle:thin:@//njdev1-scan.spectraeastnj.com:1521/mdmdeve",
+    "driver": "oracle.jdbc.driver.OracleDriver",
+    "validquery": "select 1 from dual"
+  },
+  {
+    "type": "oracle",
+    "name": "proxy_cm_owner_prod",
+    "server": "korusdb1-scan.spectraeastnj.com",
+    "port": 1521,
+    "username": "tsmithers[CM_OWNER]",
+    "password": "MdmprdeP@$$w0rdChang4",
+    "servicename": "mdmprde",
+    "drivertype": "thin",
+    "protocol": "tcp",
+    "uri": "jdbc:oracle:thin:@//korusdb1-scan.spectraeastnj.com:1521/mdmprde",
+    "driver": "oracle.jdbc.driver.OracleDriver",
+    "validquery": "select 1 from dual"
+  },
+  {
+    "type": "oracle",
+    "name": "cm_user_prod",
+    "server": "korusdb1-scan.spectraeastnj.com",
+    "port": 1521,
+    "username": "CM_USER",
+    "password": "WoQEORob#OuqRFdFlTIAr66h",
+    "servicename": "mdmprde",
+    "drivertype": "thin",
+    "protocol": "tcp",
+    "uri": "jdbc:oracle:thin:@//korusdb1-scan.spectraeastnj.com:1521/mdmprde",
+    "driver": "oracle.jdbc.driver.OracleDriver",
+    "validquery": "select 1 from dual"
+  },
+  {
+    "type": "sqlserver",
+    "name": "cdbhlab_dev",
+    "server": "njsqltest01",
+    "port": 1433,
+    "username": "cdbhlab_user",
+    "password": "test_c0de",
+    "database": "CDBHlab",
+    "uri": "jdbc:jtds:sqlserver://njsqltest01/CDBHlab",
+    "driver": "net.sourceforge.jtds.jdbc.Driver",
+    "validquery": "select 1"
+  },
+
+  {
+    "type": "sqlserver",
+    "name": "cdbhlab_prod",
+    "server": "njsqlprod04",
+    "port": 1433,
+    "username": "CDBHLAB_USER",
+    "password": "Cdb_pr0d",
+    "database": "CDBHLAB",
+    "uri": "jdbc:jtds:sqlserver://njsqlprod04/CDBHLAB",
+    "driver": "net.sourceforge.jtds.jdbc.Driver",
+    "validquery": "select 1"
+  },
+  {
+    "type": "sqlserver",
+    "name": "sts_prod",
+    "server": "njsqlprod04",
+    "port": 1433,
+    "username": "CDBHLAB_USER",
+    "password": "Cdb_pr0d",
+    "database": "STS",
+    "uri": "jdbc:jtds:sqlserver://njsqlprod04/STS",
+    "driver": "net.sourceforge.jtds.jdbc.Driver",
+    "validquery": "select 1"
+  },
+
+  {
+    "type": "sqlserver",
+    "name": "sts_dev",
+    "server": "njsqltest01",
+    "port": 1433,
+    "username": "cdbhlab_user",
+    "password": "test_c0de",
+    "database": "STS",
+    "uri": "jdbc:jtds:sqlserver://njsqltest01/STS",
+    "driver": "net.sourceforge.jtds.jdbc.Driver",
+    "validquery": "select 1"
+  }
+
+]

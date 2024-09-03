@@ -1,0 +1,9 @@
+<Context>
+    <Resource name="jdbc/oracle/StaterptDataSource"
+              auth="Container"
+              type="javax.sql.DataSource"
+              username="@DB_HUB_STATERPT_USERNAME@"
+              password="@DB_HUB_STATERPT_PWD@"
+              driverClassName="@DB_HUB_STATERPT_DRIVER@"
+              url="@DB_HUB_STATERPT_URL@" />
+</Context>

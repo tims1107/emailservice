@@ -1,0 +1,647 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!-- Created by: http://blog.idleworx.com, http://www.idleworx.com -->
+<mapper namespace="com.spectra.asr.mapper.mybatis.ora.hub.distributor.DistributorMapper">
+	<resultMap id="distributorDtoMap" type="DistributorDto">
+		<result property="state" column="STATE" />
+		<result property="stateAbbreviation" column="STATE_ABBREVIATION" />
+		<result property="distributorPk" column="DISTRIBUTOR_PK" />
+		<result property="stateFk" column="STATE_FK" />
+		<result property="generatorFk" column="GENERATOR_FK" />
+		<result property="cronExpression" column="CRON_EXPRESSION" />
+		<result property="runFrequency" column="RUN_FREQUENCY" />
+		<result property="distributionType" column="DISTRIBUTION_TYPE" />
+		<result property="distributionContext" column="DISTRIBUTION_CONTEXT" />
+		<result property="stateTarget" column="STATE_TARGET" />
+		<result property="status" column="STATUS" />
+		<result property="createdDate" column="CREATED_DATE" />
+		<result property="createdBy" column="CREATED_BY" />
+		<result property="lastUpdatedDate" column="LAST_UPDATED_DATE" />
+		<result property="lastUpdatedBy" column="LAST_UPDATED_BY" />
+		
+		<result property="generatorFieldType" column="GENERATOR_FIELD_TYPE" />
+		
+		<result property="entityType" column="ENTITY_TYPE" />		
+	</resultMap>
+	
+	<resultMap id="distributorItemDtoMap" type="DistributorItemDto">
+		<result property="state" column="STATE" />
+		<result property="stateAbbreviation" column="STATE_ABBREVIATION" />
+		<result property="distributorItemPk" column="DISTRIBUTOR_ITEM_PK" />
+		<result property="distributorFk" column="DISTRIBUTOR_FK" />
+		<result property="distributorItem" column="DISTRIBUTOR_ITEM" />
+		<result property="distributorItemType" column="DISTRIBUTOR_ITEM_TYPE" />
+		<result property="distributorItemValue" column="DISTRIBUTOR_ITEM_VALUE" />
+		<result property="distributorItemsGroup" column="DISTRIBUTOR_ITEMS_GROUP" />
+		<result property="status" column="STATUS" />
+		<result property="createdDate" column="CREATED_DATE" />
+		<result property="createdBy" column="CREATED_BY" />
+		<result property="lastUpdatedDate" column="LAST_UPDATED_DATE" />
+		<result property="lastUpdatedBy" column="LAST_UPDATED_BY" />
+	</resultMap>
+	
+	<resultMap id="distributorItemsMapDtoMap" type="DistributorItemsMapDto">
+		<result property="state" column="STATE" />
+		<result property="stateAbbreviation" column="STATE_ABBREVIATION" />
+		<result property="distributorItemsMapPk" column="DISTRIBUTOR_ITEMS_MAP_PK" />
+		<result property="distributorFk" column="DISTRIBUTOR_FK" />
+		<result property="distributorItemsGroup" column="DISTRIBUTOR_ITEMS_GROUP" />
+		<result property="status" column="STATUS" />
+		<result property="createdDate" column="CREATED_DATE" />
+		<result property="createdBy" column="CREATED_BY" />
+		<result property="lastUpdatedDate" column="LAST_UPDATED_DATE" />
+		<result property="lastUpdatedBy" column="LAST_UPDATED_BY" />
+	</resultMap>	
+
+	<select id="selectLastDistributorItemsMap" parameterType="java.lang.String"  resultMap="distributorItemsMapDtoMap">
+		select
+			dim.*
+		from
+			STATERPT_OWNER.DISTRIBUTOR_ITEMS_MAP dim
+		where
+			DISTRIBUTOR_ITEMS_MAP_PK = (
+				select
+					max(DISTRIBUTOR_ITEMS_MAP_PK)
+				from
+					STATERPT_OWNER.DISTRIBUTOR_ITEMS_MAP
+				where
+					status = 'active'
+			)	
+	</select>
+	
+	<select id="selectDistributorItemsMap" parameterType="DistributorItemsMapDto"  resultMap="distributorItemsMapDtoMap">
+		select
+			s.state,
+			s.state_abbreviation,	
+			dim.*
+		from
+			STATERPT_OWNER.DISTRIBUTOR_ITEMS_MAP dim,
+			STATERPT_OWNER.DISTRIBUTOR d,
+			STATERPT_OWNER.GENERATOR g,
+			STATERPT_OWNER.STATE_MASTER s				
+		where
+			dim.distributor_fk = d.distributor_pk
+			and d.state_fk = s.state_master_pk
+			and d.generator_fk = g.generator_pk
+			<if test="state != null">
+				and s.state = #{state}
+			</if>
+			<if test="stateAbbreviation != null">
+				and s.state_abbreviation = #{stateAbbreviation}
+			</if>
+			<if test="distributorFk != null">
+				and dim.distributor_fk = #{distributorFk}
+			</if>
+			<if test="distributorItemsGroup != null">
+				and dim.distributor_items_group = #{distributorItemsGroup}
+			</if>
+			<if test="status != null">
+				and dim.status = #{status}
+			</if>			
+	</select>		
+
+	<update id="updateDistributorItemsMap" parameterType="DistributorItemsMapDto">
+		update 
+			STATERPT_OWNER.DISTRIBUTOR_ITEMS_MAP
+		set
+			<if test="distributorFk != null">
+				DISTRIBUTOR_FK = #{distributorFk},
+			</if>		
+			<if test="distributorItemsGroup != null">
+				DISTRIBUTOR_ITEMS_GROUP = #{distributorItemsGroup},
+			</if>
+			<if test="status != null">
+				STATUS = #{status},
+			</if>			
+			<if test="lastUpdatedBy != null">
+				LAST_UPDATED_BY = #{lastUpdatedBy},
+			</if>
+			LAST_UPDATED_DATE = SYSTIMESTAMP(6)
+		where 
+			DISTRIBUTOR_ITEMS_MAP_PK = #{distributorItemsMapPk}
+			and DISTRIBUTOR_FK = #{distributorFk}	
+	</update>
+
+	<insert id="insertDistributorItemsMap" parameterType="DistributorItemsMapDto">
+		INSERT INTO STATERPT_OWNER.DISTRIBUTOR_ITEMS_MAP(
+			DISTRIBUTOR_FK,
+			DISTRIBUTOR_ITEMS_GROUP,
+			STATUS,
+			CREATED_DATE,
+			CREATED_BY,
+			LAST_UPDATED_DATE,
+			LAST_UPDATED_BY		
+		) VALUES (
+			#{distributorFk},
+			#{distributorItemsGroup},
+			#{status},
+			CURRENT_TIMESTAMP,
+			#{createdBy},
+			CURRENT_TIMESTAMP,
+			#{lastUpdatedBy}
+		)
+	</insert>
+
+	<select id="selectJustDistributorItem" parameterType="java.util.Map"  resultMap="distributorItemDtoMap">
+		select
+			di.DISTRIBUTOR_ITEM_PK,
+			di.DISTRIBUTOR_ITEM,
+			di.DISTRIBUTOR_ITEM_TYPE,
+			di.CREATED_DATE,
+			di.CREATED_BY,
+			di.LAST_UPDATED_DATE,
+			di.LAST_UPDATED_BY,
+			di.DISTRIBUTOR_ITEMS_GROUP,
+			di.DISTRIBUTOR_ITEM_VALUE	
+		from
+			STATERPT_OWNER.DISTRIBUTOR_ITEMS di
+		where
+			DISTRIBUTOR_ITEM_PK is not null
+			<if test="distributorItem != null">
+				and DISTRIBUTOR_ITEM like #{distributorItem}
+			</if>
+			<if test="distributorItemType != null">
+				and DISTRIBUTOR_ITEM_TYPE = #{distributorItemType}
+			</if>
+			<if test="distributorItemsGroup != null">
+				and DISTRIBUTOR_ITEMS_GROUP = #{distributorItemsGroup}
+			</if>
+			<if test="distributorItemValue != null">
+				and DISTRIBUTOR_ITEM_VALUE = #{distributorItemValue}
+			</if>
+			<if test="status != null">
+				and STATUS = #{status}
+			</if>			
+	</select>
+
+	<select id="selectOnlyDistributorItem" parameterType="DistributorItemDto"  resultMap="distributorItemDtoMap">
+		select
+			di.DISTRIBUTOR_ITEM_PK,
+			di.DISTRIBUTOR_ITEM,
+			di.DISTRIBUTOR_ITEM_TYPE,
+			di.CREATED_DATE,
+			di.CREATED_BY,
+			di.LAST_UPDATED_DATE,
+			di.LAST_UPDATED_BY,
+			di.DISTRIBUTOR_ITEMS_GROUP,
+			di.DISTRIBUTOR_ITEM_VALUE	
+		from
+			STATERPT_OWNER.DISTRIBUTOR_ITEMS di
+		where
+			DISTRIBUTOR_ITEM_PK is not null
+			<if test="distributorItem != null">
+				and DISTRIBUTOR_ITEM = #{distributorItem}
+			</if>
+			<if test="distributorItemType != null">
+				and DISTRIBUTOR_ITEM_TYPE = #{distributorItemType}
+			</if>
+			<if test="distributorItemsGroup != null">
+				and DISTRIBUTOR_ITEMS_GROUP = #{distributorItemsGroup}
+			</if>
+			<if test="distributorItemValue != null">
+				and DISTRIBUTOR_ITEM_VALUE = #{distributorItemValue}
+			</if>
+			<if test="status != null">
+				and STATUS = #{status}
+			</if>			
+	</select>
+
+	<select id="selectLastDistributorItem" parameterType="java.lang.String"  resultMap="distributorItemDtoMap">
+		select
+			di.*
+		from
+			STATERPT_OWNER.DISTRIBUTOR_ITEMS di
+		where
+			di.DISTRIBUTOR_ITEM_PK = (
+				select
+					max(DISTRIBUTOR_ITEM_PK)
+				from
+					STATERPT_OWNER.DISTRIBUTOR_ITEMS
+				where	
+					status = 'active'
+			)	
+	</select>
+
+	<select id="selectDistributorItem" parameterType="DistributorItemDto"  resultMap="distributorItemDtoMap">
+		select
+			s.state,
+			s.state_abbreviation,
+			di.DISTRIBUTOR_ITEM_PK,
+			d.distributor_pk,
+			di.DISTRIBUTOR_ITEM,
+			di.DISTRIBUTOR_ITEM_TYPE,
+			di.CREATED_DATE,
+			di.CREATED_BY,
+			di.LAST_UPDATED_DATE,
+			di.LAST_UPDATED_BY,
+			di.DISTRIBUTOR_ITEMS_GROUP,
+			di.DISTRIBUTOR_ITEM_VALUE
+		from
+			STATERPT_OWNER.DISTRIBUTOR_ITEMS di,
+			STATERPT_OWNER.DISTRIBUTOR_ITEMS_MAP dim,
+			STATERPT_OWNER.DISTRIBUTOR d,
+			STATERPT_OWNER.GENERATOR g,
+			STATERPT_OWNER.STATE_MASTER s		
+		where
+			di.distributor_item_pk is not null
+			<if test="distributorFk != null">
+				and di.distributor_fk = #{distributorFk}
+			</if>			
+			and dim.distributor_fk = d.distributor_pk
+			and dim.distributor_items_group = di.distributor_items_group
+			and d.state_fk = s.state_master_pk	
+			and d.generator_fk = g.generator_pk
+			and g.state_fk = s.state_master_pk		
+			<if test="state != null">
+				and s.state = #{state}
+			</if>
+			<if test="stateAbbreviation != null">
+				and s.state_abbreviation = #{stateAbbreviation}
+			</if>
+			<if test="distributorItem != null">
+				and di.distributor_item = #{distributorItem}
+			</if>
+			<if test="distributorItemType != null">
+				and di.distributor_item_type = #{distributorItemType}
+			</if>
+			<if test="distributorItemsGroup != null">
+				and di.distributor_items_group = #{distributorItemsGroup}
+			</if>			
+			<if test="status != null">
+				and di.status = #{status}
+			</if>			
+	</select>
+
+<!-- 20190118
+	<select id="selectDistributorItem" parameterType="DistributorItemDto"  resultMap="distributorItemDtoMap">
+		select
+			s.state,
+			s.state_abbreviation,
+			di.DISTRIBUTOR_ITEM_PK,
+			d.distributor_pk,
+			di.DISTRIBUTOR_ITEM,
+			di.DISTRIBUTOR_ITEM_TYPE,
+			di.CREATED_DATE,
+			di.CREATED_BY,
+			di.LAST_UPDATED_DATE,
+			di.LAST_UPDATED_BY,
+			di.DISTRIBUTOR_ITEMS_GROUP,
+			di.DISTRIBUTOR_ITEM_VALUE
+		from
+			STATERPT_OWNER.DISTRIBUTOR_ITEMS di,
+			STATERPT_OWNER.DISTRIBUTOR_ITEMS_MAP dim,
+			STATERPT_OWNER.DISTRIBUTOR d,
+			STATERPT_OWNER.GENERATOR g,
+			STATERPT_OWNER.STATE_MASTER s		
+		where
+			<choose>
+				<when test="distributorFk != null">
+					di.distributor_fk = #{distributorFk}
+				</when>
+				<otherwise>
+					di.distributor_fk is null
+				</otherwise>
+			</choose>
+			and dim.distributor_fk = d.distributor_pk
+			and dim.distributor_items_group = di.distributor_items_group
+			and d.state_fk = s.state_master_pk	
+			and d.generator_fk = g.generator_pk
+			and g.state_fk = s.state_master_pk		
+			<if test="state != null">
+				and s.state = #{state}
+			</if>
+			<if test="stateAbbreviation != null">
+				and s.state_abbreviation = #{stateAbbreviation}
+			</if>
+			<if test="distributorItem != null">
+				and di.distributor_item = #{distributorItem}
+			</if>
+			<if test="distributorItemType != null">
+				and di.distributor_item_type = #{distributorItemType}
+			</if>
+			<if test="distributorItemsGroup != null">
+				and di.distributor_items_group = #{distributorItemsGroup}
+			</if>			
+			<if test="status != null">
+				and di.status = #{status}
+			</if>			
+	</select>
+-->
+
+<!--	
+	<select id="selectDistributorItem" parameterType="DistributorItemDto"  resultMap="distributorItemDtoMap">
+		select
+			s.state,
+			s.state_abbreviation,
+			di.*
+		from
+			STATERPT_OWNER.DISTRIBUTOR_ITEMS di,
+			STATERPT_OWNER.DISTRIBUTOR_ITEMS_MAP dim,
+			STATERPT_OWNER.DISTRIBUTOR d,
+			STATERPT_OWNER.GENERATOR g,
+			STATERPT_OWNER.STATE_MASTER s		
+		where
+			<choose>
+				<when test="distributorFk != null">
+					di.distributor_fk = #{distributorFk}
+				</when>
+				<otherwise>
+					di.distributor_fk is null
+				</otherwise>
+			</choose>
+			and dim.distributor_fk = d.distributor_pk
+			and dim.distributor_items_group = di.distributor_items_group
+			and d.state_fk = s.state_master_pk	
+			and d.generator_fk = g.generator_pk
+			and g.state_fk = s.state_master_pk		
+			<if test="state != null">
+				and s.state = #{state}
+			</if>
+			<if test="stateAbbreviation != null">
+				and s.state_abbreviation = #{stateAbbreviation}
+			</if>
+			<if test="distributorItem != null">
+				and di.distributor_item = #{distributorItem}
+			</if>
+			<if test="distributorItemType != null">
+				and di.distributor_item_type = #{distributorItemType}
+			</if>			
+	</select>	
+-->
+
+	<update id="updateDistributorItem" parameterType="DistributorItemDto">
+		update 
+			STATERPT_OWNER.DISTRIBUTOR_ITEMS
+		set
+			<if test="distributorFk != null">
+				DISTRIBUTOR_FK = #{distributorFk},
+			</if>		
+			<if test="distributorItem != null">
+				DISTRIBUTOR_ITEM = #{distributorItem},
+			</if>
+			<if test="distributorItemType != null">
+				DISTRIBUTOR_ITEM_TYPE = #{distributorItemType},
+			</if>
+			<if test="distributorItemValue != null">
+				DISTRIBUTOR_ITEM_VALUE = #{distributorItemValue},
+			</if>
+			<if test="distributorItemsGroup != null">
+				DISTRIBUTOR_ITEMS_GROUP = #{distributorItemsGroup},
+			</if>
+			<if test="status != null">
+				STATUS = #{status},
+			</if>			
+			<if test="lastUpdatedBy != null">
+				LAST_UPDATED_BY = #{lastUpdatedBy},
+			</if>
+			LAST_UPDATED_DATE = SYSTIMESTAMP(6)
+		where 
+			DISTRIBUTOR_ITEM_PK = #{distributorItemPk}
+			and DISTRIBUTOR_FK = #{distributorFk}	
+	</update>
+	
+	<insert id="insertDistributorItem" parameterType="DistributorItemDto">
+		INSERT INTO STATERPT_OWNER.DISTRIBUTOR_ITEMS(
+			DISTRIBUTOR_FK,
+			DISTRIBUTOR_ITEM,
+			DISTRIBUTOR_ITEM_TYPE,
+			DISTRIBUTOR_ITEM_VALUE,
+			DISTRIBUTOR_ITEMS_GROUP,
+			STATUS,
+			CREATED_DATE,
+			CREATED_BY,
+			LAST_UPDATED_DATE,
+			LAST_UPDATED_BY		
+		) VALUES (
+			#{distributorFk},
+			#{distributorItem},
+			#{distributorItemType},
+			#{distributorItemValue},
+			#{distributorItemsGroup},
+			#{status},
+			CURRENT_TIMESTAMP,
+			#{createdBy},
+			CURRENT_TIMESTAMP,
+			#{lastUpdatedBy}
+		)
+	</insert>	
+
+	<select id="selectLastDistributor" parameterType="java.lang.String"  resultMap="distributorDtoMap">
+		select
+			s.state,
+			s.state_abbreviation,
+			d.*
+		from
+			STATERPT_OWNER.DISTRIBUTOR d,
+			STATERPT_OWNER.GENERATOR g,
+			STATERPT_OWNER.STATE_MASTER s
+		where
+			d.DISTRIBUTOR_PK = (
+				select
+					max(DISTRIBUTOR_PK)
+				from
+					STATERPT_OWNER.DISTRIBUTOR
+				where
+					status = 'active'
+			)
+			and d.state_fk = s.state_master_pk
+			and d.generator_fk = g.generator_pk	
+	</select>
+	
+	<select id="selectDistributor" parameterType="DistributorDto"  resultMap="distributorDtoMap">
+		select
+			s.state,
+			s.state_abbreviation,
+			d.*
+		from
+			STATERPT_OWNER.DISTRIBUTOR d,
+			STATERPT_OWNER.GENERATOR g,
+			STATERPT_OWNER.STATE_MASTER s		
+		where
+			d.distributor_pk is not null
+			and d.state_fk = s.state_master_pk	
+			and d.generator_fk = g.generator_pk
+			and g.state_fk = s.state_master_pk	
+			<if test="state != null">
+				and s.state = #{state}
+			</if>
+			<if test="stateAbbreviation != null">
+				and s.state_abbreviation = #{stateAbbreviation}
+			</if>
+			<if test="distributorPk != null">
+				and d.distributor_pk = #{distributorPk}
+			</if>
+			<if test="stateFk != null">
+				and d.state_fk = #{stateFk}
+			</if>
+			<if test="generatorFk != null">
+				and d.generator_fk = #{generatorFk}
+			</if>
+			<if test="cronExpression != null">
+				and d.cron_expression = #{cronExpression}
+			</if>
+			<if test="runFrequency != null">
+				and d.run_frequency = #{runFrequency}
+			</if>
+			<if test="distributionType != null">
+				and d.distribution_type = #{distributionType}
+			</if>
+			<if test="distributionContext != null">
+				and d.distribution_context = #{distributionContext}
+			</if>
+			<if test="stateTarget != null">
+				and d.state_target = #{stateTarget}
+			</if>
+			<if test="status != null">
+				and d.status = #{status}
+			</if>			
+	</select>
+	
+	<select id="selectDistributorCron" parameterType="java.util.Map" resultMap="distributorDtoMap">
+		select
+			distinct(d.cron_expression),
+			s.state,
+			s.state_abbreviation,
+			s.entity_type,
+			gf.generator_field_type	
+		from
+			STATERPT_OWNER.DISTRIBUTOR d,
+			STATERPT_OWNER.GENERATOR g,
+			STATERPT_OWNER.GENERATOR_FIELDS gf,
+			STATERPT_OWNER.GENERATOR_FIELDS_MAP gfm,
+			STATERPT_OWNER.STATE_MASTER s				
+		where
+			d.generator_fk = g.generator_pk
+			and g.state_fk = s.state_master_pk	
+			and g.GENERATOR_PK = gfm.GENERATOR_FK
+			and gf.GENERATOR_FIELDS_GROUP = gfm.GENERATOR_FIELDS_GROUP
+			<if test="entityType != null">
+				and s.entity_type = #{entityType}
+			</if>	
+			<if test="stateAbbreviation != null">
+				and s.state_abbreviation = #{stateAbbreviation}
+			</if>	
+			<if test="excludeGeneratorFieldList != null">
+				and (gf.generator_field not in 
+				<foreach item="excludeGeneratorField" index="index" collection="excludeGeneratorFieldList" open="(" separator="," close=")">
+					#{excludeGeneratorField}
+				</foreach>
+				)
+			</if>			
+	</select>
+
+<!--	
+	<update id="updateDistributor" parameterType="DistributorDto">
+		update 
+			STATERPT_OWNER.DISTRIBUTOR
+		set
+			<if test="stateFk != null">
+				STATE_FK = #{stateFk},
+			</if>		
+			<if test="generatorFk != null">
+				GENERATOR_FK = #{generatorFk},
+			</if>
+			<if test="cronExpression != null">
+				CRON_EXPRESSION = #{cronExpression},
+			</if>
+			<if test="runFrequency != null">
+				RUN_FREQUENCY = #{runFrequency},
+			</if>
+			<if test="distributionType != null">
+				DISTRIBUTION_TYPE = #{distributionType},
+			</if>
+			<if test="distributionContext != null">
+				DISTRIBUTION_CONTEXT = #{distributionContext},
+			</if>
+			<if test="stateTarget != null">
+				STATE_TARGET = #{stateTarget},
+			</if>
+			<if test="status != null">
+				STATUS = #{status},
+			</if>			
+			<if test="lastUpdatedBy != null">
+				LAST_UPDATED_BY = #{lastUpdatedBy},
+			</if>
+			LAST_UPDATED_DATE = SYSTIMESTAMP(6)
+		where 
+			DISTRIBUTOR_PK = #{distributorPk}
+			and STATE_FK = #{stateFk}
+			and GENERATOR_FK = #{generatorFk}
+	</update>
+-->
+
+	<update id="updateDistributor" parameterType="DistributorDto">
+		update 
+			STATERPT_OWNER.DISTRIBUTOR
+		set
+			<if test="stateFk != null">
+				STATE_FK = #{stateFk},
+			</if>		
+			<if test="generatorFk != null">
+				GENERATOR_FK = #{generatorFk},
+			</if>
+			<if test="cronExpression != null">
+				CRON_EXPRESSION = #{cronExpression},
+			</if>
+			<if test="runFrequency != null">
+				RUN_FREQUENCY = #{runFrequency},
+			</if>
+			<if test="distributionType != null">
+				DISTRIBUTION_TYPE = #{distributionType},
+			</if>
+			<if test="distributionContext != null">
+				DISTRIBUTION_CONTEXT = #{distributionContext},
+			</if>
+			<if test="stateTarget != null">
+				STATE_TARGET = #{stateTarget},
+			</if>
+			<if test="status != null">
+				STATUS = #{status},
+			</if>			
+			<if test="lastUpdatedBy != null">
+				LAST_UPDATED_BY = #{lastUpdatedBy},
+			</if>
+			LAST_UPDATED_DATE = SYSTIMESTAMP(6)
+		where 
+			DISTRIBUTOR_PK is not null
+			<if test="distributorPk != null">
+				and DISTRIBUTOR_PK = #{distributorPk}
+			</if>	
+			<if test="stateFk != null">
+				and STATE_FK = #{stateFk}
+			</if>	
+			<if test="generatorFk != null">
+				and GENERATOR_FK = #{generatorFk}
+			</if>	
+	</update>	
+	
+	<insert id="insertDistributor" parameterType="DistributorDto">
+		INSERT INTO STATERPT_OWNER.DISTRIBUTOR(
+			STATE_FK,
+			GENERATOR_FK,
+			CRON_EXPRESSION,
+			RUN_FREQUENCY,
+			DISTRIBUTION_TYPE,
+			DISTRIBUTION_CONTEXT,
+			STATE_TARGET,
+			STATUS,
+			CREATED_DATE,
+			CREATED_BY,
+			LAST_UPDATED_DATE,
+			LAST_UPDATED_BY
+		) VALUES (
+			#{stateFk},
+			#{generatorFk},
+			#{cronExpression},
+			#{runFrequency},
+			#{distributionType},
+			#{distributionContext},
+			#{stateTarget},
+			#{status},
+			CURRENT_TIMESTAMP,
+			#{createdBy},
+			CURRENT_TIMESTAMP,
+			#{lastUpdatedBy}
+		)
+	</insert>	
+</mapper>

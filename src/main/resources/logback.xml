@@ -1,0 +1,75 @@
+<configuration >
+
+	   <timestamp key="byDay" datePattern="yyyyMMdd'T'HHmmss"/>
+
+	 
+
+	   <appender name="STDOUT" class="ch.qos.logback.core.ConsoleAppender">
+
+	      <encoder>
+
+	         <pattern>%d{HH:mm:ss.SSS} [%thread] %-5level %logger{36} - %msg%n</pattern>
+
+	      </encoder>
+
+	   </appender>
+
+	 
+
+	   <appender name="milliroller" class="ch.qos.logback.core.rolling.RollingFileAppender">
+        <file>../logs/output.log</file>
+        <layout class="ch.qos.logback.classic.PatternLayout">
+            <pattern>%d{HH:mm:ss.SSS} [%logger] %-5level %logger - %msg%n</pattern>
+        </layout>
+        <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+            <fileNamePattern>../logs/archive/mylog-%d{yyyy-MM-dd}.%i.txt</fileNamePattern>
+            <timeBasedFileNamingAndTriggeringPolicy class="ch.qos.logback.core.rolling.SizeAndTimeBasedFNATP">
+                <maxFileSize>1000KB</maxFileSize>
+            </timeBasedFileNamingAndTriggeringPolicy>
+        </rollingPolicy>
+    </appender>
+    
+    <logger name="org.mongodb.driver" level="ERROR" additivity="false">
+
+        <appender-ref ref="STDOUT"/>
+    </logger>
+
+
+    <logger name="app" level="INFO" additivity="false">
+        <appender-ref ref="milliroller"/>
+        <appender-ref ref="STDOUT"/>
+
+    </logger>
+
+    <logger name="controller" level="INFO" additivity="false">
+        <appender-ref ref="milliroller"/>
+        <appender-ref ref="STDOUT"/>
+
+    </logger>
+
+    <logger name="connections.ConcreteDAO" level="INFO" additivity="false">
+        <appender-ref ref="milliroller"/>
+    </logger>
+
+    
+    <logger name="org.vibur" level="ERROR" additivity="false">
+          <appender-ref ref="STDOUT"/>
+	</logger>
+
+    <logger name="org.apache" level="ERROR" additivity="false">
+        <appender-ref ref="STDOUT"/>
+    </logger>
+
+
+    <statusListener class="ch.qos.logback.core.status.NopStatusListener" />
+
+
+
+    <root level="INFO">
+        <appender-ref ref="milliroller"/>
+        <appender-ref ref="STDOUT"/>
+
+    </root>
+
+
+	</configuration>

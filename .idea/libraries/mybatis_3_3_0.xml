@@ -1,0 +1,13 @@
+<component name="libraryTable">
+  <library name="mybatis-3.3.0">
+    <CLASSES>
+      <root url="jar://C:/asrlib/lib/mybatis-3.3.0.jar!/" />
+      <root url="jar://C:/asrlib/lib/mybatis-cdi-1.0.0-beta1.jar!/" />
+      <root url="jar://C:/asrlib/lib/mybatis-cdi-1.0.0-beta3.jar!/" />
+      <root url="jar://C:/asrlib/lib/mybatis-spring-1.1.1.jar!/" />
+      <root url="jar://C:/asrlib/lib/mysql-connector-java-5.1.26-bin.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES />
+  </library>
+</component>

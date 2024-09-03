@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="Encoding">
+    <file url="file://$PROJECT_DIR$/src/main/java/com/spectra/asr/businessobject/ora/hub/log/ResultsSentLogBo.java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/src/main/java/com/spectra/asr/businessobject/ora/hub/log/ResultsSentLogBoImpl.java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/src/main/java/com/spectra/asr/dao/ora/hub/log/ResultsSentLogDao.java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/src/main/java/com/spectra/asr/dao/ora/hub/log/ResultsSentLogDaoImpl.java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/src/main/java/com/spectra/asr/dto/log/ResultsSentLogDto.java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/src/main/java/com/spectra/asr/mapper/mybatis/ora/hub/log/ResultsSentLogMapper.java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/src/main/java/com/spectra/controller/MicroController.java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/src/main/java/com/spectra/controller/NCOnboardController.java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/src/main/java/com/spectra/daily/DAILYRESULT.java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/src/main/java/com/spectra/daily/PATRESULT.java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/src/main/java/com/spectra/model/ASRResultListener.java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/src/main/java/com/spectra/model/DailyProcessListener.java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/src/main/java/com/spectra/model/DailyResultsDAO.java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/src/main/java/com/spectra/model/TestDAO.java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/src/main/java/com/spectra/process/DailyLoadProcess.java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/src/main/java/com/spectra/utils/ApplicationProperties.java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/src/main/java/com/spectra/utils/CalendarArithmetic.java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/src/main/java/com/spectra/utils/ConditionChecker.java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/src/main/java/com/spectra/utils/FileUtil.java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/src/main/java/com/spectra/utils/ParseUtil.java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/src/main/java/com/spectra/utils/PrepStatements.java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/src/main/java/com/spectra/utils/ProcessCalendar.java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/src/main/java/com/spectra/utils/ProcessResultSet.java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/src/main/java/com/spectra/utils/Row.java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/src/main/resources/db.json" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/src/main/resources/legacy.json" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/src/main/resources/logback.xml" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/src/main/resources/logger.xml" charset="UTF-8" />
+    <file url="file://C:/fhir/fhirstarters/java/hapi-fhirstarters-model-and-parser-examples/src/main/java/ca/uhn/fhir/example/Example22_ValidateResourceInstanceValidator.java" charset="UTF-8" />
+  </component>
+</project>

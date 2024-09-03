@@ -1,0 +1,10 @@
+<component name="libraryTable">
+  <library name="commons-lang-2.6">
+    <CLASSES>
+      <root url="jar://C:/asrlib/lib/commons-lang-2.6.jar!/" />
+      <root url="jar://C:/asrlib/lib/commons-lang3-3.5.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES />
+  </library>
+</component>

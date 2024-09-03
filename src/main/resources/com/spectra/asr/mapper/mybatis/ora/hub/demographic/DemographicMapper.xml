@@ -1,0 +1,505 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!-- Created by: http://blog.idleworx.com, http://www.idleworx.com -->
+<mapper namespace="com.spectra.asr.mapper.mybatis.ora.hub.demographic.DemographicMapper">
+	<resultMap id="asrActivityNoDemoDtoMap" type="AsrActivityNoDemoDto">
+		<result property="activityNoDemoPk" column="ACTIVITY_NO_DEMO_PK" />
+		<result property="initiateId" column="INITIATE_ID" />
+		<result property="labOrderFk" column="LAB_ORDER_FK" />
+		<result property="requisitionId" column="REQUISITION_ID" />
+		<result property="patientName" column="PATIENT_NAME" />
+		<result property="patientDob" column="PATIENT_DOB" />
+		<result property="ssn" column="SSN" />
+		<result property="hasDemo" column="HAS_DEMO" />
+		<result property="createdDate" column="CREATED_DATE" />
+		<result property="lastUpdatedDate" column="LAST_UPDATED_DATE" />
+	</resultMap>
+	<resultMap id="asrPhysicianDtoMap" type="AsrPhysicianDto">
+		<result property="requisitionId" column="REQUISITION_ID" />
+		<result property="npi" column="ORDERING_PHYSICIAN_NPI" />
+		<result property="physicianName" column="ORDERING_PHYSICIAN_NAME" />
+	</resultMap>	
+
+
+	<resultMap id="demoStateResultDtoMap" type="StateResultDto">
+		<result property="facilityId" column="FACILITY_ID" />
+		<result property="cid" column="CID" />
+		<result property="accessionNo" column="ACCESSION_NUMBER" />
+		
+		<result property="ethnicGroup" column="ETHNIC_GROUP" />
+		<result property="patientRace" column="PATIENT_RACE" />		
+		
+		<result property="mrn" column="EXTERNAL_MRN" />
+		<result property="patientLastName" column="PATIENT_LAST_NAME" />
+		<result property="patientFirstName" column="PATIENT_FIRST_NAME" />
+		<result property="patientMiddleName" column="PATIENT_MIDDLE_NAME" />
+		<result property="dateOfBirth" column="DATE_OF_BIRTH" />
+		<result property="gender" column="GENDER" />
+		<result property="patientSsn" column="PATIENT_SSN" />
+		<result property="npi" column="NPI" />
+		<result property="orderingPhysicianName" column="ORDERING_PHYSICIAN_NAME" />
+		<result property="reportNotes" column="REPORT_NOTES" />		
+		<result property="specimenReceiveDate" column="SPECIMEN_RECEIVE_DATE" />
+		<result property="collectionDate" column="COLLECTION_DATE" />
+		<result property="collectionTime" column="COLLECTION_TIME" />
+		<result property="collectionDateTime" column="COLLECTION_DATE_TIME" />
+		<result property="drawFreq" column="DRAW_FREQ" />
+		<result property="resRprtStatusChngDtTime" column="RES_RPRT_STATUS_CHNG_DT_TIME" />
+		<result property="orderDetailStatus" column="ORDER_DETAIL_STATUS" />
+		<result property="orderTestCode" column="ORDER_TEST_CODE" />
+		<result property="orderTestName" column="ORDER_TEST_NAME" />
+		<result property="resultTestCode" column="RESULT_TEST_CODE" />
+		<result property="resultTestName" column="RESULT_TEST_NAME" />
+		<result property="resultStatus" column="RESULT_STATUS" />
+		<result property="textualResult" column="TEXTUAL_RESULT" />
+		<result property="textualResultFull" column="TEXTUAL_RESULT_FULL" />
+		<result property="numericResult" column="NUMERIC_RESULT" />
+		<result property="units" column="UNITS" />
+		<result property="referenceRange" column="REFERENCE_RANGE" />
+		<result property="abnormalFlag" column="ABNORMAL_FLAG" />
+		<result property="releaseDateTime" column="RELEASE_DATE_TIME" />
+		<result property="resultComments" column="RESULT_COMMENTS" jdbcType="CLOB" />
+		<result property="performingLabId" column="PERFORMING_LAB_ID" />
+		<result property="orderMethod" column="ORDER_METHOD" />
+		<result property="specimenSource" column="SPECIMEN_SOURCE" />
+		<result property="orderNumber" column="ORDER_NUMBER" />
+		
+		<result property="loggingSite" column="LOGGING_SITE" />
+		<result property="age" column="AGE" />
+		<result property="facilityName" column="FACILITY_NAME" />
+		<result property="condCode" column="COND_CODE" />
+		<result property="patientType" column="PATIENT_TYPE" />
+		<result property="sourceOfComment" column="SOURCE_OF_COMMENT" />
+		<result property="patientId" column="PATIENT_ID" />
+		<result property="altPatientId" column="ALTERNATE_PATIENT_ID" />
+		<result property="requisitionStatus" column="REQUISITION_STATUS" />
+		<result property="facilityAddress1" column="FACILITY_ADDRESS1" />
+		<result property="facilityAddress2" column="FACILITY_ADDRESS2" />
+		<result property="facilityCity" column="FACILITY_CITY" />
+		<result property="facilityState" column="FACILITY_STATE" />
+		<result property="facilityZip" column="FACILITY_ZIP" />
+		<result property="facilityPhone" column="FACILITY_PHONE" />
+		<result property="patientAccountAddress1" column="PATIENT_ACCOUNT_ADDRESS1" />
+		<result property="patientAccountAddress2" column="PATIENT_ACCOUNT_ADDRESS2" />
+		<result property="patientAccountCity" column="PATIENT_ACCOUNT_CITY" />
+		<result property="patientAccountState" column="PATIENT_ACCOUNT_STATE" />
+		<result property="patientAccountZip" column="PATIENT_ACCOUNT_ZIP" />
+		<result property="patientHomePhone" column="PATIENT_HOME_PHONE" />
+		<result property="loincCode" column="LOINC_CODE" />
+		<result property="loincName" column="LOINC_NAME" />
+		<result property="valueType" column="VALUE_TYPE" />
+		<result property="eastWestFlag" column="EAST_WEST_FLAG" />
+		<result property="internalExternalFlag" column="INTERNAL_EXTERNAL_FLAG" />
+		<result property="lastUpdateTime" column="LAST_UPDATE_TIME" />
+		
+
+		<result property="clinicalManager" column="CLINICAL_MANAGER" />
+		<result property="medicalDirector" column="MEDICAL_DIRECTOR" />
+		<result property="sequenceNo" column="SEQUENCE_NO" />
+		
+		<result property="facilityAccountStatus" column="FACILITY_ACCOUNT_STATUS" />
+		<result property="facilityActiveFlag" column="FACILITY_ACTIVE_FLAG" />
+		<result property="microIsolate" column="MICRO_ISOLATE" />
+		<result property="microOrganismName" column="MICRO_ORGANISM_NAME" />
+		<result property="labFk" column="LAB_FK" />
+		
+		<result property="actiFacilityId" column="ACTI_FACILITY_ID" />
+		<result property="fmcNumber" column="FMC_NUMBER" />
+		
+		<result property="reportableState" column="REPORTABLE_STATE" />
+		<result property="sourceState" column="SOURCE_STATE" />
+		
+		<result property="notifiedFlag" column="NOTIFIED_FLAG" />
+		<result property="notifiedTime" column="NOTIFIED_TIME" />
+		
+		<result property="eastWest" column="EAST_WEST" />
+	</resultMap>
+	
+	<resultMap id="lovTestCategoryDtoMap" type="LovTestCategoryDto">
+		<result property="testCategoryPk" column="TEST_CATEGORY_PK" />
+		<result property="testCategory" column="TEST_CATEGORY" />	
+		<result property="mci" column="MCI" />	
+		<result property="sessionId" column="SESSION_ID" />	
+		<result property="bodyId" column="BODY_ID" />	
+		<result property="messageDateTime" column="MESSAGE_DATE_TIME" />	
+		<result property="testCategoryDescription" column="TEST_CATEGORY_DESCRIPTION" />
+		<result property="customDepartment" column="CUSTOM_DEPARTMENT" />
+		<result property="createdDate" column="CREATED_DATE" />
+		<result property="createdBy" column="CREATED_BY" />
+		<result property="lastUpdatedDate" column="LAST_UPDATED_DATE" />
+		<result property="lastUpdatedBy" column="LAST_UPDATED_BY" />		
+	</resultMap>
+	
+	<resultMap id="labDtoMap" type="LabDto">
+		<result property="labPk" column="LAB_PK" />
+		<result property="labId" column="LAB_ID" />	
+		<result property="name" column="NAME" />	
+		<result property="address1" column="ADDRESS_LINE1" />	
+		<result property="address2" column="ADDRESS_LINE2" />	
+		<result property="city" column="CITY" />	
+		<result property="state" column="STATE" />
+		<result property="zip" column="ZIP" />
+		<result property="logo" column="LOGO" />
+		<result property="phoneNumber" column="PHONE_NUMBER" />
+		<result property="faxNumber" column="FAX_NUMBER" />
+		<result property="medicalDirector" column="MEDICAL_DIRECTOR" />
+		<result property="leadTechnicalDirector" column="LEAD_TECHNICAL_DIRECTOR" />
+		<result property="sourceLabSystem" column="SOURCE_LAB_SYSTEM" />
+		<result property="activeFlag" column="ACTIVE_FLAG" />
+		<result property="createdDate" column="CREATED_DATE" />
+		<result property="createdBy" column="CREATED_BY" />
+		<result property="lastUpdatedDate" column="LAST_UPDATED_DATE" />
+		<result property="lastUpdatedBy" column="LAST_UPDATED_BY" />		
+	</resultMap>	
+
+	<select id="callProcActivityNoDemo" parameterType="java.lang.String" statementType="CALLABLE">
+		{call SP_ASR_ACTIVITY_NO_DEMO()}
+	</select>
+	
+	<select id="selectNoDemo" parameterType="java.util.Map"  resultMap="asrActivityNoDemoDtoMap">
+		select 
+			* 
+		from 
+			STATERPT_OWNER.ACTIVITY_NO_DEMO
+		where
+			ACTIVITY_NO_DEMO_PK is not null
+			<if test="initiateId != null">
+				and INITIATE_ID = #{initiateId}
+			</if>
+			<if test="labOrderFk != null">
+				and LAB_ORDER_FK = #{labOrderFk}
+			</if>
+			<if test="requisitionId != null">
+				and REQUISITION_ID = #{requisitionId}
+			</if>
+			<if test="patientName != null">
+				and PATIENT_NAME = #{patientName}
+			</if>
+			<if test="patientDob != null">
+				and PATIENT_DOB = #{patientDob}
+			</if>
+			<if test="ssn != null">
+				and SSN = #{ssn}
+			</if>
+			<if test="hasDemo != null">
+				and HAS_DEMO = #{hasDemo}
+			</if>
+			<if test="createdDate != null">
+				and CREATED_DATE = #{createdDate}
+			</if>
+			<if test="lastUpdatedDate != null">
+				and LAST_UPDATED_DATE = #{lastUpdatedDate}
+			</if>			
+	</select>
+	
+	<select id="selectNoDemoPrevDay" parameterType="java.lang.String"  resultMap="asrActivityNoDemoDtoMap">
+		select 
+			* 
+		from 
+			STATERPT_OWNER.ACTIVITY_NO_DEMO
+		where
+			created_date >= (sysdate - 1)
+			<if test="_parameter != null">
+				and has_demo = #{_parameter}
+			</if>	
+	</select>		
+
+	<select id="selectLabOrderPhysician" parameterType="java.lang.String"  resultMap="asrPhysicianDtoMap">
+		select
+			lo.REQUISITION_ID,
+			lo.ORDERING_PHYSICIAN_NPI,
+			lo.ORDERING_PHYSICIAN_NAME
+		from
+			IH_DW.DIM_LAB_ORDER lo
+		where
+			lo.lab_order_pk is not null
+			<if test="_parameter != null">
+				and lo.requisition_id = #{_parameter}
+			</if>	
+	</select>
+	
+
+	<!-- intra labs no demo -->
+	<select id="selectIntraLabsNoDemo" parameterType="java.util.Map"  resultMap="demoStateResultDtoMap">
+		select
+			*
+		from
+			"STATERPT_OWNER"."INTRA_LABS_SENDOUT_NO_DEMO"
+		where
+			order_number is not null
+			<if test="orderNumber != null">
+				and order_number = #{orderNumber}
+			</if>
+			<if test="accessionNumber != null">
+				and accession_number = #{accessionNumber}
+			</if>
+			<if test="reportableState != null">
+				and reportable_state = #{reportableState}
+			</if>
+			<if test="notifiedFlag != null">
+				and notified_flag = #{notifiedFlag}
+			</if>
+			<if test="eastWest != null">
+				and east_west = #{eastWest}
+			</if>
+			<if test="sourceState != null">
+				and source_state = #{sourceState}
+			</if>
+	</select>
+	
+	<update id="updateIntraLabsNoDemo" parameterType="StateResultDto">
+		update 
+			"STATERPT_OWNER"."INTRA_LABS_SENDOUT_NO_DEMO"
+		set
+			<if test="notifiedFlag != null">
+				NOTIFIED_FLAG = #{notifiedFlag},
+			</if>
+			NOTIFIED_TIME = SYSTIMESTAMP(6)
+		where 
+			ORDER_NUMBER = #{orderNumber}
+	</update>	
+	
+	<insert id="insertIntraLabsNoDemo" parameterType="StateResultDto">
+		INSERT INTO STATERPT_OWNER.INTRA_LABS_SENDOUT_NO_DEMO(
+			ACCESSION_NUMBER,
+			FACILITY_ID,
+			CID,
+			ETHNIC_GROUP,
+			PATIENT_RACE,
+			EXTERNAL_MRN,
+			PATIENT_LAST_NAME,
+			PATIENT_FIRST_NAME,
+			PATIENT_MIDDLE_NAME,
+			DATE_OF_BIRTH,
+			GENDER,
+			PATIENT_SSN,
+			NPI,
+			ORDERING_PHYSICIAN_NAME,
+			REPORT_NOTES,
+			SPECIMEN_RECEIVE_DATE,
+			COLLECTION_DATE,
+			COLLECTION_TIME,
+			COLLECTION_DATE_TIME,
+			DRAW_FREQ,
+			RES_RPRT_STATUS_CHNG_DT_TIME,
+			ORDER_DETAIL_STATUS,
+			ORDER_TEST_CODE,
+			ORDER_TEST_NAME,
+			RESULT_TEST_CODE,
+			RESULT_TEST_NAME,
+			RESULT_STATUS,
+			TEXTUAL_RESULT,
+			TEXTUAL_RESULT_FULL,
+			NUMERIC_RESULT,
+			UNITS,
+			REFERENCE_RANGE,
+			ABNORMAL_FLAG,
+			RELEASE_DATE_TIME,
+			RESULT_COMMENTS,
+			PERFORMING_LAB_ID,
+			ORDER_METHOD,
+			SPECIMEN_SOURCE,
+			ORDER_NUMBER,
+			LOGGING_SITE,
+			AGE,
+			FACILITY_NAME,
+			COND_CODE,
+			PATIENT_TYPE,
+			SOURCE_OF_COMMENT,
+			PATIENT_ID,
+			ALTERNATE_PATIENT_ID,
+			REQUISITION_STATUS,
+			FACILITY_ADDRESS1,
+			FACILITY_ADDRESS2,
+			FACILITY_CITY,
+			FACILITY_STATE,
+			FACILITY_ZIP,
+			FACILITY_PHONE,
+			PATIENT_ACCOUNT_ADDRESS1,
+			PATIENT_ACCOUNT_ADDRESS2,
+			PATIENT_ACCOUNT_CITY,
+			PATIENT_ACCOUNT_STATE,
+			PATIENT_ACCOUNT_ZIP,
+			PATIENT_HOME_PHONE,
+			LOINC_CODE,
+			LOINC_NAME,
+			VALUE_TYPE,
+			EAST_WEST_FLAG,
+			INTERNAL_EXTERNAL_FLAG,
+			LAST_UPDATE_TIME,
+			SEQUENCE_NO,
+			FACILITY_ACCOUNT_STATUS,
+			FACILITY_ACTIVE_FLAG,
+			MICRO_ISOLATE,
+			MICRO_ORGANISM_NAME,
+			LAB_FK,
+			CLINICAL_MANAGER,
+			MEDICAL_DIRECTOR,
+			ACTI_FACILITY_ID,
+			FMC_NUMBER,
+			REPORTABLE_STATE,
+			SOURCE_STATE,
+			NOTIFIED_FLAG,
+			NOTIFIED_TIME,
+			EAST_WEST
+		) VALUES (
+			#{accessionNo},
+			#{facilityId},
+			#{cid}, 
+			#{ethnicGroup},
+			#{patientRace},
+			#{mrn},
+			#{patientLastName},
+			#{patientFirstName},
+			#{patientMiddleName},
+			#{dateOfBirth},
+			#{gender},
+			#{patientSsn},
+			#{npi},
+			#{orderingPhysicianName},
+			#{reportNotes},
+			#{specimenReceiveDate},
+			#{collectionDate},
+			#{collectionTime},
+			#{collectionDateTime},
+			#{drawFreq},
+			#{resRprtStatusChngDtTime},
+			#{orderDetailStatus},
+			#{orderTestCode},
+			#{orderTestName},
+			#{resultTestCode},
+			#{resultTestName},
+			#{resultStatus},
+			#{textualResult},
+			#{textualResultFull},
+			#{numericResult},
+			#{units},
+			#{referenceRange},
+			#{abnormalFlag},
+			#{releaseDateTime},
+			#{resultComments},
+			#{performingLabId},
+			#{orderMethod},
+			#{specimenSource},
+			#{orderNumber},
+			#{loggingSite},
+			#{age},
+			#{facilityName},
+			#{condCode},
+			#{patientType},
+			#{sourceOfComment},
+			#{patientId},
+			#{altPatientId},
+			#{requisitionStatus},
+			#{facilityAddress1},
+			#{facilityAddress2},
+			#{facilityCity},
+			#{facilityState},
+			#{facilityZip},
+			#{facilityPhone},
+			#{patientAccountAddress1},
+			#{patientAccountAddress2},
+			#{patientAccountCity},
+			#{patientAccountState},
+			#{patientAccountZip},
+			#{patientHomePhone},
+			#{loincCode},
+			#{loincName},
+			#{valueType},
+			#{eastWestFlag},
+			#{internalExternalFlag},
+			#{lastUpdateTime},
+			#{sequenceNo},
+			#{facilityAccountStatus},
+			#{facilityActiveFlag},
+			#{microIsolate},
+			#{microOrganismName},
+			#{labFk},
+			#{clinicalManager},
+			#{medicalDirector},
+			#{actiFacilityId},
+			#{fmcNumber},
+			#{reportableState},
+			#{sourceState},
+			#{notifiedFlag},
+			#{notifiedTime},
+			#{eastWest}
+		)
+	</insert>	
+	<!-- end intra labs no demo -->
+	
+	<!-- lov test category -->
+	<select id="selectLovTestCategory" parameterType="java.util.Map"  resultMap="lovTestCategoryDtoMap">
+		  select
+			TEST_CATEGORY,
+			TEST_CATEGORY_DESCRIPTION,
+			CUSTOM_DEPARTMENT
+		  from  
+			IH_DW.LOV_TEST_CATEGORY
+		  where
+		  	TEST_CATEGORY_PK is not null
+		  	<if test="customDepartment != null">
+				and CUSTOM_DEPARTMENT = #{customDepartment}
+			</if>
+		  	<if test="testCategory != null">
+				and TEST_CATEGORY = #{testCategory}
+			</if>			
+	</select>
+	<!-- end lov test category -->	
+	
+	<!-- lab -->
+	<select id="selectLab" parameterType="java.util.Map"  resultMap="labDtoMap">
+		select
+			*
+		from
+			IH_DW.DIM_LAB
+		where
+			lab_pk is not null
+		  	<if test="labPk != null">
+				and LAB_PK = #{labPk}
+			</if>
+		  	<if test="labId != null">
+				and LAB_ID = #{labId}
+			</if>
+		  	<if test="name != null">
+				and NAME = #{name}
+			</if>
+		  	<if test="address1 != null">
+				and ADDRESS_LINE1 = #{address1}
+			</if>
+		  	<if test="address2 != null">
+				and ADDRESS_LINE2 = #{address2}
+			</if>
+		  	<if test="city != null">
+				and CITY = #{city}
+			</if>
+		  	<if test="state != null">
+				and STATE = #{state}
+			</if>
+		  	<if test="zip != null">
+				and ZIP = #{zip}
+			</if>
+		  	<if test="logo != null">
+				and LOGO = #{logo}
+			</if>
+		  	<if test="phoneNumber != null">
+				and PHONE_NUMBER = #{phoneNumber}
+			</if>
+		  	<if test="faxNumber != null">
+				and FAX_NUMBER = #{faxNumber}
+			</if>
+		  	<if test="medicalDirector != null">
+				and MEDICAL_DIRECTOR = #{medicalDirector}
+			</if>
+		  	<if test="leadTechnicalDirector != null">
+				and LEAD_TECHNICAL_DIRECTOR = #{leadTechnicalDirector}
+			</if>
+		  	<if test="sourceLabSystem != null">
+				and SOURCE_LAB_SYSTEM = #{sourceLabSystem}
+			</if>
+		  	<if test="activeFlag != null">
+				and ACTIVE_FLAG = #{activeFlag}
+			</if>			
+	</select>	
+	<!-- end lab -->
+</mapper>

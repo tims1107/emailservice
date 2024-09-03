@@ -1,0 +1,297 @@
+
+a	java:S112»"FDefine and throw a dedicated exception instead of using a generic one.(ÿ°£üÿÿÿÿ
+{
+java:S1450B"`Remove the "getpatdocfacstaff" field and declare it as a local variable in the relevant methods.(—‚»õúÿÿÿÿ
+l
+java:S14505"VRemove the "getreqs" field and declare it as a local variable in the relevant methods.(  Ä
+z
+java:S1149M"_Replace the synchronized class "StringBuffer" by an unsynchronized one such as "StringBuilder".(­ğºæÿÿÿÿÿ
+v
+java:S1149Ÿ"_Replace the synchronized class "StringBuffer" by an unsynchronized one such as "StringBuilder".(í…Ò‰
+{
+java:S1149Ê"_Replace the synchronized class "StringBuffer" by an unsynchronized one such as "StringBuilder".(„â¢èıÿÿÿÿ
+c	java:S100\"NRename this method name to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(µúíÄ
+V	java:S125}"<This block of commented-out lines of code should be removed.(áûîúüÿÿÿÿ
+W	java:S125€"<This block of commented-out lines of code should be removed.(‡¾È¸ûÿÿÿÿ
+R	java:S125‚"<This block of commented-out lines of code should be removed.(Âšôæ
+d	java:S100Š"NRename this method name to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(…†ùÂ
+i	java:S100”"NRename this method name to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(±‘À€şÿÿÿÿ
+E
+java:S1481–")Remove this unused "rsmd" local variable.(˜ëê„ùÿÿÿÿ
+E
+java:S1481—".Remove this unused "patresult" local variable.(¥…áÏ
+D
+java:S1481›"(Remove this unused "cnt" local variable.(áÌÇ¦üÿÿÿÿ
+R	java:S125¡"<This block of commented-out lines of code should be removed.(Èü¿Ğ
+W	java:S125ª"<This block of commented-out lines of code should be removed.(¤Ë˜¾øÿÿÿÿ
+W	java:S125·"<This block of commented-out lines of code should be removed.(šç¡üÿÿÿÿ
+d	java:S100Æ"NRename this method name to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(·³®ï
+E
+java:S1481È")Remove this unused "rsmd" local variable.(˜ëê„ùÿÿÿÿ
+D
+java:S1481Ì"(Remove this unused "cnt" local variable.(áÌÇ¦üÿÿÿÿ
+R	java:S125Ò"<This block of commented-out lines of code should be removed.(Èü¿Ğ
+W	java:S125Û"<This block of commented-out lines of code should be removed.(¤Ë˜¾øÿÿÿÿ
+R	java:S125é"<This block of commented-out lines of code should be removed.(¨‡Õî
+W	java:S125ï"<This block of commented-out lines of code should be removed.(šç¡üÿÿÿÿ
+i	java:S100û"NRename this method name to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(ÒÌòËşÿÿÿÿ
+d	java:S100‹"NRename this method name to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(˜áì¯
+E
+java:S1481")Remove this unused "rsmd" local variable.(˜ëê„ùÿÿÿÿ
+D
+java:S1481‘"(Remove this unused "run" local variable.(Ë¶çÎúÿÿÿÿ
+T	java:S106¡"9Replace this use of System.out or System.err by a logger.(¸šñÙüÿÿÿÿ
+i	java:S100­"NRename this method name to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(Ø»òÅşÿÿÿÿ
+O
+java:S1854¯"8Remove this useless assignment to local variable "elrs".(Ç³œ¤
+@
+java:S1481¯")Remove this unused "elrs" local variable.(Ç³œ¤
+D
+java:S1481±"(Remove this unused "cnt" local variable.(áÌÇ¦üÿÿÿÿ
+b
+java:S1612³"KReplace this lambda with method reference 'RESULTS_QUERY::getOrder_number'.(ÛïÖ
+T	java:S106·"9Replace this use of System.out or System.err by a logger.(¹¦…‡úÿÿÿÿ
+E
+java:S1481»")Remove this unused "rsmd" local variable.(˜ëê„ùÿÿÿÿ
+W	java:S125¾"<This block of commented-out lines of code should be removed.(à‰í¡úÿÿÿÿ
+C
+java:S1481¿",Remove this unused "patlist" local variable.(Õ†Ïç
+O	java:S106Ä"9Replace this use of System.out or System.err by a logger.(ÃË¦É
+R	java:S125Û"<This block of commented-out lines of code should be removed.(øŠ¨ê
+W	java:S125İ"<This block of commented-out lines of code should be removed.(¤Ë˜¾øÿÿÿÿ
+W	java:S125á"<This block of commented-out lines of code should be removed.(´£ç‚øÿÿÿÿ
+O	java:S106ë"9Replace this use of System.out or System.err by a logger.(î©Î³
+R	java:S125í"<This block of commented-out lines of code should be removed.(äÑéô
+W	java:S125ó"<This block of commented-out lines of code should be removed.(´£ç‚øÿÿÿÿ
+O	java:S106"9Replace this use of System.out or System.err by a logger.(°ˆè
+d	java:S100˜"NRename this method name to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(úè§‰
+M
+java:S1854Ÿ"6Remove this useless assignment to local variable "sb".(í…Ò‰
+V
+java:S1854"?Remove this useless assignment to local variable "lfacilities".(½Â‘å
+D
+java:S1481™"(Remove this unused "rst" local variable.(ÍÁÿ¯ùÿÿÿÿ
+E
+java:S1481š")Remove this unused "rsmd" local variable.(˜ëê„ùÿÿÿÿ
+G
+java:S1481œ"0Remove this unused "dailyresult" local variable.(ÎºÅı
+G
+java:S1481"0Remove this unused "lfacilities" local variable.(½Â‘å
+M
+java:S1117Ÿ"6Rename "sb" which hides the field declared at line 77.(í…Ò‰
+>
+java:S1481Ÿ"'Remove this unused "sb" local variable.(í…Ò‰
+^
+java:S1612ª"BReplace this lambda with method reference 'this::_getReqFromList'.(Øºˆèøÿÿÿÿ
+W	java:S125¬"<This block of commented-out lines of code should be removed.(ÜÇÔåúÿÿÿÿ
+i	java:S100»"NRename this method name to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(ÿ°£üÿÿÿÿ
+n
+java:S3776»"RRefactor this method to reduce its Cognitive Complexity from 16 to the 15 allowed.(ÿ°£üÿÿÿÿ
+R
+java:S1854Ã"6Remove this useless assignment to local variable "pc".(Â¨Âıÿÿÿÿ
+N
+java:S1854ÿ"7Remove this useless assignment to local variable "orc".(•ñ•
+C
+java:S1481Ã"'Remove this unused "pc" local variable.(Â¨Âıÿÿÿÿ
+8
+java:S1116Í"Remove this empty statement.(ôŸìúÿÿÿÿ
+8
+java:S1116Ô"Remove this empty statement.(ôŸìúÿÿÿÿ
+O	java:S106ã"9Replace this use of System.out or System.err by a logger.(î¢ı
+?
+java:S1481ÿ"(Remove this unused "orc" local variable.(•ñ•
+W	java:S125 "<This block of commented-out lines of code should be removed.(¿Ñçãşÿÿÿÿ
+W	java:S125ß"<This block of commented-out lines of code should be removed.(¶”Ô©ÿÿÿÿÿ
+R	java:S125„"<This block of commented-out lines of code should be removed.(¾×åæ
+O	java:S106‡"9Replace this use of System.out or System.err by a logger.(Ó·ÒŞ
+W	java:S125™"<This block of commented-out lines of code should be removed.(´Îèîùÿÿÿÿ
+W	java:S125"<This block of commented-out lines of code should be removed.(³˜ËÚøÿÿÿÿ
+R	java:S125¤"<This block of commented-out lines of code should be removed.(Ä°ù
+W	java:S125§"<This block of commented-out lines of code should be removed.(É®¿øÿÿÿÿ
+R	java:S125¬"<This block of commented-out lines of code should be removed.(‘Üã«
+W	java:S125´"<This block of commented-out lines of code should be removed.(´Îèîùÿÿÿÿ
+R	java:S125º"<This block of commented-out lines of code should be removed.(ŸÈİ
+O	java:S106Ë"9Replace this use of System.out or System.err by a logger.(è‹Ğ™
+d	java:S100Ü"NRename this method name to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(””ü”
+[
+java:S1854ä"?Remove this useless assignment to local variable "lfacilities".(®˜»‡ùÿÿÿÿ
+R
+java:S1117Ş"6Rename "sb" which hides the field declared at line 77.(€ê±Õúÿÿÿÿ
+D
+java:S1481à"(Remove this unused "rst" local variable.(ÍÁÿ¯ùÿÿÿÿ
+E
+java:S1481á")Remove this unused "rsmd" local variable.(˜ëê„ùÿÿÿÿ
+L
+java:S1481ä"0Remove this unused "lfacilities" local variable.(®˜»‡ùÿÿÿÿ
+i	java:S100¼"NRename this method name to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(·Ğ¸Êûÿÿÿÿ
+E
+java:S1481Å")Remove this unused "rsmd" local variable.(˜ëê„ùÿÿÿÿ
+R	java:S125Ù"<This block of commented-out lines of code should be removed.(ñÊ¢
+W	java:S125Û"<This block of commented-out lines of code should be removed.(¤Ë˜¾øÿÿÿÿ
+N	java:S106ó"9Replace this use of System.out or System.err by a logger.(îÑÄ
+C
+java:S1125ö"'Remove the unnecessary boolean literal.(îÔÊÿüÿÿÿÿ
+O	java:S106ù"9Replace this use of System.out or System.err by a logger.(‹êó
+O	java:S106ü"9Replace this use of System.out or System.err by a logger.(ğÓí
+W	java:S125Š"<This block of commented-out lines of code should be removed.(´£ç‚øÿÿÿÿ
+i	java:S100“"NRename this method name to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(š®™êùÿÿÿÿ
+E
+java:S1481œ")Remove this unused "rsmd" local variable.(˜ëê„ùÿÿÿÿ
+R	java:S125²"<This block of commented-out lines of code should be removed.(ñÊ¢
+W	java:S125´"<This block of commented-out lines of code should be removed.(¤Ë˜¾øÿÿÿÿ
+C
+java:S1125Í"'Remove the unnecessary boolean literal.(îÔÊÿüÿÿÿÿ
+O	java:S106Ğ"9Replace this use of System.out or System.err by a logger.(‹êó
+O	java:S106Ó"9Replace this use of System.out or System.err by a logger.(ğÓí
+W	java:S125á"<This block of commented-out lines of code should be removed.(´£ç‚øÿÿÿÿ
+i	java:S100ë"NRename this method name to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(ù¶ç‹ÿÿÿÿÿ
+U
+java:S1854õ"?Remove this useless assignment to local variable "updateCount".(ª·ÆZ
+G
+java:S1481í"0Remove this unused "updateCount" local variable.(Ë°ë‚
+O	java:S106÷"9Replace this use of System.out or System.err by a logger.(’—éş
+D	java:S108ù")Either remove or fill this block of code.(²¿ıÿÿÿÿ
+T	java:S106„"9Replace this use of System.out or System.err by a logger.(ĞØñÿÿÿÿÿ
+T	java:S106±"9Replace this use of System.out or System.err by a logger.(°òğÀúÿÿÿÿ
+T	java:S106¶"9Replace this use of System.out or System.err by a logger.(’¡üÿÿÿÿ
+M
+java:S1117½"6Rename "sb" which hides the field declared at line 77.(áİøĞ
+d	java:S100Û"NRename this method name to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(Ì¹ƒÈ
+T	java:S106İ"9Replace this use of System.out or System.err by a logger.(ñÛáµúÿÿÿÿ
+O	java:S106	"9Replace this use of System.out or System.err by a logger.(Àõ³Ú
+T	java:S106’	"9Replace this use of System.out or System.err by a logger.(œŸ¼†üÿÿÿÿ
+d	java:S100	"NRename this method name to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(¼¹š¬
+T	java:S106ª	"9Replace this use of System.out or System.err by a logger.(¢‰œ¨şÿÿÿÿ
+D	java:S108®	")Either remove or fill this block of code.(²¿ıÿÿÿÿ
+i	java:S100¶	"NRename this method name to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(ÊŒÊ¶ÿÿÿÿÿ
+n
+java:S3776¶	"RRefactor this method to reduce its Cognitive Complexity from 29 to the 15 allowed.(ÊŒÊ¶ÿÿÿÿÿ
+V
+java:S1854Ú	":Remove this useless assignment to local variable "newcol".(İ‘ÛÄüÿÿÿÿ
+=	java:S131½	""Add a default case to this switch.(Ÿ‹©îÿÿÿÿÿ
+R	java:S125À	"<This block of commented-out lines of code should be removed.(Úğ…˜
+O	java:S106Ã	"9Replace this use of System.out or System.err by a logger.(Öÿ½À
+N	java:S106Æ	"9Replace this use of System.out or System.err by a logger.(äÅÜ"
+N	java:S106É	"9Replace this use of System.out or System.err by a logger.(äÅÜ"
+O	java:S106Ì	"9Replace this use of System.out or System.err by a logger.(Öÿ½À
+T	java:S106Ï	"9Replace this use of System.out or System.err by a logger.(ä‰êäùÿÿÿÿ
+O	java:S106Ò	"9Replace this use of System.out or System.err by a logger.(ÿƒº
+W	java:S125Û	"<This block of commented-out lines of code should be removed.(ÓòÆ›ÿÿÿÿÿ
+R	java:S125Ş	"<This block of commented-out lines of code should be removed.(Úğ…˜
+N	java:S106á	"9Replace this use of System.out or System.err by a logger.(Ú‰·4
+T	java:S106ä	"9Replace this use of System.out or System.err by a logger.(ˆ¦±‹úÿÿÿÿ
+O	java:S106ç	"9Replace this use of System.out or System.err by a logger.(ŒØ‡È
+N	java:S106ê	"9Replace this use of System.out or System.err by a logger.(Ú‰·4
+O	java:S106í	"9Replace this use of System.out or System.err by a logger.(şÔ‘”
+O	java:S106ğ	"9Replace this use of System.out or System.err by a logger.(ŒØ‡È
+T	java:S106÷	"9Replace this use of System.out or System.err by a logger.(ªÓ¼áşÿÿÿÿ
+W	java:S125ü	"<This block of commented-out lines of code should be removed.(ó‹®¯üÿÿÿÿ
+R	java:S125€
+"<This block of commented-out lines of code should be removed.(Úğ…˜
+W	java:S125ƒ
+"<This block of commented-out lines of code should be removed.(·Ûˆûÿÿÿÿ
+T	java:S106†
+"9Replace this use of System.out or System.err by a logger.(ÑĞ¢Úùÿÿÿÿ
+T	java:S106‰
+"9Replace this use of System.out or System.err by a logger.(Ãì®”úÿÿÿÿ
+T	java:S106Œ
+"9Replace this use of System.out or System.err by a logger.(Ãì®”úÿÿÿÿ
+T	java:S106
+"9Replace this use of System.out or System.err by a logger.(ÑĞ¢Úùÿÿÿÿ
+T	java:S106’
+"9Replace this use of System.out or System.err by a logger.(ø§ıŞüÿÿÿÿ
+O	java:S106•
+"9Replace this use of System.out or System.err by a logger.(¤Î²Ÿ
+O	java:S106˜
+"9Replace this use of System.out or System.err by a logger.(É§™´
+T	java:S106
+"9Replace this use of System.out or System.err by a logger.(ªÓ¼áşÿÿÿÿ
+T	java:S106¥
+"9Replace this use of System.out or System.err by a logger.(´‹¹öşÿÿÿÿ
+O	java:S106¬
+"9Replace this use of System.out or System.err by a logger.(Şšë
+T	java:S106¯
+"9Replace this use of System.out or System.err by a logger.(ªÓ¼áşÿÿÿÿ
+B
+java:S1481°
+"&Remove this unused "s" local variable.(ğ“ùùúÿÿÿÿ
+T	java:S106±
+"9Replace this use of System.out or System.err by a logger.(ıÊ“™üÿÿÿÿ
+T	java:S106³
+"9Replace this use of System.out or System.err by a logger.(ªÓ¼áşÿÿÿÿ
+T	java:S106·
+"9Replace this use of System.out or System.err by a logger.(ªÓ¼áşÿÿÿÿ
+O	java:S106¸
+"9Replace this use of System.out or System.err by a logger.(ÛÃí
+T	java:S106º
+"9Replace this use of System.out or System.err by a logger.(õ¯Àˆúÿÿÿÿ
+O	java:S106¼
+"9Replace this use of System.out or System.err by a logger.(¨üËÂ
+T	java:S106½
+"9Replace this use of System.out or System.err by a logger.(ªÓ¼áşÿÿÿÿ
+T	java:S106¿
+"9Replace this use of System.out or System.err by a logger.(½ò¼Õıÿÿÿÿ
+O	java:S106Á
+"9Replace this use of System.out or System.err by a logger.(¯Àƒû
+O	java:S106Ã
+"9Replace this use of System.out or System.err by a logger.(Èÿúö
+T	java:S106Ä
+"9Replace this use of System.out or System.err by a logger.(ªÓ¼áşÿÿÿÿ
+?	java:S108¡")Either remove or fill this block of code.(É®£
+d	java:S100­"NRename this method name to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(‹¶§
+A
+java:S10685"+Remove this unused "getreqs" private field.(  Ä
+P
+java:S1068B"5Remove this unused "getpatdocfacstaff" private field.(—‚»õúÿÿÿÿ
+A
+java:S1068M"&Remove this unused "sb" private field.(­ğºæÿÿÿÿÿ
+K
+java:S1144Š"4Remove this unused private "_truncateTables" method.(…†ùÂ
+L
+java:S1144Æ"5Remove this unused private "_updatePatCounty" method.(·³®ï
+I
+java:S1144­"-Remove this unused private "_getReqs" method.(Ø»òÅşÿÿÿÿ
+L
+java:S1144	"5Remove this unused private "_getResultDetail" method.(¼¹š¬
+L
+java:S1144¶	"0Remove this unused private "_writeModel" method.(ÊŒÊ¶ÿÿÿÿÿ
+u
+java:S2293“"YReplace the type specification in this constructor call with the diamond operator ("<>").(şİñ¢ıÿÿÿÿ
+o
+java:S2293£"YReplace the type specification in this constructor call with the diamond operator ("<>").(¾ »]
+u
+java:S2293è"YReplace the type specification in this constructor call with the diamond operator ("<>").(Åïª¤ÿÿÿÿÿ
+w
+java:S1192ö"`Define a constant instead of duplicating this literal "2.16.840.1.114222.4.3.22.29.7.1" 3 times.(Ò“£™
+i
+java:S1192õ"MDefine a constant instead of duplicating this literal "Spectra East" 3 times.(Ù¼’õøÿÿÿÿ
+~
+java:S1192ó"bDefine a constant instead of duplicating this literal "PATIENT_RESULT/ORDER_OBSERVATION(" 9 times.(£Î¬åûÿÿÿÿ
+c
+java:S1192†
+"GDefine a constant instead of duplicating this literal "insert" 6 times.(ÑĞ¢Úùÿÿÿÿ
+b
+java:S1192É"FDefine a constant instead of duplicating this literal "MICRO" 4 times.(™öü´úÿÿÿÿ
+E
+java:S1066f"/Merge this if statement with the enclosing one.(ïùÆ÷
+Q
+java:S1141¥"5Extract this nested try block into a separate method.(¡»¢üùÿÿÿÿ
+l	java:S117"QRename this local variable to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(¯ş§œùÿÿÿÿ
+l	java:S117»"QRename this local variable to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(ÿ°£üÿÿÿÿ
+l	java:S117Ó"QRename this local variable to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(Â—ºşÿÿÿÿ
+s
+java:S1488ü"\Immediately return this expression instead of assigning it to the temporary variable "elrs".(İ¸’É
+N
+java:S2629Ï
+"7Use the built-in formatting to construct this argument.(«ğï”
+S
+java:S2629±"7Use the built-in formatting to construct this argument.(ù•óúúÿÿÿÿ
+^
+java:S3973Æ"GUse indentation to denote the code conditionally executed by this "if".(ŒŠÌå
+g	java:S114‚"QRename this interface name to match the regular expression '^[A-Z][a-zA-Z0-9]*$'.(¼¬¬œ
+[
+java:S2259ÿ"DA "NullPointerException" could be thrown; "oruMsg" is nullable here.(•ñ•
+g
+java:S2095Â"PUse try-with-resources or close this "DefaultHapiContext" in a "finally" clause.(ÇÄ»Î
+N
+java:S2589Í"7Remove this expression which always evaluates to "true"(å´ªË

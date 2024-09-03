@@ -1,0 +1,3 @@
+ERROR [Scheduler] [Apr-06-2023 23:59:23,810] [SambaDistributorStrategyImpl.java:246]  com.spectra.asr.distributor.strategy.samba.SambaDistributorStrategyImpl - java.io.IOException: There are no more files
+ERROR [Scheduler] [Apr-06-2023 23:59:31,769] [SambaDistributorStrategyImpl.java:246]  com.spectra.asr.distributor.strategy.samba.SambaDistributorStrategyImpl - java.io.IOException: There are no more files
+ERROR [Scheduler] [Apr-06-2023 23:59:32,733] [SambaDistributorStrategyImpl.java:246]  com.spectra.asr.distributor.strategy.samba.SambaDistributorStrategyImpl - org.apache.commons.io.FileExistsException: Destination '\\njnas01\CommonFS\JohnShen\test\asr\spectraHLAB_External_Interface_Results\FL\prod\FL.HL7.20230406001654.hl7' already exists
