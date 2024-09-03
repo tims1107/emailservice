@@ -1,0 +1,146 @@
+
+[	java:S112f"FDefine and throw a dedicated exception instead of using a generic one.(ÝØ›Ÿ
+j
+java:S3008."TRename this field "micro_qry" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(ÄÕ¿Ø
+V	java:S1258"<This block of commented-out lines of code should be removed.(ÆÃÚèþÿÿÿÿ
+V	java:S125<"<This block of commented-out lines of code should be removed.(Ð¾ÿÿÿÿÿ
+S	java:S106]"9Replace this use of System.out or System.err by a logger.(áÕöÞøÿÿÿÿ
+N
+java:S1854¹"7Remove this useless assignment to local variable "orc".(Ž•ñ•
+R
+java:S1854’"6Remove this useless assignment to local variable "pc".(Â¨Âýÿÿÿÿ
+P
+java:S1854ƒ"9Remove this useless assignment to local variable "ilmsg".(Ÿ¶âÿ
+Q	java:S125w"<This block of commented-out lines of code should be removed.(ß»Š÷
+A
+java:S1481ƒ"*Remove this unused "ilmsg" local variable.(Ÿ¶âÿ
+C
+java:S1481’"'Remove this unused "pc" local variable.(Â¨Âýÿÿÿÿ
+O	java:S106 "9Replace this use of System.out or System.err by a logger.(î¢ý
+T	java:S106«"9Replace this use of System.out or System.err by a logger.(Ê™ïËøÿÿÿÿ
+?
+java:S1481¹"(Remove this unused "orc" local variable.(Ž•ñ•
+W	java:S125Î"<This block of commented-out lines of code should be removed.(¿Ñçãþÿÿÿÿ
+R	java:S125ê"<This block of commented-out lines of code should be removed.(¾×åæ
+O	java:S106í"9Replace this use of System.out or System.err by a logger.(Ó·ÒÞ
+W	java:S125ü"<This block of commented-out lines of code should be removed.(´Îèîùÿÿÿÿ
+W	java:S125€"<This block of commented-out lines of code should be removed.(³˜ËÚøÿÿÿÿ
+R	java:S125‡"<This block of commented-out lines of code should be removed.(Ä°ù
+W	java:S125Š"<This block of commented-out lines of code should be removed.(É®¿øÿÿÿÿ
+R	java:S125"<This block of commented-out lines of code should be removed.(‘Üã«
+W	java:S125—"<This block of commented-out lines of code should be removed.(´Îèîùÿÿÿÿ
+R	java:S125"<This block of commented-out lines of code should be removed.(ŸÈÝ
+T	java:S106¨"9Replace this use of System.out or System.err by a logger.(åö¡½úÿÿÿÿ
+\
+java:S1854Ü"ERemove this useless assignment to local variable "orderObservation2".(î§‚ê
+M
+java:S1481Ü"6Remove this unused "orderObservation2" local variable.(î§‚ê
+W	java:S125í"<This block of commented-out lines of code should be removed.(Öâã©þÿÿÿÿ
+W	java:S125ö"<This block of commented-out lines of code should be removed.(œ½ùÿÿÿÿ
+T	java:S106…"9Replace this use of System.out or System.err by a logger.(ñ›ö›úÿÿÿÿ
+R	java:S125‚"<This block of commented-out lines of code should be removed.(Å¬€
+W	java:S125ˆ"<This block of commented-out lines of code should be removed.(Ä©ä«ùÿÿÿÿ
+V
+java:S1854š":Remove this useless assignment to local variable "parser".(ß¤¾Ôþÿÿÿÿ
+W
+java:S1854";Remove this useless assignment to local variable "creator".(ö¨ŽÐûÿÿÿÿ
+N
+java:S1854Ø"7Remove this useless assignment to local variable "msg".(ØÐÆê
+C
+java:S1481",Remove this unused "message" local variable.(¥Õç·
+H
+java:S1481",Remove this unused "creator" local variable.(ö¨ŽÐûÿÿÿÿ
+G
+java:S1481š"+Remove this unused "parser" local variable.(ß¤¾Ôþÿÿÿÿ
+R	java:S125"<This block of commented-out lines of code should be removed.(íñåÿ
+R	java:S125 "<This block of commented-out lines of code should be removed.(˜øÔª
+\
+java:S2147Þ"ECombine this catch with the one at line 476, which has the same body.(ï­£Ä
+T	java:S106°"9Replace this use of System.out or System.err by a logger.(®¬¢úÿÿÿÿ
+R	java:S125³"<This block of commented-out lines of code should be removed.(°Äì¸
+T	java:S106¾"9Replace this use of System.out or System.err by a logger.(®¬¢úÿÿÿÿ
+T	java:S106È"9Replace this use of System.out or System.err by a logger.(®¬¢úÿÿÿÿ
+W	java:S125Õ"<This block of commented-out lines of code should be removed.(¹öõ·þÿÿÿÿ
+?
+java:S1481Ø"(Remove this unused "msg" local variable.(ØÐÆê
+T	java:S106Ú"9Replace this use of System.out or System.err by a logger.(ñ›ö›úÿÿÿÿ
+L
+java:S1172ê"0Remove this unused method parameter "patrecord".(äƒõËÿÿÿÿÿ
+=
+java:S1168ì"&Return an empty array instead of null.(¥¹ï
+T	java:S106ó"9Replace this use of System.out or System.err by a logger.(¤¸¤ûÿÿÿÿ
+=
+java:S1168õ"&Return an empty array instead of null.(¥¹ï
+W	java:S125ô"<This block of commented-out lines of code should be removed.(Â¦‚ùÿÿÿÿ
+T	java:S106û"9Replace this use of System.out or System.err by a logger.(¹¦…‡úÿÿÿÿ
+a
+java:S2147ˆ"ECombine this catch with the one at line 518, which has the same body.(ÈŒ³Óøÿÿÿÿ
+a
+java:S2147Š"ECombine this catch with the one at line 518, which has the same body.(ðöÌ’üÿÿÿÿ
+?	java:S108†")Either remove or fill this block of code.(Æâ­ê
+D	java:S108ˆ")Either remove or fill this block of code.(ÈŒ³Óøÿÿÿÿ
+D	java:S108Š")Either remove or fill this block of code.(ðöÌ’üÿÿÿÿ
+?	java:S108Œ")Either remove or fill this block of code.(Úîø›
+F
+java:S2093ý"*Change this "try" to a try-with-resources.(¡»¢üùÿÿÿÿ
+R
+java:S1612 "<Replace this lambda with method reference 'Entry::getValue'.(§°¢9
+V
+java:S1612¡"?Replace this lambda with method reference 'Collection::stream'.(¢øÅß
+W	java:S125§"<This block of commented-out lines of code should be removed.(ð„ð„üÿÿÿÿ
+T	java:S106©"9Replace this use of System.out or System.err by a logger.(Ú¾¬ûÿÿÿÿ
+A
+java:S2201¬"+The return value of "collect" must be used.(©¯±a
+W	java:S125®"<This block of commented-out lines of code should be removed.(´Îèîùÿÿÿÿ
+W	java:S125²"<This block of commented-out lines of code should be removed.(´Îèîùÿÿÿÿ
+4
+java:S1128"Remove this duplicated import.(Ç÷‰ã
+E
+java:S1144C"/Remove this unused private "getSegment" method.(ù«¿Ç
+E
+java:S1144T"/Remove this unused private "getMessage" method.(©Ì¦„
+G
+java:S1144f"1Remove this unused private "createTerser" method.(ÝØ›Ÿ
+O
+java:S1144¯"3Remove this unused private "testTerserCode" method.(ž“¾Àúÿÿÿÿ
+E
+java:S1144".Remove this unused private "createHL7" method.(®¹¥…
+G
+java:S1144ò"+Remove this unused private "strArr" method.(ŽÛÚýÿÿÿÿ
+N
+java:S1144”"2Remove this unused private "createMapTest" method.(´íÃëûÿÿÿÿ
+w
+java:S1192°"`Define a constant instead of duplicating this literal "2.16.840.1.114222.4.3.22.29.7.1" 3 times.(Ò“£™
+Ž
+java:S1192ù"rDefine a constant instead of duplicating this literal "/PATIENT_RESULT/ORDER_OBSERVATION(1)/OBSERVATION(" 6 times.(Å§È¢ùÿÿÿÿ
+_
+java:S1192ã"HDefine a constant instead of duplicating this literal "43409-2" 5 times.(´Ý¢þ
+d
+java:S1192ç"HDefine a constant instead of duplicating this literal ")/OBX-1" 3 times.(õöÕÖÿÿÿÿÿ
+~
+java:S1192Û"bDefine a constant instead of duplicating this literal "PATIENT_RESULT/ORDER_OBSERVATION(" 7 times.(£Î¬åûÿÿÿÿ
+q
+java:S1192¯"UDefine a constant instead of duplicating this literal "Spectra Laboratories" 3 times.(“›‡Ìùÿÿÿÿ
+‹
+java:S1192ç"oDefine a constant instead of duplicating this literal "/PATIENT_RESULT/ORDER_OBSERVATION/OBSERVATION(" 5 times.(õöÕÖÿÿÿÿÿ
+a
+java:S1192é"JDefine a constant instead of duplicating this literal ")/OBX-4-1" 3 times.(¼ÈùÓ
+f
+java:S1192ê"JDefine a constant instead of duplicating this literal ")/OBX-4-2" 3 times.(ÄÁ›ïÿÿÿÿÿ
+Œ
+java:S1192ä"pDefine a constant instead of duplicating this literal "Bacteria identified:Prid:Pt:Isolate:Nom:Culture" 5 times.(ÖÊ¾»ùÿÿÿÿ
+
+java:S1192â"cDefine a constant instead of duplicating this literal "/PATIENT_RESULT/ORDER_OBSERVATION(" 6 times.(Š¤ø´ùÿÿÿÿ
+l	java:S114ç"QRename this interface name to match the regular expression '^[A-Z][a-zA-Z0-9]*$'.(—ƒ²ƒÿÿÿÿÿ
+g
+java:S2095‘"PUse try-with-resources or close this "DefaultHapiContext" in a "finally" clause.(ÇÄ»Î
+g
+java:S2095’"PUse try-with-resources or close this "DefaultHapiContext" in a "finally" clause.(ÇÄ»Î
+^
+java:S2095¾"GUse try-with-resources or close this "CSVWriter" in a "finally" clause.(ùæú–
+d
+java:S2095¼"NUse try-with-resources or close this "FileOutputStream" in a "finally" clause.(¼
+g
+java:S2095½"PUse try-with-resources or close this "OutputStreamWriter" in a "finally" clause.(Ÿ½ô“
+f
+java:S2095U"PUse try-with-resources or close this "DefaultHapiContext" in a "finally" clause.(ÇÄ»Î

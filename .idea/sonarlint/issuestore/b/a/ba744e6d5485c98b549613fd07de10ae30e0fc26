@@ -1,0 +1,80 @@
+
+r
+java:S1450 "WRemove the "fileName" field and declare it as a local variable in the relevant methods.(·‡–Ûüÿÿÿÿ
+V	java:S125"<This block of commented-out lines of code should be removed.(à—¼ñùÿÿÿÿ
+V	java:S125"<This block of commented-out lines of code should be removed.(ã‹Ä’úÿÿÿÿ
+i
+java:S37760"SRefactor this method to reduce its Cognitive Complexity from 150 to the 15 allowed.(Œàä½
+T
+java:S18543"9Remove this useless assignment to local variable "asrBo".(ÅÈÃžýÿÿÿÿ
+]
+java:S1854O"BRemove this useless assignment to local variable "distributorDto".(ý¿Íüÿÿÿÿ
+T
+java:S1854ƒ"=Remove this useless assignment to local variable "prevMonth".(Š¦Â¡
+]
+java:S1854„"ARemove this useless assignment to local variable "prevMonthYear".(«¾‰§ýÿÿÿÿ
+Q
+java:S1854…":Remove this useless assignment to local variable "currMo".(²‰ÒÝ
+X
+java:S1854ˆ"ARemove this useless assignment to local variable "prevMonthDate".(žýä×
+X
+java:S1854‘"<Remove this useless assignment to local variable "fileMask".(´ðâ‡þÿÿÿÿ
+R
+java:S1854¸";Remove this useless assignment to local variable "created".(–ø¨ì
+W
+java:S1854½";Remove this useless assignment to local variable "created".(Å®Ùˆüÿÿÿÿ
+a
+java:S1854Ù"ERemove this useless assignment to local variable "wroteSemaporeFile".(‡µ–üÿÿÿÿ
+E
+java:S14813"*Remove this unused "asrBo" local variable.(ÅÈÃžýÿÿÿÿ
+Q	java:S1259"<This block of commented-out lines of code should be removed.(•ÛÞš
+Q	java:S125B"<This block of commented-out lines of code should be removed.(—°ÁÇ
+Q	java:S125S"<This block of commented-out lines of code should be removed.(…ýØ·
+Y
+java:S3878h"CDisambiguate this call by either casting as "Object" or "Object[]".(¹÷Õ 
+Q	java:S125v"<This block of commented-out lines of code should be removed.(±÷ýŸ
+N
+java:S3878x"8Remove this array creation and simply pass the elements.(“Â¡
+Q	java:S125{"<This block of commented-out lines of code should be removed.(žäÁÜ
+E
+java:S1481ƒ".Remove this unused "prevMonth" local variable.(Š¦Â¡
+N
+java:S1481„"2Remove this unused "prevMonthYear" local variable.(«¾‰§ýÿÿÿÿ
+B
+java:S1481…"+Remove this unused "currMo" local variable.(²‰ÒÝ
+I
+java:S1481ˆ"2Remove this unused "prevMonthDate" local variable.(žýä×
+W	java:S125"<This block of commented-out lines of code should be removed.(š˜—òøÿÿÿÿ
+W	java:S125"<This block of commented-out lines of code should be removed.(š˜—òøÿÿÿÿ
+I
+java:S1481‘"-Remove this unused "fileMask" local variable.(´ðâ‡þÿÿÿÿ
+Q	java:S125“"<This block of commented-out lines of code should be removed.(€„ðd
+W	java:S125Ÿ"<This block of commented-out lines of code should be removed.(ÖÇ‚Áüÿÿÿÿ
+T
+java:S3878§"8Remove this array creation and simply pass the elements.(Ïþ·¥úÿÿÿÿ
+T
+java:S3878®"8Remove this array creation and simply pass the elements.(ùþàþÿÿÿÿ
+C
+java:S1481²",Remove this unused "created" local variable.(Í­þ
+W	java:S125´"<This block of commented-out lines of code should be removed.(ï¢Á‡úÿÿÿÿ
+R	java:S125¿"<This block of commented-out lines of code should be removed.(¯›áÆ
+O
+java:S3878Æ"8Remove this array creation and simply pass the elements.(þ¤Ëæ
+M
+java:S1481Í"6Remove this unused "wroteSemaporeFile" local variable.(ÐÙ¦¸
+X	java:S899Ø"BDo something with the "boolean" value returned by "createNewFile".(õÿ­¤
+8
+java:S2129ß"!Remove this "Boolean" constructor(‘ô¸š
+F
+java:S1874ß"/Remove this use of "Boolean"; it is deprecated.(‘ô¸š
+W	java:S125å"<This block of commented-out lines of code should be removed.(•ÂÂ›ýÿÿÿÿ
+G
+java:S1068 ",Remove this unused "fileName" private field.(·‡–Ûüÿÿÿÿ
+t
+java:S2293Y"YReplace the type specification in this constructor call with the diamond operator ("<>").(š¡Þâüÿÿÿÿ
+b
+java:S1192A"GDefine a constant instead of duplicating this literal "active" 3 times.(ðÐªŽøÿÿÿÿ
+A
+java:S5411á"*Use the primitive boolean expression here.(ÈÁ¸¼
+b
+java:S2259Ó"FA "NullPointerException" could be thrown; "dropPath" is nullable here.(‚éÃýþÿÿÿÿ

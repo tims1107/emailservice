@@ -1,0 +1,33 @@
+
+w	java:S116"]Rename this field "ihub_prod_staterpt" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(îÉñßüÿÿÿÿ
+m	java:S116!"SRename this field "BASE_ENV" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(ºÖ¡ ÿÿÿÿÿ
+u
+java:S1149*"_Replace the synchronized class "StringBuffer" by an unsynchronized one such as "StringBuilder".(í…Ò‰
+z
+java:S1149+"_Replace the synchronized class "StringBuffer" by an unsynchronized one such as "StringBuilder".(Ðš¸³øÿÿÿÿ
+v
+java:S1149¤"_Replace the synchronized class "StringBuffer" by an unsynchronized one such as "StringBuilder".(í…Ò‰
+=
+java:S1481*"'Remove this unused "sb" local variable.(í…Ò‰
+B
+java:S1481-",Remove this unused "envlist" local variable.(ê©›Ù
+Q	java:S1252"<This block of commented-out lines of code should be removed.(‘øë‚
+Q	java:S125X"<This block of commented-out lines of code should be removed.(üÀš
+V	java:S125e"<This block of commented-out lines of code should be removed.(žÁÑ¹üÿÿÿÿ
+h	java:S100v"NRename this method name to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(ýáƒ·þÿÿÿÿ
+I
+java:S1172v".Remove this unused method parameter "newfile".(ýáƒ·þÿÿÿÿ
+W
+java:S1075x"ARefactor your code to get this URI from a customizable parameter.(ãéŒË
+W	java:S125‹"<This block of commented-out lines of code should be removed.(¿ÖÚ‰ùÿÿÿÿ
+d	java:S100¢"NRename this method name to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(¹Ì«Ë
+G
+java:S1481¦"+Remove this unused "isDone" local variable.(ãûäŽÿÿÿÿÿ
+W	java:S125ª"<This block of commented-out lines of code should be removed.(æ÷ˆæýÿÿÿÿ
+R	java:S125¬"<This block of commented-out lines of code should be removed.(ç°Ú’
+@
+java:S1068"*Remove this unused "loader" private field.(„š¿¿
+P
+java:S1144v"5Remove this unused private "_createDailyFile" method.(ýáƒ·þÿÿÿÿ
+o
+java:S2293-"YReplace the type specification in this constructor call with the diamond operator ("<>").(ê©›Ù

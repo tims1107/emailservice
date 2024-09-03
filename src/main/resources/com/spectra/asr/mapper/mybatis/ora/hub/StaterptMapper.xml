@@ -1,0 +1,3243 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!-- Created by: http://blog.idleworx.com, http://www.idleworx.com -->
+<mapper namespace="com.spectra.asr.mapper.mybatis.ora.hub.StaterptMapper">
+<!--
+<cache/>
+-->
+	<resultMap id="stateResultDtoMap" type="StateResultDto">
+		<result property="facilityId" column="FACILITY_ID" />
+		<result property="cid" column="CID" />
+		<result property="accessionNo" column="ACCESSION_NUMBER" />
+		
+		<result property="ethnicGroup" column="ETHNIC_GROUP" />
+		<result property="patientRace" column="PATIENT_RACE" />		
+		
+		<result property="mrn" column="EXTERNAL_MRN" />
+		<result property="patientLastName" column="PATIENT_LAST_NAME" />
+		<result property="patientFirstName" column="PATIENT_FIRST_NAME" />
+		<result property="patientMiddleName" column="PATIENT_MIDDLE_NAME" />
+		<result property="dateOfBirth" column="DATE_OF_BIRTH" />
+		<result property="gender" column="GENDER" />
+		<result property="patientSsn" column="PATIENT_SSN" />
+		<result property="npi" column="NPI" />
+		<result property="orderingPhysicianName" column="ORDERING_PHYSICIAN_NAME" />
+<!--		
+		<result property="reportNotes" column="REPORT_NOTES" jdbcType="CLOB" />
+-->
+		<result property="reportNotes" column="REPORT_NOTES" />		
+		<result property="specimenReceiveDate" column="SPECIMEN_RECEIVE_DATE" />
+		<result property="collectionDate" column="COLLECTION_DATE" />
+		<result property="collectionTime" column="COLLECTION_TIME" />
+		<result property="collectionDateTime" column="COLLECTION_DATE_TIME" />
+		<result property="drawFreq" column="DRAW_FREQ" />
+		<result property="resRprtStatusChngDtTime" column="RES_RPRT_STATUS_CHNG_DT_TIME" />
+		<result property="orderDetailStatus" column="ORDER_DETAIL_STATUS" />
+		<result property="orderTestCode" column="ORDER_TEST_CODE" />
+		<result property="orderTestName" column="ORDER_TEST_NAME" />
+		<result property="resultTestCode" column="RESULT_TEST_CODE" />
+		<result property="resultTestName" column="RESULT_TEST_NAME" />
+		<result property="resultStatus" column="RESULT_STATUS" />
+		<result property="textualResult" column="TEXTUAL_RESULT" />
+		<result property="textualResultFull" column="TEXTUAL_RESULT_FULL" />
+		<result property="numericResult" column="NUMERIC_RESULT" />
+		<result property="units" column="UNITS" />
+		<result property="referenceRange" column="REFERENCE_RANGE" />
+		<result property="abnormalFlag" column="ABNORMAL_FLAG" />
+<!--
+		<result property="releaseDate" column="RELEASE_DATE" />
+		<result property="releaseTime" column="RELEASE_TIME" />
+-->		
+		<result property="releaseDateTime" column="RELEASE_DATE_TIME" />
+		<result property="resultComments" column="RESULT_COMMENTS" jdbcType="CLOB" />
+		<result property="performingLabId" column="PERFORMING_LAB_ID" />
+		<result property="orderMethod" column="ORDER_METHOD" />
+		<result property="specimenSource" column="SPECIMEN_SOURCE" />
+		<result property="orderNumber" column="ORDER_NUMBER" />
+		
+		<result property="loggingSite" column="LOGGING_SITE" />
+		<result property="age" column="AGE" />
+		<result property="facilityName" column="FACILITY_NAME" />
+		<result property="condCode" column="COND_CODE" />
+		<result property="patientType" column="PATIENT_TYPE" />
+		<result property="sourceOfComment" column="SOURCE_OF_COMMENT" />
+		<result property="patientId" column="PATIENT_ID" />
+		<result property="altPatientId" column="ALTERNATE_PATIENT_ID" />
+<!--
+		<result property="currentRunTime" column="CURRENT_RUN_TIME" />
+-->		
+		<result property="requisitionStatus" column="REQUISITION_STATUS" />
+		<result property="facilityAddress1" column="FACILITY_ADDRESS1" />
+		<result property="facilityAddress2" column="FACILITY_ADDRESS2" />
+		<result property="facilityCity" column="FACILITY_CITY" />
+		<result property="facilityState" column="FACILITY_STATE" />
+		<result property="facilityZip" column="FACILITY_ZIP" />
+		<result property="facilityPhone" column="FACILITY_PHONE" />
+		<result property="patientAccountAddress1" column="PATIENT_ACCOUNT_ADDRESS1" />
+		<result property="patientAccountAddress2" column="PATIENT_ACCOUNT_ADDRESS2" />
+		<result property="patientAccountCity" column="PATIENT_ACCOUNT_CITY" />
+		<result property="patientAccountState" column="PATIENT_ACCOUNT_STATE" />
+		<result property="patientAccountZip" column="PATIENT_ACCOUNT_ZIP" />
+		<result property="patientHomePhone" column="PATIENT_HOME_PHONE" />
+		<result property="loincCode" column="LOINC_CODE" />
+		<result property="loincName" column="LOINC_NAME" />
+		<result property="valueType" column="VALUE_TYPE" />
+		<result property="eastWestFlag" column="EAST_WEST_FLAG" />
+		<result property="internalExternalFlag" column="INTERNAL_EXTERNAL_FLAG" />
+<!--
+		<result property="actiFacilityId" column="ACTI_FACILITY_ID" />
+-->		
+		<result property="lastUpdateTime" column="LAST_UPDATE_TIME" />
+		
+<!--
+		<result property="newHorizonCode" column="NEW_HORZ_CODE" />
+		<result property="oldTestCode" column="OLD_TEST_CODE" />
+		<result property="processed" column="PROCESSED" />
+		<result property="processedTime" column="PROCESSED_TIME" />
+		<result property="hoursLoaded" column="HOURS_LOADED" />
+		<result property="fmcNumber" column="HOURS_LOADED" />
+-->		
+
+		<result property="clinicalManager" column="CLINICAL_MANAGER" />
+		<result property="medicalDirector" column="MEDICAL_DIRECTOR" />
+<!--
+		<result property="resultType" column="HOURS_LOADED" />
+		<result property="patientAccountCounty" column="HOURS_LOADED" />
+-->		
+		<result property="sequenceNo" column="SEQUENCE_NO" />
+		
+		<result property="facilityAccountStatus" column="FACILITY_ACCOUNT_STATUS" />
+		<result property="facilityActiveFlag" column="FACILITY_ACTIVE_FLAG" />
+		<result property="microIsolate" column="MICRO_ISOLATE" />
+		<result property="microOrganismName" column="MICRO_ORGANISM_NAME" />
+		<result property="labFk" column="LAB_FK" />
+		
+		<result property="actiFacilityId" column="ACTI_FACILITY_ID" />
+		<result property="fmcNumber" column="FMC_NUMBER" />
+		
+		<result property="reportableState" column="REPORTABLE_STATE" />
+		<result property="sourceState" column="SOURCE_STATE" />
+		<result property="deviceName" column="DEVICE_NAME" />
+		
+		<result property="notifiedFlag" column="NOTIFIED_FLAG" />
+		<result property="notifiedTime" column="NOTIFIED_TIME" />
+		
+		<!-- <result property="convertedResult" column="CONVERTED_RESULT" /> -->
+	</resultMap>
+
+	<resultMap id="conditionMasterDtoMap" type="ConditionMasterDto">
+		<result property="state" column="STATE" />
+		<result property="stateAbbreviation" column="STATE_ABBREVIATION" />
+		<result property="conditionMasterPk" column="CONDITION_MASTER_PK" />
+		<result property="stateFk" column="STATE_FK" />
+		<result property="conditionFilterFk" column="CONDITION_FILTER_FK" />
+		<result property="orderTestCode" column="ORDER_TEST_CODE" />
+		<result property="resultTestCode" column="RESULT_TEST_CODE" />
+		<result property="condition" column="CONDITION" />
+		<result property="valueType" column="VALUE_TYPE" />
+		<result property="conditionValue" column="CONDITION_VALUE" />
+		<result property="createdDate" column="CREATED_DATE" />
+		<result property="createdBy" column="CREATED_BY" />
+		<result property="lastUpdatedDate" column="LAST_UPDATED_DATE" />
+		<result property="lastUpdatedBy" column="LAST_UPDATED_BY" />
+	</resultMap>
+	
+	<resultMap id="conditionFilterDtoMap" type="ConditionFilterDto">
+		<result property="conditionFilterPk" column="CONDITION_FILTER_PK" />
+		<result property="condition" column="CONDITION" />
+		<result property="filter" column="FILTER" />
+		<result property="valueType" column="VALUE_TYPE" />
+		<result property="createdDate" column="CREATED_DATE" />
+		<result property="createdBy" column="CREATED_BY" />
+		<result property="lastUpdatedDate" column="LAST_UPDATED_DATE" />
+		<result property="lastUpdatedBy" column="LAST_UPDATED_BY" />
+	</resultMap>	
+
+	<resultMap id="stateZipCodeDtoMap" type="StateZipCodeDto">
+		<result property="city" column="CITY" />
+		<result property="county" column="COUNTY" />	
+		<result property="state" column="STATE" />	
+		<result property="stateAbbr" column="STATE_ABBREV" />	
+		<result property="zip" column="ZIP" />	
+		<result property="lastUpdateTime" column="LAST_UPDATE_TIME" />	
+		<result property="source" column="SOURCE" />	
+	</resultMap>
+	
+	<resultMap id="stateMasterDtoMap" type="StateMasterDto">
+		<result property="stateMasterPk" column="STATE_MASTER_PK" />
+		<result property="state" column="STATE" />	
+		<result property="stateAbbreviation" column="STATE_ABBREVIATION" />	
+		<result property="addressLine1" column="ADDRESS_LINE1" />	
+		<result property="addressLine2" column="ADDRESS_LINE2" />	
+		<result property="city" column="CITY" />	
+		<result property="zipCode" column="ZIP_CODE" />
+		<result property="phoneNumber" column="PHONE_NUMBER" />
+		<result property="faxNumber" column="FAX_NUMBER" />
+		<result property="elr" column="ELR" />
+		<result property="contact" column="CONTACT" />
+		<result property="email" column="EMAIL" />
+		<result property="entityType" column="ENTITY_TYPE" />
+		<result property="status" column="STATUS" />
+		<result property="filterStateBy" column="FILTER_STATE_BY" />
+		<result property="createdDate" column="CREATED_DATE" />
+		<result property="createdBy" column="CREATED_BY" />
+		<result property="lastUpdatedDate" column="LAST_UPDATED_DATE" />
+		<result property="lastUpdatedBy" column="LAST_UPDATED_BY" />
+		
+		<result property="receivingApplication" column="RECEIVING_APPLICATION" />
+		<result property="receivingFacility" column="RECEIVING_FACILITY" />
+		<result property="msgProfileId" column="MSG_PROFILE_ID" />
+	</resultMap>	
+	
+	<resultMap id="lovTestCategoryDtoMap" type="LovTestCategoryDto">
+		<result property="testCategoryPk" column="TEST_CATEGORY_PK" />
+		<result property="testCategory" column="TEST_CATEGORY" />	
+		<result property="mci" column="MCI" />	
+		<result property="sessionId" column="SESSION_ID" />	
+		<result property="bodyId" column="BODY_ID" />	
+		<result property="messageDateTime" column="MESSAGE_DATE_TIME" />	
+		<result property="testCategoryDescription" column="TEST_CATEGORY_DESCRIPTION" />
+		<result property="customDepartment" column="CUSTOM_DEPARTMENT" />
+		<result property="createdDate" column="CREATED_DATE" />
+		<result property="createdBy" column="CREATED_BY" />
+		<result property="lastUpdatedDate" column="LAST_UPDATED_DATE" />
+		<result property="lastUpdatedBy" column="LAST_UPDATED_BY" />		
+	</resultMap>	
+
+	<select id="selectLastStateMaster" parameterType="java.lang.String"  resultMap="stateMasterDtoMap">
+		select
+			*
+		from
+			STATERPT_OWNER.STATE_MASTER
+		where
+			STATE_MASTER_PK = (
+				select
+					max(STATE_MASTER_PK)
+				from
+					STATERPT_OWNER.STATE_MASTER	
+			)	
+	</select>
+	
+	<insert id="insertStateMaster" parameterType="StateMasterDto">
+		INSERT INTO STATERPT_OWNER.STATE_MASTER(
+			STATE,
+			STATE_ABBREVIATION,
+			ADDRESS_LINE1,
+			ADDRESS_LINE2,
+			CITY,
+			ZIP_CODE,
+			PHONE_NUMBER,
+			FAX_NUMBER,
+			ELR,
+			CONTACT,
+			EMAIL,
+			ENTITY_TYPE,
+			STATUS,
+			CREATED_DATE,
+			CREATED_BY,
+			LAST_UPDATED_DATE,
+			LAST_UPDATED_BY,
+			RECEIVING_APPLICATION,
+			RECEIVING_FACILITY,
+			MSG_PROFILE_ID
+		) VALUES (
+			#{state},
+			#{stateAbbreviation},
+			#{addressLine1}, 
+			#{addressLine2},
+			#{city},
+			#{zipCode},
+			#{phoneNumber},
+			#{faxNumber},
+			#{elr},
+			#{contact},
+			#{email},
+			#{entityType},
+			#{status},
+			CURRENT_TIMESTAMP,
+			#{createdBy},
+			CURRENT_TIMESTAMP,
+			#{lastUpdatedBy},
+			#{receivingApplication},
+			#{receivingFacility},
+			#{msgProfileId}
+		)
+	</insert>
+
+	<update id="updateStateMaster" parameterType="StateMasterDto">
+		update 
+			STATERPT_OWNER.STATE_MASTER
+		set
+			<if test="state != null">
+				STATE = #{state},
+			</if>
+			<if test="stateAbbreviation != null">
+				STATE_ABBREVIATION = #{stateAbbreviation},
+			</if>
+			<if test="addressLine1 != null">
+				ADDRESS_LINE1 = #{addressLine1},
+			</if>
+			<if test="addressLine2 != null">
+				ADDRESS_LINE2 = #{addressLine2},
+			</if>
+			<if test="city != null">
+				CITY = #{city},
+			</if>			
+			<if test="zipCode != null">
+				ZIP_CODE = #{zipCode},
+			</if>
+			<if test="phoneNumber != null">
+				PHONE_NUMBER = #{phoneNumber},
+			</if>
+			<if test="faxNumber != null">
+				FAX_NUMBER = #{faxNumber},
+			</if>
+			<if test="elr != null">
+				ELR = #{elr},
+			</if>
+			<if test="contact != null">
+				CONTACT = #{contact},
+			</if>
+			<if test="email != null">
+				EMAIL = #{email},
+			</if>
+			<if test="entityType != null">
+				ENTITY_TYPE = #{entityType},
+			</if>
+			<if test="status != null">
+				STATUS = #{status},
+			</if>			
+			<if test="lastUpdatedBy != null">
+				LAST_UPDATED_BY = #{lastUpdatedBy},
+			</if>
+			<if test="receivingApplication != null">
+				RECEIVING_APPLICATION = #{receivingApplication},
+			</if>
+			<if test="receivingFacility != null">
+				RECEIVING_FACILITY = #{receivingFacility},
+			</if>
+			<if test="msgProfileId != null">
+				MSG_PROFILE_ID = #{msgProfileId},
+			</if>			
+			LAST_UPDATED_DATE = SYSTIMESTAMP(6)
+		where 
+			STATE_MASTER_PK = #{stateMasterPk}
+	</update>	
+
+	<select id="selectStateMaster" parameterType="StateMasterDto"  resultMap="stateMasterDtoMap">
+		select
+			*
+		from
+			STATERPT_OWNER.STATE_MASTER	
+		where
+			state_master_pk is not null
+			<if test="stateMasterPk != null">
+				and state_master_pk = #{stateMasterPk}
+			</if>
+			<if test="state != null">
+				and state = #{state}
+			</if>
+			<if test="stateAbbreviation != null">
+				and state_abbreviation = #{stateAbbreviation}
+			</if>
+			<if test="city != null">
+				and city = #{city}
+			</if>
+			<if test="zipCode != null">
+				and zip_code = #{zipCode}
+			</if>
+			<if test="elr != null">
+				and elr = #{elr}
+			</if>	
+			<if test="entityType != null">
+				and entity_type = #{entityType}
+			</if>
+			<if test="status != null">
+				and status = #{status}
+			</if>
+			<if test="receivingApplication != null">
+				and RECEIVING_APPLICATION = #{receivingApplication}
+			</if>
+			<if test="receivingFacility != null">
+				and RECEIVING_FACILITY = #{receivingFacility}
+			</if>
+			<if test="msgProfileId != null">
+				and MSG_PROFILE_ID = #{msgProfileId}
+			</if>			
+	</select>	
+
+	<select id="selectStateZipCodeByZip" parameterType="string"  resultMap="stateZipCodeDtoMap">
+		select
+			*
+		from
+			STATERPT_OWNER.DL_ZIP_CODE
+		where
+			zip = #{zip}	
+	</select>
+	
+	<select id="selectStateDemoByZipCityState" parameterType="java.util.Map"  resultMap="stateZipCodeDtoMap">
+		select
+			*
+		from
+			STATERPT_OWNER.DL_ZIP_CODE
+		where
+			upper(ltrim(rtrim(zip))) = upper(ltrim(rtrim(#{zip})))
+			<if test="city != null">
+				and upper(ltrim(rtrim(city))) = upper(ltrim(rtrim(#{city})))
+			</if>
+			<if test="state != null">
+				and upper(ltrim(rtrim(state_abbrev))) = upper(ltrim(rtrim(#{state})))
+			</if>			
+	</select>	
+
+	<select id="selectStateStateAbbrev" parameterType="string"  resultMap="stateZipCodeDtoMap">
+		select
+			s.state,
+			s.state_abbrev
+		from
+			(
+				select
+					distinct(state),
+					state_abbrev,
+					(state || state_abbrev) statecat
+				from
+					STATERPT_OWNER.DL_ZIP_CODE
+			) s
+		where
+			(s.statecat not in ('KansasAR') and s.statecat not in ('VirginiaWV'))
+		order by
+			s.state_abbrev		
+	</select>
+
+
+<!--
+	<select id="selectConditionFromConditionMaster" parameterType="java.util.Map"  resultMap="conditionMasterDtoMap">
+		select
+			distinct(condition),
+			condition_filter_fk
+		from
+			STATERPT_OWNER.CONDITION_MASTER
+		where
+			condition_master_pk is not null
+			<if test="state != null">
+				and state_fk = (
+					select
+						state_master_pk
+					from
+						"STATERPT_OWNER"."STATE_MASTER"
+					where
+						state = #{state}		
+				)	
+			</if>	
+	</select>
+
+	<select id="selectConditionFilters" parameterType="java.util.Map"  resultMap="conditionFilterDtoMap">
+		select
+			*
+		from
+			STATERPT_OWNER.CONDITION_FILTERS
+		where
+			condition is not null
+			<if test="conditionFilterPk != null">
+				and condition_filter_pk = #{conditionFilterPk}
+			</if>
+			<if test="condition != null">
+				and condition = #{condition}
+			</if>	
+	</select>
+
+	<select id="selectConditionMaster" parameterType="java.util.Map"  resultMap="conditionMasterDtoMap">
+		select
+			s.state,
+			s.state_abbreviation,
+			c.*
+		from	
+			STATERPT_OWNER.CONDITION_MASTER c,
+			STATERPT_OWNER.STATE_MASTER s
+		where
+			c.state_fk is not null
+			and c.state_fk = s.state_master_pk
+			<if test="state != null">
+				and s.state_abbreviation = #{state}
+			</if>
+			<if test="conditionFilterFk != null">
+				and c.condition_filter_fk = #{conditionFilterFk}
+			</if>
+			<if test="excludeConditionList != null">
+				and (c.condition not in 
+				<foreach item="excludeCondition" index="index" collection="excludeConditionList" open="(" separator="," close=")">
+					#{excludeCondition}
+				</foreach>
+				)
+			</if>
+			<if test="includeConditionList != null">
+				and (c.condition in 
+				<foreach item="includeCondition" index="index" collection="includeConditionList" open="(" separator="," close=")">
+					#{includeCondition}
+				</foreach>
+				)
+			</if>			
+		order by
+			order_test_code,
+			result_test_code
+	</select>
+
+	<insert id="insertConditionMaster" parameterType="ConditionMasterDto">
+		INSERT INTO STATERPT_OWNER.CONDITION_MASTER(
+			STATE_FK,
+			CONDITION_FILTER_FK,
+			ORDER_TEST_CODE,
+			RESULT_TEST_CODE,
+			CONDITION,
+			VALUE_TYPE,
+			CONDITION_VALUE,
+			CREATED_DATE,
+			CREATED_BY,
+			LAST_UPDATED_DATE,
+			LAST_UPDATED_BY
+		) VALUES (
+			#{stateFk},
+			#{conditionFilterFk},
+			#{orderTestCode}, 
+			#{resultTestCode},
+			#{condition},
+			#{valueType},
+			#{conditionValue},
+			CURRENT_TIMESTAMP,
+			#{createdBy},
+			CURRENT_TIMESTAMP,
+			#{lastUpdatedBy}
+		)
+	</insert>
+
+	<update id="updateConditionMaster" parameterType="ConditionMasterDto">
+		update 
+			STATERPT_OWNER.CONDITION_MASTER
+		set
+			<if test="stateFk != null">
+				STATE_FK = #{stateFk},
+			</if>
+			<if test="conditionFilterFk != null">
+				CONDITION_FILTER_FK = #{conditionFilterFk},
+			</if>
+			<if test="orderTestCode != null">
+				ORDER_TEST_CODE = #{orderTestCode},
+			</if>
+			<if test="resultTestCode != null">
+				RESULT_TEST_CODE = #{resultTestCode},
+			</if>
+			<if test="condition != null">
+				CONDITION = #{condition},
+			</if>			
+			<if test="valueType != null">
+				VALUE_TYPE = #{valueType},
+			</if>
+			<if test="conditionValue != null">
+				CONDITION_VALUE = #{conditionValue},
+			</if>
+			<if test="lastUpdatedBy != null">
+				LAST_UPDATED_BY = #{lastUpdatedBy},
+			</if>
+			LAST_UPDATED_DATE = SYSTIMESTAMP(6)
+		where 
+			CONDITION_MASTER_PK = #{conditionMasterPk}
+	</update>
+-->
+
+	<select id="callProcTrackingInsert" parameterType="string" statementType="CALLABLE">
+		{call SP_ASR_PROCESS_TRACKING_INSERT(
+			#{p_state,jdbcType=VARCHAR,javaType=Object,mode=IN})}
+	</select>
+
+	<select id="callProcTrackingUpdate" parameterType="string" statementType="CALLABLE">
+		{call SP_ASR_PROCESS_TRACKING_UPDATE(
+			#{p_state,jdbcType=VARCHAR,javaType=Object,mode=IN})}
+	</select>
+
+<!--
+	<select id="callStateResults" parameterType="java.util.Map" statementType="CALLABLE">
+		{call SP_STATE_RESULTS(
+			#{p_state,jdbcType=VARCHAR,javaType=Object,mode=IN},
+			#{p_otc,jdbcType=VARCHAR,javaType=Object,mode=IN},
+			#{p_rtc,jdbcType=VARCHAR,javaType=Object,mode=IN},
+			#{p_otc_outer,jdbcType=VARCHAR,javaType=Object,mode=IN},
+			#{p_rtc_outer,jdbcType=VARCHAR,javaType=Object,mode=IN},
+			#{p_otc_close,jdbcType=VARCHAR,javaType=Object,mode=IN},
+			#{p_rtc_close,jdbcType=VARCHAR,javaType=Object,mode=IN},
+			#{p_filter_inner,jdbcType=VARCHAR,javaType=Object,mode=IN},
+			#{p_filter_outer,jdbcType=VARCHAR,javaType=Object,mode=IN},
+			#{p_filter_ew,jdbcType=VARCHAR,javaType=Object,mode=IN},
+			#{p_recordset,jdbcType=CURSOR,mode=OUT,javaType=java.sql.ResultSet,resultMap=stateResultDtoMap})}
+	</select>
+-->	
+
+<!--
+	<select id="callStateResults" parameterType="java.util.Map" statementType="CALLABLE">
+		{call SP_ASR_RESULTS(
+			#{p_state,jdbcType=VARCHAR,javaType=Object,mode=IN},
+			#{p_otc,jdbcType=VARCHAR,javaType=Object,mode=IN},
+			#{p_rtc,jdbcType=VARCHAR,javaType=Object,mode=IN},
+			#{p_otc_outer,jdbcType=VARCHAR,javaType=Object,mode=IN},
+			#{p_rtc_outer,jdbcType=VARCHAR,javaType=Object,mode=IN},
+			#{p_otc_close,jdbcType=VARCHAR,javaType=Object,mode=IN},
+			#{p_rtc_close,jdbcType=VARCHAR,javaType=Object,mode=IN},
+			#{p_filter_inner,jdbcType=VARCHAR,javaType=Object,mode=IN},
+			#{p_filter_outer,jdbcType=VARCHAR,javaType=Object,mode=IN},
+			#{p_filter_ew,jdbcType=VARCHAR,javaType=Object,mode=IN},
+			#{p_recordset,jdbcType=CURSOR,mode=OUT,javaType=java.sql.ResultSet,resultMap=stateResultDtoMap},
+			#{p_sql,jdbcType=VARCHAR,mode=OUT,javaType=java.lang.String})}
+	</select>
+-->
+	
+	<select id="callStateResults" parameterType="java.util.Map" statementType="CALLABLE">
+		{call SP_ASR_RESULTS(
+			#{p_state,jdbcType=VARCHAR,javaType=Object,mode=IN},
+			#{p_otc,jdbcType=VARCHAR,javaType=Object,mode=IN},
+			#{p_rtc,jdbcType=VARCHAR,javaType=Object,mode=IN},
+			#{p_otc_outer,jdbcType=VARCHAR,javaType=Object,mode=IN},
+			#{p_rtc_outer,jdbcType=VARCHAR,javaType=Object,mode=IN},
+			#{p_otc_close,jdbcType=VARCHAR,javaType=Object,mode=IN},
+			#{p_rtc_close,jdbcType=VARCHAR,javaType=Object,mode=IN},
+			#{p_filter_inner,jdbcType=VARCHAR,javaType=Object,mode=IN},
+			#{p_filter_outer,jdbcType=VARCHAR,javaType=Object,mode=IN},
+			#{p_filter_ew,jdbcType=VARCHAR,javaType=Object,mode=IN},
+			#{p_recordset,jdbcType=CURSOR,mode=OUT,javaType=java.sql.ResultSet,resultMap=stateResultDtoMap},
+			#{p_sql,jdbcType=VARCHAR,mode=OUT,javaType=java.lang.String},
+			#{p_gtt_count,jdbcType=INTEGER,mode=OUT,javaType=java.lang.Integer})}
+			
+	</select>	
+
+	<select id="callStateMicroResult_T" parameterType="java.util.Map" statementType="CALLABLE">
+		{call SP_ASR_MICRO_RESULTS(
+			#{p_state,jdbcType=VARCHAR,javaType=Object,mode=IN},
+			#{p_filter_ew,jdbcType=VARCHAR,javaType=Object,mode=IN},
+			#{p_recordset,jdbcType=CURSOR,mode=OUT,javaType=java.sql.ResultSet,resultMap=stateResultDtoMap},
+			#{p_sql,jdbcType=VARCHAR,mode=OUT,javaType=java.lang.String},
+			#{p_gtt_count,jdbcType=INTEGER,mode=OUT,javaType=java.lang.Integer})}
+			
+	</select>
+	
+	<select id="callStateAbnMicroResult_T" parameterType="java.util.Map" statementType="CALLABLE">
+		{call SP_ASR_ABN_MICRO_RESULTS(
+			#{p_state,jdbcType=VARCHAR,javaType=Object,mode=IN},
+			#{p_filter_ew,jdbcType=VARCHAR,javaType=Object,mode=IN},
+			#{p_org_exclude,jdbcType=VARCHAR,javaType=Object,mode=IN},
+			#{p_recordset,jdbcType=CURSOR,mode=OUT,javaType=java.sql.ResultSet,resultMap=stateResultDtoMap},
+			#{p_sql,jdbcType=VARCHAR,mode=OUT,javaType=java.lang.String},
+			#{p_gtt_count,jdbcType=INTEGER,mode=OUT,javaType=java.lang.Integer})}
+			
+	</select>	
+
+	<select id="callProcTrackResults" parameterType="java.util.Map" statementType="CALLABLE">
+		{call SP_ASR_PROC_TRACK_RESULTS(
+			#{p_state,jdbcType=VARCHAR,javaType=Object,mode=IN},
+			#{p_gtt_count,jdbcType=INTEGER,mode=OUT,javaType=java.lang.Integer})}
+			
+	</select>
+	
+	<select id="callEipResultsExtract_T" parameterType="java.util.Map" statementType="CALLABLE">
+		{call SP_ASR_EIP_RESULTS_EXTRACT(
+			#{p_month,jdbcType=INTEGER,javaType=java.lang.Integer,mode=IN},
+			#{p_year,jdbcType=INTEGER,javaType=java.lang.Integer,mode=IN},
+			#{p_gtt_count,jdbcType=INTEGER,mode=OUT,javaType=java.lang.Integer})}
+	</select>	
+
+	<select id="callAsrMicroIncludeResults" parameterType="java.util.Map" statementType="CALLABLE">
+		{call SP_ASR_MICRO_INCL_RESULTS_N(
+			#{p_state,jdbcType=VARCHAR,javaType=Object,mode=IN},
+			#{p_filter_ew,jdbcType=VARCHAR,javaType=Object,mode=IN},
+			#{p_recordset,jdbcType=CURSOR,mode=OUT,javaType=java.sql.ResultSet,resultMap=stateResultDtoMap},
+			#{p_sql,jdbcType=VARCHAR,mode=OUT,javaType=java.lang.String},
+			#{p_gtt_count,jdbcType=INTEGER,mode=OUT,javaType=java.lang.Integer})}
+			
+	</select>
+
+	<select id="selectEipResults" parameterType="ResultExtractDto"  resultMap="stateResultDtoMap">
+		select
+			eip.*
+		from
+			(
+				select 
+					f.FACILITY_ID,
+					a.CID,
+					re.ACCESSION_NUMBER,
+					null ethnic_group,
+					dp.RACE patient_race,
+					lo.EXTERNAL_MRN,
+          			nvl(p.lname, '') PATIENT_LAST_NAME,
+          			nvl(p.fname, '') PATIENT_FIRST_NAME,
+          			p.mname PATIENT_MIDDLE_NAME,
+					  (
+						CASE
+						  WHEN p.DOB is null THEN null
+						  WHEN upper(p.DOB) = 'NULL' THEN null
+						  WHEN test_date(p.DOB) = 'Valid' THEN
+							(
+							  CASE 
+								WHEN (EXTRACT(YEAR FROM sysdate) - to_number(SUBSTR(replace(p.DOB, '-'), 1, 4))) &lt;= 0 THEN NULL 
+								ELSE to_date(p.DOB, 'YYYY-MM-DD')
+							  END
+							)
+						  ELSE NULL	
+						END
+					  ) date_of_birth,
+					p.sex gender,
+					p.ssn patient_ssn,
+					dph.NPI,
+					dph.PHYSICIAN_NAME ordering_physician_name,
+					lod.REPORT_NOTES,
+					lod.SPECIMEN_RECEIVED_DATE_TIME specimen_receive_date,
+					lod.COLLECTION_DATE collection_date,
+					lod.COLLECTION_TIME collection_time,
+					lod.COLLECTION_DATE_TIME,
+					lod.DRAW_FREQUENCY draw_freq,
+					lod.RESULT_RPT_CHNG_DATE_TIME res_rprt_status_chng_dt_time,
+					lod.ORDER_DETAIL_STATUS,
+					re.ORDER_TEST_CODE,
+					re.ORDER_TEST_NAME,
+					re.RESULT_TEST_CODE,
+					re.RESULT_TEST_NAME,
+					re.RESULT_STATUS,
+					re.TEXTUAL_RESULT,
+					re.TEXTUAL_RESULT_FULL,
+					re.NUMERIC_RESULT,
+					re.UNIT_OF_MEASURE units,
+					re.REFERENCE_RANGE,
+					re.ABNORMAL_FLAG,
+					re.RELEASE_DATE_TIME,
+					re.RESULT_COMMENT result_comments,
+					re.PERFORMING_LAB performing_lab_id,
+					lod.TEST_CATEGORY order_method,
+					lod.SPECIMEN_METHOD_DESC specimen_source,
+					re.REQUISITION_ID order_number,
+					dl.LAB_ID logging_site,
+					(
+						CASE p.DOB 
+							WHEN NULL THEN 0
+							WHEN upper(p.DOB) = 'NULL' THEN 0
+							ELSE trunc(months_between(sysdate, to_date(p.DOB, 'YYYY-MM-DD'))/12)
+						END
+					) age,
+					f.DISPLAY_NAME facility_name,
+					null cond_code,
+					lo.PATIENT_TYPE,
+					lod.ORDER_OCCURRENCE_ID source_of_comment,
+					lo.INITIATE_ID	patient_id,
+					lo.ALTERNATE_PATIENT_ID,
+					lo.REQUISITION_STATUS,
+					f.ADDRESS_LINE1 facility_address1,
+					f.ADDRESS_LINE2 facility_address2,
+					f.CITY facility_city,
+					f.STATE facility_state,
+					f.ZIP facility_zip,
+					f.PHONE_NUMBER facility_phone,
+					p.stline1 patient_account_address1,
+					p.stline2 patient_account_address2,
+					p.CITY patient_account_city,
+					p.STATE patient_account_state,
+					p.zipcode patient_account_zip,
+					p.phnumber patient_home_phone,
+					re.LOINC_CODE,
+					re.LOINC_NAME,
+					re.VALUE_TYPE,
+					f.EAST_WEST_FLAG,
+					f.INTERNAL_EXTERNAL_FLAG,
+					re.LAST_UPDATED_DATE last_update_time,
+					re.RESULT_SEQUENCE sequence_no,
+					f.ACCOUNT_STATUS facility_account_status,
+					f.FACILITY_ACTIVE_FLAG,
+					re.MICRO_ISOLATE,
+					re.MICRO_ORGANISM_NAME,
+					re.lab_fk,
+					f.CLINICAL_MANAGER,
+					f.MEDICAL_DIRECTOR,
+          			f.FACILITY_ID acti_facility_id,
+          			f.FMC_NUMBER
+				from
+					(
+						select
+							r.*
+						from
+							IH_DW.RESULTS r,
+							(
+								select
+									distinct(requisition_id)
+								from
+									IH_DW.DW_ODS_ACTIVITY
+								where
+									requisition_id is not null
+									<if test="day != null">
+										and EXTRACT(DAY FROM LAST_UPDATED_DATE) = #{day}
+									</if>
+									<if test="month != null">
+										and EXTRACT(MONTH FROM LAST_UPDATED_DATE) = #{month}
+									</if>
+									<if test="year != null">
+										and EXTRACT(YEAR FROM LAST_UPDATED_DATE) = #{year}
+									</if>									
+							) a
+						where
+							r.requisition_id = a.requisition_id
+							and r.test_category = 'MICRO'
+					) re,
+					IH_DW.DIM_LAB_ORDER lo,
+					IH_DW.DIM_LAB_ORDER_DETAILS lod,
+					STATERPT_OWNER.PatientMaster p,
+					IH_DW.DIM_ACCOUNT a,
+					IH_DW.DIM_FACILITY f,
+					IH_DW.DIM_PHYSICIAN dph,
+					IH_DW.DIM_LAB dl,
+					IH_DW.DIM_PATIENT dp,
+					IH_DW.SPECTRA_MRN_ASSOCIATIONS asso
+				where
+					lo.requisition_id = re.requisition_id
+					and re.LAB_ORDER_FK = lo.LAB_ORDER_PK
+					and lo.initiate_id = p.eid
+					and re.LAB_ORDER_DETAILS_FK = lod.LAB_ORDER_DETAILS_PK
+					and lo.LAB_ORDER_PK = lod.LAB_ORDER_FK
+					and lo.account_fk = a.account_pk	
+					and a.facility_fk = f.facility_pk
+					and lo.ORDERING_PHYSICIAN_NPI = dph.NPI
+					and re.lab_fk = dl.lab_pk
+					and lo.lab_fk = dl.lab_pk
+					and lo.SPECTRA_MRN_ASSC_FK = asso.SPECTRA_MRN_ASSC_pk
+					and dp.SPECTRA_MRN_FK = asso.SPECTRA_MRN_fK 
+					and dp.FACILITY_FK = asso.FACILITY_fK
+					<if test="stateInList != null">
+						and (UPPER(p.state) in 
+						<foreach item="stateIn" index="index" collection="stateInList" open="(" separator="," close=")">
+							#{stateIn}
+						</foreach>
+						)
+					</if>					
+			) eip
+		<if test="whereBlock != null">	
+			WHERE
+				${whereBlock}
+		</if>	
+	</select>
+
+<!--
+	<select id="selectCdiffResults" parameterType="ResultExtractDto"  resultMap="stateResultDtoMap">
+		select
+			eip.*
+		from
+			(
+				select 
+					f.FACILITY_ID,
+					a.CID,
+					re.ACCESSION_NUMBER,
+					null ethnic_group,
+					dp.RACE patient_race,
+					lo.EXTERNAL_MRN,
+					nvl(p.LAST_NAME, '') PATIENT_LAST_NAME,
+					nvl(p.FIRST_NAME, '') PATIENT_FIRST_NAME,
+					null PATIENT_MIDDLE_NAME,
+					p.dob date_of_birth,
+					p.GENDER,
+					p.ssn patient_ssn,
+					dph.NPI,
+					dph.PHYSICIAN_NAME ordering_physician_name,
+					lod.REPORT_NOTES,
+					lod.SPECIMEN_RECEIVED_DATE_TIME specimen_receive_date,
+					lod.COLLECTION_DATE collection_date,
+					lod.COLLECTION_TIME collection_time,
+					lod.COLLECTION_DATE_TIME,
+					lod.DRAW_FREQUENCY draw_freq,
+					lod.RESULT_RPT_CHNG_DATE_TIME res_rprt_status_chng_dt_time,
+					lod.ORDER_DETAIL_STATUS,
+					re.ORDER_TEST_CODE,
+					re.ORDER_TEST_NAME,
+					re.RESULT_TEST_CODE,
+					re.RESULT_TEST_NAME,
+					re.RESULT_STATUS,
+					re.TEXTUAL_RESULT,
+					re.TEXTUAL_RESULT_FULL,
+					re.NUMERIC_RESULT,
+					re.UNIT_OF_MEASURE units,
+					re.REFERENCE_RANGE,
+					re.ABNORMAL_FLAG,
+					re.RELEASE_DATE_TIME,
+					re.RESULT_COMMENT result_comments,
+					re.PERFORMING_LAB performing_lab_id,
+					lod.TEST_CATEGORY order_method,
+					lod.SPECIMEN_METHOD_DESC specimen_source,
+					re.REQUISITION_ID order_number,
+					dl.LAB_ID logging_site,
+					(
+						CASE p.DOB 
+							WHEN NULL THEN 0 
+							ELSE trunc(months_between(sysdate, p.DOB)/12)
+						END
+					) age,
+					f.DISPLAY_NAME facility_name,
+					null cond_code,
+					lo.PATIENT_TYPE,
+					lod.ORDER_OCCURRENCE_ID source_of_comment,
+					lo.INITIATE_ID	patient_id,
+					lo.ALTERNATE_PATIENT_ID,
+					lo.REQUISITION_STATUS,
+					f.ADDRESS_LINE1 facility_address1,
+					f.ADDRESS_LINE2 facility_address2,
+					f.CITY facility_city,
+					f.STATE facility_state,
+					f.ZIP facility_zip,
+					f.PHONE_NUMBER facility_phone,
+					p.ADDRESS patient_account_address1,
+					null patient_account_address2,
+					p.CITY patient_account_city,
+					p.STATE patient_account_state,
+					p.ZIP patient_account_zip,
+					p.PHONE patient_home_phone,
+					re.LOINC_CODE,
+					re.LOINC_NAME,
+					re.VALUE_TYPE,
+					f.EAST_WEST_FLAG,
+					f.INTERNAL_EXTERNAL_FLAG,
+					re.LAST_UPDATED_DATE last_update_time,
+					re.RESULT_SEQUENCE sequence_no,
+					f.ACCOUNT_STATUS facility_account_status,
+					f.FACILITY_ACTIVE_FLAG,
+					re.MICRO_ISOLATE,
+					re.MICRO_ORGANISM_NAME,
+					re.lab_fk,
+					f.CLINICAL_MANAGER,
+					f.MEDICAL_DIRECTOR,
+          			f.FACILITY_ID acti_facility_id,
+          			f.FMC_NUMBER
+				from
+					(
+						select
+							r.*
+						from
+							IH_DW.RESULTS r,
+							(
+								select
+									distinct(requisition_id)
+								from
+									IH_DW.DW_ODS_ACTIVITY
+								where
+									requisition_id is not null
+									<if test="day != null">
+										and EXTRACT(DAY FROM LAST_UPDATED_DATE) = #{day}
+									</if>
+									<if test="month != null">
+										and EXTRACT(MONTH FROM LAST_UPDATED_DATE) = #{month}
+									</if>
+									<if test="year != null">
+										and EXTRACT(YEAR FROM LAST_UPDATED_DATE) = #{year}
+									</if>									
+							) a
+						where
+							r.requisition_id = a.requisition_id
+							and r.test_category = 'MICRO'
+					) re,
+					IH_DW.DIM_LAB_ORDER lo,
+					IH_DW.DIM_LAB_ORDER_DETAILS lod,
+					STATERPT_OWNER.dl_all_patients p,
+					IH_DW.DIM_ACCOUNT a,
+					IH_DW.DIM_FACILITY f,
+					IH_DW.DIM_PHYSICIAN dph,
+					IH_DW.DIM_LAB dl,
+					IH_DW.DIM_PATIENT dp,
+					IH_DW.SPECTRA_MRN_ASSOCIATIONS asso
+				where
+					lo.requisition_id = re.requisition_id
+					and re.LAB_ORDER_FK = lo.LAB_ORDER_PK
+					and lo.initiate_id = p.eid
+					and re.LAB_ORDER_DETAILS_FK = lod.LAB_ORDER_DETAILS_PK
+					and lo.LAB_ORDER_PK = lod.LAB_ORDER_FK
+					and lo.account_fk = a.account_pk	
+					and a.facility_fk = f.facility_pk
+					and lo.ORDERING_PHYSICIAN_NPI = dph.NPI
+					and re.lab_fk = dl.lab_pk
+					and lo.lab_fk = dl.lab_pk
+					and lo.SPECTRA_MRN_ASSC_FK = asso.SPECTRA_MRN_ASSC_pk
+					and dp.SPECTRA_MRN_FK = asso.SPECTRA_MRN_fK 
+					and dp.FACILITY_FK = asso.FACILITY_fK
+					<if test="stateInList != null">
+						and (UPPER(p.state) in 
+						<foreach item="stateIn" index="index" collection="stateInList" open="(" separator="," close=")">
+							#{stateIn}
+						</foreach>
+						)
+					</if>					
+			) eip	
+		WHERE 
+			(
+				(
+					<if test="microOrganismNameLikeBlock != null">
+						${microOrganismNameLikeBlock}
+					</if>
+				)				
+				<if test="orderTestCodeInList != null">
+					OR eip.order_test_code in 
+					<foreach item="orderTestCodeIn" index="index" collection="orderTestCodeInList" open="(" separator="," close=")">
+						#{orderTestCodeIn}
+					</foreach>
+				</if>				
+			)	
+			and (eip.LAB_FK = 5 OR eip.LAB_FK = 6)
+			AND UPPER (eip.textual_result_full) NOT LIKE '%SEE PREVIOUS%'
+			<if test="resultTestCodeInList != null">
+				and eip.result_test_code in 
+				<foreach item="resultTestCodeIn" index="index" collection="resultTestCodeInList" open="(" separator="," close=")">
+					#{resultTestCodeIn}
+				</foreach>
+			</if>			
+			and upper(eip.facility_name) not like '%TEST%'	
+	</select>
+-->
+
+	<select id="selectCdiffResults" parameterType="ResultExtractDto"  resultMap="stateResultDtoMap">
+		select
+			eip.*
+		from
+			(
+				select 
+					f.FACILITY_ID,
+					a.CID,
+					re.ACCESSION_NUMBER,
+					null ethnic_group,
+					dp.RACE patient_race,
+					lo.EXTERNAL_MRN,
+          			nvl(p.lname, '') PATIENT_LAST_NAME,
+          			nvl(p.fname, '') PATIENT_FIRST_NAME,
+          			p.mname PATIENT_MIDDLE_NAME,
+					  (
+						CASE
+						  WHEN p.DOB is null THEN null
+						  WHEN upper(p.DOB) = 'NULL' THEN null
+						  WHEN test_date(p.DOB) = 'Valid' THEN
+							(
+							  CASE 
+								WHEN (EXTRACT(YEAR FROM sysdate) - to_number(SUBSTR(replace(p.DOB, '-'), 1, 4))) &lt;= 0 THEN NULL 
+								ELSE to_date(p.DOB, 'YYYY-MM-DD')
+							  END
+							)
+						  ELSE NULL	
+						END
+					  ) date_of_birth,
+					p.sex gender,
+					p.ssn patient_ssn,
+					dph.NPI,
+					dph.PHYSICIAN_NAME ordering_physician_name,
+					lod.REPORT_NOTES,
+					lod.SPECIMEN_RECEIVED_DATE_TIME specimen_receive_date,
+					lod.COLLECTION_DATE collection_date,
+					lod.COLLECTION_TIME collection_time,
+					lod.COLLECTION_DATE_TIME,
+					lod.DRAW_FREQUENCY draw_freq,
+					lod.RESULT_RPT_CHNG_DATE_TIME res_rprt_status_chng_dt_time,
+					lod.ORDER_DETAIL_STATUS,
+					re.ORDER_TEST_CODE,
+					re.ORDER_TEST_NAME,
+					re.RESULT_TEST_CODE,
+					re.RESULT_TEST_NAME,
+					re.RESULT_STATUS,
+					re.TEXTUAL_RESULT,
+					re.TEXTUAL_RESULT_FULL,
+					re.NUMERIC_RESULT,
+					re.UNIT_OF_MEASURE units,
+					re.REFERENCE_RANGE,
+					re.ABNORMAL_FLAG,
+					re.RELEASE_DATE_TIME,
+					re.RESULT_COMMENT result_comments,
+					re.PERFORMING_LAB performing_lab_id,
+					lod.TEST_CATEGORY order_method,
+					lod.SPECIMEN_METHOD_DESC specimen_source,
+					re.REQUISITION_ID order_number,
+					dl.LAB_ID logging_site,
+					  (
+						CASE
+						  WHEN p.DOB is null THEN 0
+						  WHEN test_date(p.DOB) = 'Valid' THEN
+							(
+							  CASE 
+								WHEN (EXTRACT(YEAR FROM sysdate) - to_number(SUBSTR(replace(p.DOB, '-'), 1, 4))) &lt;= 0 THEN 0 
+								ELSE trunc(months_between(sysdate, to_date(p.DOB, 'YYYY-MM-DD'))/12)
+							  END
+							)
+						  ELSE NULL	
+						END
+					  ) age,
+					f.DISPLAY_NAME facility_name,
+					null cond_code,
+					lo.PATIENT_TYPE,
+					lod.ORDER_OCCURRENCE_ID source_of_comment,
+					lo.INITIATE_ID	patient_id,
+					lo.ALTERNATE_PATIENT_ID,
+					lo.REQUISITION_STATUS,
+					f.ADDRESS_LINE1 facility_address1,
+					f.ADDRESS_LINE2 facility_address2,
+					f.CITY facility_city,
+					f.STATE facility_state,
+					f.ZIP facility_zip,
+					f.PHONE_NUMBER facility_phone,
+					p.stline1 patient_account_address1,
+					p.stline2 patient_account_address2,
+					p.CITY patient_account_city,
+					p.STATE patient_account_state,
+					p.zipcode patient_account_zip,
+					p.phnumber patient_home_phone,
+					re.LOINC_CODE,
+					re.LOINC_NAME,
+					re.VALUE_TYPE,
+					f.EAST_WEST_FLAG,
+					f.INTERNAL_EXTERNAL_FLAG,
+					re.LAST_UPDATED_DATE last_update_time,
+					re.RESULT_SEQUENCE sequence_no,
+					f.ACCOUNT_STATUS facility_account_status,
+					f.FACILITY_ACTIVE_FLAG,
+					re.MICRO_ISOLATE,
+					re.MICRO_ORGANISM_NAME,
+					re.lab_fk,
+					f.CLINICAL_MANAGER,
+					f.MEDICAL_DIRECTOR,
+          			f.FACILITY_ID acti_facility_id,
+          			f.FMC_NUMBER
+				from
+					STATERPT_OWNER.MICRO_RESULTS_EXTRACT re,
+					IH_DW.DIM_LAB_ORDER lo,
+					IH_DW.DIM_LAB_ORDER_DETAILS lod,
+					STATERPT_OWNER.PatientMaster p,
+					IH_DW.DIM_ACCOUNT a,
+					IH_DW.DIM_FACILITY f,
+					IH_DW.DIM_PHYSICIAN dph,
+					IH_DW.DIM_LAB dl,
+					IH_DW.DIM_PATIENT dp,
+					IH_DW.SPECTRA_MRN_ASSOCIATIONS asso
+				where
+					lo.requisition_id = re.requisition_id
+					and re.LAB_ORDER_FK = lo.LAB_ORDER_PK
+					and lo.initiate_id = p.eid
+					and re.LAB_ORDER_DETAILS_FK = lod.LAB_ORDER_DETAILS_PK
+					and lo.LAB_ORDER_PK = lod.LAB_ORDER_FK
+					and lo.account_fk = a.account_pk	
+					and a.facility_fk = f.facility_pk
+					and lo.ORDERING_PHYSICIAN_NPI = dph.NPI
+					and re.lab_fk = dl.lab_pk
+					and lo.lab_fk = dl.lab_pk
+					and lo.SPECTRA_MRN_ASSC_FK = asso.SPECTRA_MRN_ASSC_pk
+					and dp.SPECTRA_MRN_FK = asso.SPECTRA_MRN_fK 
+					and dp.FACILITY_FK = asso.FACILITY_fK
+			) eip	
+		WHERE 
+			(
+				(
+					<if test="microOrganismNameLikeBlock != null">
+						${microOrganismNameLikeBlock}
+					</if>
+				)				
+				<if test="orderTestCodeInList != null">
+					OR eip.order_test_code in 
+					<foreach item="orderTestCodeIn" index="index" collection="orderTestCodeInList" open="(" separator="," close=")">
+						#{orderTestCodeIn}
+					</foreach>
+				</if>				
+			)	
+			and (eip.LAB_FK = 5 OR eip.LAB_FK = 6)
+			AND UPPER (eip.textual_result_full) NOT LIKE '%SEE PREVIOUS%'
+			<if test="resultTestCodeInList != null">
+				and eip.result_test_code in 
+				<foreach item="resultTestCodeIn" index="index" collection="resultTestCodeInList" open="(" separator="," close=")">
+					#{resultTestCodeIn}
+				</foreach>
+			</if>			
+			and upper(eip.facility_name) not like '%TEST%'
+			and (upper(eip.textual_result_full) LIKE upper('Positive%') or upper(eip.textual_result_full) LIKE upper('Equivocal%') or upper(eip.textual_result_full) LIKE upper('Reactive%'))
+	</select>
+
+<!--
+	<select id="selectMrsaResults" parameterType="ResultExtractDto"  resultMap="stateResultDtoMap">
+		select
+			eip.*
+		from
+			(
+				select 
+					f.FACILITY_ID,
+					a.CID,
+					re.ACCESSION_NUMBER,
+					null ethnic_group,
+					dp.RACE patient_race,
+					lo.EXTERNAL_MRN,
+					nvl(p.LAST_NAME, '') PATIENT_LAST_NAME,
+					nvl(p.FIRST_NAME, '') PATIENT_FIRST_NAME,
+					null PATIENT_MIDDLE_NAME,
+					p.dob date_of_birth,
+					p.GENDER,
+					p.ssn patient_ssn,
+					dph.NPI,
+					dph.PHYSICIAN_NAME ordering_physician_name,
+					lod.REPORT_NOTES,
+					lod.SPECIMEN_RECEIVED_DATE_TIME specimen_receive_date,
+					lod.COLLECTION_DATE collection_date,
+					lod.COLLECTION_TIME collection_time,
+					lod.COLLECTION_DATE_TIME,
+					lod.DRAW_FREQUENCY draw_freq,
+					lod.RESULT_RPT_CHNG_DATE_TIME res_rprt_status_chng_dt_time,
+					lod.ORDER_DETAIL_STATUS,
+					re.ORDER_TEST_CODE,
+					re.ORDER_TEST_NAME,
+					re.RESULT_TEST_CODE,
+					re.RESULT_TEST_NAME,
+					re.RESULT_STATUS,
+					re.TEXTUAL_RESULT,
+					re.TEXTUAL_RESULT_FULL,
+					re.NUMERIC_RESULT,
+					re.UNIT_OF_MEASURE units,
+					re.REFERENCE_RANGE,
+					re.ABNORMAL_FLAG,
+					re.RELEASE_DATE_TIME,
+					re.RESULT_COMMENT result_comments,
+					re.PERFORMING_LAB performing_lab_id,
+					lod.TEST_CATEGORY order_method,
+					lod.SPECIMEN_METHOD_DESC specimen_source,
+					re.REQUISITION_ID order_number,
+					dl.LAB_ID logging_site,
+					(
+						CASE p.DOB 
+							WHEN NULL THEN 0 
+							ELSE trunc(months_between(sysdate, p.DOB)/12)
+						END
+					) age,
+					f.DISPLAY_NAME facility_name,
+					null cond_code,
+					lo.PATIENT_TYPE,
+					lod.ORDER_OCCURRENCE_ID source_of_comment,
+					lo.INITIATE_ID	patient_id,
+					lo.ALTERNATE_PATIENT_ID,
+					lo.REQUISITION_STATUS,
+					f.ADDRESS_LINE1 facility_address1,
+					f.ADDRESS_LINE2 facility_address2,
+					f.CITY facility_city,
+					f.STATE facility_state,
+					f.ZIP facility_zip,
+					f.PHONE_NUMBER facility_phone,
+					p.ADDRESS patient_account_address1,
+					null patient_account_address2,
+					p.CITY patient_account_city,
+					p.STATE patient_account_state,
+					p.ZIP patient_account_zip,
+					p.PHONE patient_home_phone,
+					re.LOINC_CODE,
+					re.LOINC_NAME,
+					re.VALUE_TYPE,
+					f.EAST_WEST_FLAG,
+					f.INTERNAL_EXTERNAL_FLAG,
+					re.LAST_UPDATED_DATE last_update_time,
+					re.RESULT_SEQUENCE sequence_no,
+					f.ACCOUNT_STATUS facility_account_status,
+					f.FACILITY_ACTIVE_FLAG,
+					re.MICRO_ISOLATE,
+					re.MICRO_ORGANISM_NAME,
+					re.lab_fk,
+					f.CLINICAL_MANAGER,
+					f.MEDICAL_DIRECTOR,
+          			f.FACILITY_ID acti_facility_id,
+          			f.FMC_NUMBER
+				from
+					(
+						select
+							r.*
+						from
+							IH_DW.RESULTS r,
+							(
+								select
+									distinct(requisition_id)
+								from
+									IH_DW.DW_ODS_ACTIVITY
+								where
+									requisition_id is not null
+									<if test="day != null">
+										and EXTRACT(DAY FROM LAST_UPDATED_DATE) = #{day}
+									</if>
+									<if test="month != null">
+										and EXTRACT(MONTH FROM LAST_UPDATED_DATE) = #{month}
+									</if>
+									<if test="year != null">
+										and EXTRACT(YEAR FROM LAST_UPDATED_DATE) = #{year}
+									</if>									
+							) a
+						where
+							r.requisition_id = a.requisition_id
+							and r.test_category = 'MICRO'
+					) re,
+					IH_DW.DIM_LAB_ORDER lo,
+					IH_DW.DIM_LAB_ORDER_DETAILS lod,
+					STATERPT_OWNER.dl_all_patients p,
+					IH_DW.DIM_ACCOUNT a,
+					IH_DW.DIM_FACILITY f,
+					IH_DW.DIM_PHYSICIAN dph,
+					IH_DW.DIM_LAB dl,
+					IH_DW.DIM_PATIENT dp,
+					IH_DW.SPECTRA_MRN_ASSOCIATIONS asso
+				where
+					lo.requisition_id = re.requisition_id
+					and re.LAB_ORDER_FK = lo.LAB_ORDER_PK
+					and lo.initiate_id = p.eid
+					and re.LAB_ORDER_DETAILS_FK = lod.LAB_ORDER_DETAILS_PK
+					and lo.LAB_ORDER_PK = lod.LAB_ORDER_FK
+					and lo.account_fk = a.account_pk	
+					and a.facility_fk = f.facility_pk
+					and lo.ORDERING_PHYSICIAN_NPI = dph.NPI
+					and re.lab_fk = dl.lab_pk
+					and lo.lab_fk = dl.lab_pk
+					and lo.SPECTRA_MRN_ASSC_FK = asso.SPECTRA_MRN_ASSC_pk
+					and dp.SPECTRA_MRN_FK = asso.SPECTRA_MRN_fK 
+					and dp.FACILITY_FK = asso.FACILITY_fK
+					<if test="stateInList != null">
+						and (UPPER(p.state) in 
+						<foreach item="stateIn" index="index" collection="stateInList" open="(" separator="," close=")">
+							#{stateIn}
+						</foreach>
+						)
+					</if>					
+			) eip	
+		WHERE 
+			(
+				(
+					<if test="microOrganismNameLikeBlock != null">
+						${microOrganismNameLikeBlock}
+					</if>
+				)				
+				<if test="orderTestCodeInList != null">
+					OR eip.order_test_code in 
+					<foreach item="orderTestCodeIn" index="index" collection="orderTestCodeInList" open="(" separator="," close=")">
+						#{orderTestCodeIn}
+					</foreach>
+				</if>				
+			)	
+			and (eip.LAB_FK = 5 OR eip.LAB_FK = 6)
+			AND UPPER (eip.textual_result_full) NOT LIKE '%SEE PREVIOUS%'
+			<if test="resultTestCodeNotInList != null">
+				and eip.result_test_code not in 
+				<foreach item="resultTestCodeNotIn" index="index" collection="resultTestCodeNotInList" open="(" separator="," close=")">
+					#{resultTestCodeNotIn}
+				</foreach>
+			</if>			
+			and upper(eip.result_test_name) like upper('%Isolate%')
+			and upper(eip.facility_name) not like '%TEST%'	
+	</select>
+-->	
+	
+	<select id="selectMrsaResults" parameterType="ResultExtractDto"  resultMap="stateResultDtoMap">
+		select
+			eip.*
+		from
+			(
+				select 
+					f.FACILITY_ID,
+					a.CID,
+					re.ACCESSION_NUMBER,
+					null ethnic_group,
+					dp.RACE patient_race,
+					lo.EXTERNAL_MRN,
+          			nvl(p.lname, '') PATIENT_LAST_NAME,
+          			nvl(p.fname, '') PATIENT_FIRST_NAME,
+          			p.mname PATIENT_MIDDLE_NAME,
+					  (
+						CASE
+						  WHEN p.DOB is null THEN null
+						  WHEN upper(p.DOB) = 'NULL' THEN null
+						  WHEN test_date(p.DOB) = 'Valid' THEN
+							(
+							  CASE 
+								WHEN (EXTRACT(YEAR FROM sysdate) - to_number(SUBSTR(replace(p.DOB, '-'), 1, 4))) &lt;= 0 THEN NULL 
+								ELSE to_date(p.DOB, 'YYYY-MM-DD')
+							  END
+							)
+						  ELSE NULL	
+						END
+					  ) date_of_birth,
+					p.sex gender,
+					p.ssn patient_ssn,
+					dph.NPI,
+					dph.PHYSICIAN_NAME ordering_physician_name,
+					lod.REPORT_NOTES,
+					lod.SPECIMEN_RECEIVED_DATE_TIME specimen_receive_date,
+					lod.COLLECTION_DATE collection_date,
+					lod.COLLECTION_TIME collection_time,
+					lod.COLLECTION_DATE_TIME,
+					lod.DRAW_FREQUENCY draw_freq,
+					lod.RESULT_RPT_CHNG_DATE_TIME res_rprt_status_chng_dt_time,
+					lod.ORDER_DETAIL_STATUS,
+					re.ORDER_TEST_CODE,
+					re.ORDER_TEST_NAME,
+					re.RESULT_TEST_CODE,
+					re.RESULT_TEST_NAME,
+					re.RESULT_STATUS,
+					re.TEXTUAL_RESULT,
+					re.TEXTUAL_RESULT_FULL,
+					re.NUMERIC_RESULT,
+					re.UNIT_OF_MEASURE units,
+					re.REFERENCE_RANGE,
+					re.ABNORMAL_FLAG,
+					re.RELEASE_DATE_TIME,
+					re.RESULT_COMMENT result_comments,
+					re.PERFORMING_LAB performing_lab_id,
+					lod.TEST_CATEGORY order_method,
+					lod.SPECIMEN_METHOD_DESC specimen_source,
+					re.REQUISITION_ID order_number,
+					dl.LAB_ID logging_site,
+					  (
+						CASE
+						  WHEN p.DOB is null THEN 0
+						  WHEN test_date(p.DOB) = 'Valid' THEN
+							(
+							  CASE 
+								WHEN (EXTRACT(YEAR FROM sysdate) - to_number(SUBSTR(replace(p.DOB, '-'), 1, 4))) &lt;= 0 THEN 0 
+								ELSE trunc(months_between(sysdate, to_date(p.DOB, 'YYYY-MM-DD'))/12)
+							  END
+							)
+						  ELSE NULL	
+						END
+					  ) age,
+					f.DISPLAY_NAME facility_name,
+					null cond_code,
+					lo.PATIENT_TYPE,
+					lod.ORDER_OCCURRENCE_ID source_of_comment,
+					lo.INITIATE_ID	patient_id,
+					lo.ALTERNATE_PATIENT_ID,
+					lo.REQUISITION_STATUS,
+					f.ADDRESS_LINE1 facility_address1,
+					f.ADDRESS_LINE2 facility_address2,
+					f.CITY facility_city,
+					f.STATE facility_state,
+					f.ZIP facility_zip,
+					f.PHONE_NUMBER facility_phone,
+					p.stline1 patient_account_address1,
+					p.stline2 patient_account_address2,
+					p.CITY patient_account_city,
+					p.STATE patient_account_state,
+					p.zipcode patient_account_zip,
+					p.phnumber patient_home_phone,
+					re.LOINC_CODE,
+					re.LOINC_NAME,
+					re.VALUE_TYPE,
+					f.EAST_WEST_FLAG,
+					f.INTERNAL_EXTERNAL_FLAG,
+					re.LAST_UPDATED_DATE last_update_time,
+					re.RESULT_SEQUENCE sequence_no,
+					f.ACCOUNT_STATUS facility_account_status,
+					f.FACILITY_ACTIVE_FLAG,
+					re.MICRO_ISOLATE,
+					re.MICRO_ORGANISM_NAME,
+					re.lab_fk,
+					f.CLINICAL_MANAGER,
+					f.MEDICAL_DIRECTOR,
+          			f.FACILITY_ID acti_facility_id,
+          			f.FMC_NUMBER
+				from
+					STATERPT_OWNER.MICRO_RESULTS_EXTRACT re,
+					IH_DW.DIM_LAB_ORDER lo,
+					IH_DW.DIM_LAB_ORDER_DETAILS lod,
+					STATERPT_OWNER.PatientMaster p,
+					IH_DW.DIM_ACCOUNT a,
+					IH_DW.DIM_FACILITY f,
+					IH_DW.DIM_PHYSICIAN dph,
+					IH_DW.DIM_LAB dl,
+					IH_DW.DIM_PATIENT dp,
+					IH_DW.SPECTRA_MRN_ASSOCIATIONS asso
+				where
+					lo.requisition_id = re.requisition_id
+					and re.LAB_ORDER_FK = lo.LAB_ORDER_PK
+					and lo.initiate_id = p.eid
+					and re.LAB_ORDER_DETAILS_FK = lod.LAB_ORDER_DETAILS_PK
+					and lo.LAB_ORDER_PK = lod.LAB_ORDER_FK
+					and lo.account_fk = a.account_pk	
+					and a.facility_fk = f.facility_pk
+					and lo.ORDERING_PHYSICIAN_NPI = dph.NPI
+					and re.lab_fk = dl.lab_pk
+					and lo.lab_fk = dl.lab_pk
+					and lo.SPECTRA_MRN_ASSC_FK = asso.SPECTRA_MRN_ASSC_pk
+					and dp.SPECTRA_MRN_FK = asso.SPECTRA_MRN_fK 
+					and dp.FACILITY_FK = asso.FACILITY_fK
+			) eip	
+		WHERE 
+			(
+				(
+					<if test="microOrganismNameLikeBlock != null">
+						${microOrganismNameLikeBlock}
+					</if>
+				)				
+				<if test="orderTestCodeInList != null">
+					OR eip.order_test_code in 
+					<foreach item="orderTestCodeIn" index="index" collection="orderTestCodeInList" open="(" separator="," close=")">
+						#{orderTestCodeIn}
+					</foreach>
+				</if>				
+			)	
+			and (eip.LAB_FK = 5 OR eip.LAB_FK = 6)
+			AND UPPER (eip.textual_result_full) NOT LIKE '%SEE PREVIOUS%'
+			<if test="resultTestCodeNotInList != null">
+				and eip.result_test_code not in 
+				<foreach item="resultTestCodeNotIn" index="index" collection="resultTestCodeNotInList" open="(" separator="," close=")">
+					#{resultTestCodeNotIn}
+				</foreach>
+			</if>			
+			and upper(eip.result_test_name) like upper('%Isolate%')
+			and upper(eip.facility_name) not like '%TEST%'	
+	</select>	
+	
+<!--	
+	<select id="selectMssaResults" parameterType="ResultExtractDto"  resultMap="stateResultDtoMap">
+		select
+			eip.*
+		from
+			(
+				select 
+					f.FACILITY_ID,
+					a.CID,
+					re.ACCESSION_NUMBER,
+					null ethnic_group,
+					dp.RACE patient_race,
+					lo.EXTERNAL_MRN,
+					nvl(p.LAST_NAME, '') PATIENT_LAST_NAME,
+					nvl(p.FIRST_NAME, '') PATIENT_FIRST_NAME,
+					null PATIENT_MIDDLE_NAME,
+					p.dob date_of_birth,
+					p.GENDER,
+					p.ssn patient_ssn,
+					dph.NPI,
+					dph.PHYSICIAN_NAME ordering_physician_name,
+					lod.REPORT_NOTES,
+					lod.SPECIMEN_RECEIVED_DATE_TIME specimen_receive_date,
+					lod.COLLECTION_DATE collection_date,
+					lod.COLLECTION_TIME collection_time,
+					lod.COLLECTION_DATE_TIME,
+					lod.DRAW_FREQUENCY draw_freq,
+					lod.RESULT_RPT_CHNG_DATE_TIME res_rprt_status_chng_dt_time,
+					lod.ORDER_DETAIL_STATUS,
+					re.ORDER_TEST_CODE,
+					re.ORDER_TEST_NAME,
+					re.RESULT_TEST_CODE,
+					re.RESULT_TEST_NAME,
+					re.RESULT_STATUS,
+					re.TEXTUAL_RESULT,
+					re.TEXTUAL_RESULT_FULL,
+					re.NUMERIC_RESULT,
+					re.UNIT_OF_MEASURE units,
+					re.REFERENCE_RANGE,
+					re.ABNORMAL_FLAG,
+					re.RELEASE_DATE_TIME,
+					re.RESULT_COMMENT result_comments,
+					re.PERFORMING_LAB performing_lab_id,
+					lod.TEST_CATEGORY order_method,
+					lod.SPECIMEN_METHOD_DESC specimen_source,
+					re.REQUISITION_ID order_number,
+					dl.LAB_ID logging_site,
+					(
+						CASE p.DOB 
+							WHEN NULL THEN 0 
+							ELSE trunc(months_between(sysdate, p.DOB)/12)
+						END
+					) age,
+					f.DISPLAY_NAME facility_name,
+					null cond_code,
+					lo.PATIENT_TYPE,
+					lod.ORDER_OCCURRENCE_ID source_of_comment,
+					lo.INITIATE_ID	patient_id,
+					lo.ALTERNATE_PATIENT_ID,
+					lo.REQUISITION_STATUS,
+					f.ADDRESS_LINE1 facility_address1,
+					f.ADDRESS_LINE2 facility_address2,
+					f.CITY facility_city,
+					f.STATE facility_state,
+					f.ZIP facility_zip,
+					f.PHONE_NUMBER facility_phone,
+					p.ADDRESS patient_account_address1,
+					null patient_account_address2,
+					p.CITY patient_account_city,
+					p.STATE patient_account_state,
+					p.ZIP patient_account_zip,
+					p.PHONE patient_home_phone,
+					re.LOINC_CODE,
+					re.LOINC_NAME,
+					re.VALUE_TYPE,
+					f.EAST_WEST_FLAG,
+					f.INTERNAL_EXTERNAL_FLAG,
+					re.LAST_UPDATED_DATE last_update_time,
+					re.RESULT_SEQUENCE sequence_no,
+					f.ACCOUNT_STATUS facility_account_status,
+					f.FACILITY_ACTIVE_FLAG,
+					re.MICRO_ISOLATE,
+					re.MICRO_ORGANISM_NAME,
+					re.lab_fk,
+					f.CLINICAL_MANAGER,
+					f.MEDICAL_DIRECTOR,
+          			f.FACILITY_ID acti_facility_id,
+          			f.FMC_NUMBER
+				from
+					(
+						select
+							r.*
+						from
+							IH_DW.RESULTS r,
+							(
+								select
+									distinct(requisition_id)
+								from
+									IH_DW.DW_ODS_ACTIVITY
+								where
+									requisition_id is not null
+									<if test="day != null">
+										and EXTRACT(DAY FROM LAST_UPDATED_DATE) = #{day}
+									</if>
+									<if test="month != null">
+										and EXTRACT(MONTH FROM LAST_UPDATED_DATE) = #{month}
+									</if>
+									<if test="year != null">
+										and EXTRACT(YEAR FROM LAST_UPDATED_DATE) = #{year}
+									</if>									
+							) a
+						where
+							r.requisition_id = a.requisition_id
+							and r.test_category = 'MICRO'
+					) re,
+					IH_DW.DIM_LAB_ORDER lo,
+					IH_DW.DIM_LAB_ORDER_DETAILS lod,
+					STATERPT_OWNER.dl_all_patients p,
+					IH_DW.DIM_ACCOUNT a,
+					IH_DW.DIM_FACILITY f,
+					IH_DW.DIM_PHYSICIAN dph,
+					IH_DW.DIM_LAB dl,
+					IH_DW.DIM_PATIENT dp,
+					IH_DW.SPECTRA_MRN_ASSOCIATIONS asso
+				where
+					lo.requisition_id = re.requisition_id
+					and re.LAB_ORDER_FK = lo.LAB_ORDER_PK
+					and lo.initiate_id = p.eid
+					and re.LAB_ORDER_DETAILS_FK = lod.LAB_ORDER_DETAILS_PK
+					and lo.LAB_ORDER_PK = lod.LAB_ORDER_FK
+					and lo.account_fk = a.account_pk	
+					and a.facility_fk = f.facility_pk
+					and lo.ORDERING_PHYSICIAN_NPI = dph.NPI
+					and re.lab_fk = dl.lab_pk
+					and lo.lab_fk = dl.lab_pk
+					and lo.SPECTRA_MRN_ASSC_FK = asso.SPECTRA_MRN_ASSC_pk
+					and dp.SPECTRA_MRN_FK = asso.SPECTRA_MRN_fK 
+					and dp.FACILITY_FK = asso.FACILITY_fK
+					<if test="stateInList != null">
+						and (UPPER(p.state) in 
+						<foreach item="stateIn" index="index" collection="stateInList" open="(" separator="," close=")">
+							#{stateIn}
+						</foreach>
+						)
+					</if>					
+			) eip	
+		WHERE 
+			(
+				<if test="microOrganismNameLikeBlock != null">
+					${microOrganismNameLikeBlock}
+				</if>
+			)			
+			and
+			(
+				<if test="microOrganismNameNotLikeBlock != null">
+					${microOrganismNameNotLikeBlock}
+				</if>
+			)			
+			<if test="resultTestCodeNotInList != null">
+				and eip.result_test_code not in 
+				<foreach item="resultTestCodeNotIn" index="index" collection="resultTestCodeNotInList" open="(" separator="," close=")">
+					#{resultTestCodeNotIn}
+				</foreach>
+			</if>			
+			and (eip.LAB_FK = 5 OR eip.LAB_FK = 6)
+			and upper(eip.result_test_name) like upper('%Isolate%')
+			and upper(eip.facility_name) not like '%TEST%'	
+	</select>
+-->
+
+	<select id="selectMssaResults" parameterType="ResultExtractDto"  resultMap="stateResultDtoMap">
+		select
+			eip.*
+		from
+			(
+				select 
+					f.FACILITY_ID,
+					a.CID,
+					re.ACCESSION_NUMBER,
+					null ethnic_group,
+					dp.RACE patient_race,
+					lo.EXTERNAL_MRN,
+          			nvl(p.lname, '') PATIENT_LAST_NAME,
+          			nvl(p.fname, '') PATIENT_FIRST_NAME,
+          			p.mname PATIENT_MIDDLE_NAME,
+					  (
+						CASE
+						  WHEN p.DOB is null THEN null
+						  WHEN upper(p.DOB) = 'NULL' THEN null
+						  WHEN test_date(p.DOB) = 'Valid' THEN
+							(
+							  CASE 
+								WHEN (EXTRACT(YEAR FROM sysdate) - to_number(SUBSTR(replace(p.DOB, '-'), 1, 4))) &lt;= 0 THEN NULL 
+								ELSE to_date(p.DOB, 'YYYY-MM-DD')
+							  END
+							)
+						  ELSE NULL	
+						END
+					  ) date_of_birth,
+					p.sex gender,
+					p.ssn patient_ssn,
+					dph.NPI,
+					dph.PHYSICIAN_NAME ordering_physician_name,
+					lod.REPORT_NOTES,
+					lod.SPECIMEN_RECEIVED_DATE_TIME specimen_receive_date,
+					lod.COLLECTION_DATE collection_date,
+					lod.COLLECTION_TIME collection_time,
+					lod.COLLECTION_DATE_TIME,
+					lod.DRAW_FREQUENCY draw_freq,
+					lod.RESULT_RPT_CHNG_DATE_TIME res_rprt_status_chng_dt_time,
+					lod.ORDER_DETAIL_STATUS,
+					re.ORDER_TEST_CODE,
+					re.ORDER_TEST_NAME,
+					re.RESULT_TEST_CODE,
+					re.RESULT_TEST_NAME,
+					re.RESULT_STATUS,
+					re.TEXTUAL_RESULT,
+					re.TEXTUAL_RESULT_FULL,
+					re.NUMERIC_RESULT,
+					re.UNIT_OF_MEASURE units,
+					re.REFERENCE_RANGE,
+					re.ABNORMAL_FLAG,
+					re.RELEASE_DATE_TIME,
+					re.RESULT_COMMENT result_comments,
+					re.PERFORMING_LAB performing_lab_id,
+					lod.TEST_CATEGORY order_method,
+					lod.SPECIMEN_METHOD_DESC specimen_source,
+					re.REQUISITION_ID order_number,
+					dl.LAB_ID logging_site,
+					  (
+						CASE
+						  WHEN p.DOB is null THEN 0
+						  WHEN test_date(p.DOB) = 'Valid' THEN
+							(
+							  CASE 
+								WHEN (EXTRACT(YEAR FROM sysdate) - to_number(SUBSTR(replace(p.DOB, '-'), 1, 4))) &lt;= 0 THEN 0 
+								ELSE trunc(months_between(sysdate, to_date(p.DOB, 'YYYY-MM-DD'))/12)
+							  END
+							)
+						  ELSE NULL	
+						END
+					  ) age,
+					f.DISPLAY_NAME facility_name,
+					null cond_code,
+					lo.PATIENT_TYPE,
+					lod.ORDER_OCCURRENCE_ID source_of_comment,
+					lo.INITIATE_ID	patient_id,
+					lo.ALTERNATE_PATIENT_ID,
+					lo.REQUISITION_STATUS,
+					f.ADDRESS_LINE1 facility_address1,
+					f.ADDRESS_LINE2 facility_address2,
+					f.CITY facility_city,
+					f.STATE facility_state,
+					f.ZIP facility_zip,
+					f.PHONE_NUMBER facility_phone,
+					p.stline1 patient_account_address1,
+					p.stline2 patient_account_address2,
+					p.CITY patient_account_city,
+					p.STATE patient_account_state,
+					p.zipcode patient_account_zip,
+					p.phnumber patient_home_phone,
+					re.LOINC_CODE,
+					re.LOINC_NAME,
+					re.VALUE_TYPE,
+					f.EAST_WEST_FLAG,
+					f.INTERNAL_EXTERNAL_FLAG,
+					re.LAST_UPDATED_DATE last_update_time,
+					re.RESULT_SEQUENCE sequence_no,
+					f.ACCOUNT_STATUS facility_account_status,
+					f.FACILITY_ACTIVE_FLAG,
+					re.MICRO_ISOLATE,
+					re.MICRO_ORGANISM_NAME,
+					re.lab_fk,
+					f.CLINICAL_MANAGER,
+					f.MEDICAL_DIRECTOR,
+          			f.FACILITY_ID acti_facility_id,
+          			f.FMC_NUMBER
+				from
+					STATERPT_OWNER.MICRO_RESULTS_EXTRACT re,
+					IH_DW.DIM_LAB_ORDER lo,
+					IH_DW.DIM_LAB_ORDER_DETAILS lod,
+					STATERPT_OWNER.PatientMaster p,
+					IH_DW.DIM_ACCOUNT a,
+					IH_DW.DIM_FACILITY f,
+					IH_DW.DIM_PHYSICIAN dph,
+					IH_DW.DIM_LAB dl,
+					IH_DW.DIM_PATIENT dp,
+					IH_DW.SPECTRA_MRN_ASSOCIATIONS asso
+				where
+					lo.requisition_id = re.requisition_id
+					and re.LAB_ORDER_FK = lo.LAB_ORDER_PK
+					and lo.initiate_id = p.eid
+					and re.LAB_ORDER_DETAILS_FK = lod.LAB_ORDER_DETAILS_PK
+					and lo.LAB_ORDER_PK = lod.LAB_ORDER_FK
+					and lo.account_fk = a.account_pk	
+					and a.facility_fk = f.facility_pk
+					and lo.ORDERING_PHYSICIAN_NPI = dph.NPI
+					and re.lab_fk = dl.lab_pk
+					and lo.lab_fk = dl.lab_pk
+					and lo.SPECTRA_MRN_ASSC_FK = asso.SPECTRA_MRN_ASSC_pk
+					and dp.SPECTRA_MRN_FK = asso.SPECTRA_MRN_fK 
+					and dp.FACILITY_FK = asso.FACILITY_fK
+			) eip	
+		WHERE 
+			(
+				<if test="microOrganismNameLikeBlock != null">
+					${microOrganismNameLikeBlock}
+				</if>
+			)			
+			and
+			(
+				<if test="microOrganismNameNotLikeBlock != null">
+					${microOrganismNameNotLikeBlock}
+				</if>
+			)			
+			<if test="resultTestCodeNotInList != null">
+				and eip.result_test_code not in 
+				<foreach item="resultTestCodeNotIn" index="index" collection="resultTestCodeNotInList" open="(" separator="," close=")">
+					#{resultTestCodeNotIn}
+				</foreach>
+			</if>			
+			and (eip.LAB_FK = 5 OR eip.LAB_FK = 6)
+			and upper(eip.result_test_name) like upper('%Isolate%')
+			and upper(eip.facility_name) not like '%TEST%'	
+	</select>
+
+<!--
+	<select id="selectMugsiResults" parameterType="ResultExtractDto"  resultMap="stateResultDtoMap">
+		select
+			eip.*
+		from
+			(
+				select 
+					f.FACILITY_ID,
+					a.CID,
+					re.ACCESSION_NUMBER,
+					null ethnic_group,
+					dp.RACE patient_race,
+					lo.EXTERNAL_MRN,
+					nvl(p.LAST_NAME, '') PATIENT_LAST_NAME,
+					nvl(p.FIRST_NAME, '') PATIENT_FIRST_NAME,
+					null PATIENT_MIDDLE_NAME,
+					p.dob date_of_birth,
+					p.GENDER,
+					p.ssn patient_ssn,
+					dph.NPI,
+					dph.PHYSICIAN_NAME ordering_physician_name,
+					lod.REPORT_NOTES,
+					lod.SPECIMEN_RECEIVED_DATE_TIME specimen_receive_date,
+					lod.COLLECTION_DATE collection_date,
+					lod.COLLECTION_TIME collection_time,
+					lod.COLLECTION_DATE_TIME,
+					lod.DRAW_FREQUENCY draw_freq,
+					lod.RESULT_RPT_CHNG_DATE_TIME res_rprt_status_chng_dt_time,
+					lod.ORDER_DETAIL_STATUS,
+					re.ORDER_TEST_CODE,
+					re.ORDER_TEST_NAME,
+					re.RESULT_TEST_CODE,
+					re.RESULT_TEST_NAME,
+					re.RESULT_STATUS,
+					re.TEXTUAL_RESULT,
+					re.TEXTUAL_RESULT_FULL,
+					re.NUMERIC_RESULT,
+					re.UNIT_OF_MEASURE units,
+					re.REFERENCE_RANGE,
+					re.ABNORMAL_FLAG,
+					re.RELEASE_DATE_TIME,
+					re.RESULT_COMMENT result_comments,
+					re.PERFORMING_LAB performing_lab_id,
+					lod.TEST_CATEGORY order_method,
+					lod.SPECIMEN_METHOD_DESC specimen_source,
+					re.REQUISITION_ID order_number,
+					dl.LAB_ID logging_site,
+					(
+						CASE p.DOB 
+							WHEN NULL THEN 0 
+							ELSE trunc(months_between(sysdate, p.DOB)/12)
+						END
+					) age,
+					f.DISPLAY_NAME facility_name,
+					null cond_code,
+					lo.PATIENT_TYPE,
+					lod.ORDER_OCCURRENCE_ID source_of_comment,
+					lo.INITIATE_ID	patient_id,
+					lo.ALTERNATE_PATIENT_ID,
+					lo.REQUISITION_STATUS,
+					f.ADDRESS_LINE1 facility_address1,
+					f.ADDRESS_LINE2 facility_address2,
+					f.CITY facility_city,
+					f.STATE facility_state,
+					f.ZIP facility_zip,
+					f.PHONE_NUMBER facility_phone,
+					p.ADDRESS patient_account_address1,
+					null patient_account_address2,
+					p.CITY patient_account_city,
+					p.STATE patient_account_state,
+					p.ZIP patient_account_zip,
+					p.PHONE patient_home_phone,
+					re.LOINC_CODE,
+					re.LOINC_NAME,
+					re.VALUE_TYPE,
+					f.EAST_WEST_FLAG,
+					f.INTERNAL_EXTERNAL_FLAG,
+					re.LAST_UPDATED_DATE last_update_time,
+					re.RESULT_SEQUENCE sequence_no,
+					f.ACCOUNT_STATUS facility_account_status,
+					f.FACILITY_ACTIVE_FLAG,
+					re.MICRO_ISOLATE,
+					re.MICRO_ORGANISM_NAME,
+					re.lab_fk,
+					f.CLINICAL_MANAGER,
+					f.MEDICAL_DIRECTOR,
+          			f.FACILITY_ID acti_facility_id,
+          			f.FMC_NUMBER
+				from
+					(
+						select
+							r.*
+						from
+							IH_DW.RESULTS r,
+							(
+								select
+									distinct(requisition_id)
+								from
+									IH_DW.DW_ODS_ACTIVITY
+								where
+									requisition_id is not null
+									<if test="day != null">
+										and EXTRACT(DAY FROM LAST_UPDATED_DATE) = #{day}
+									</if>
+									<if test="month != null">
+										and EXTRACT(MONTH FROM LAST_UPDATED_DATE) = #{month}
+									</if>
+									<if test="year != null">
+										and EXTRACT(YEAR FROM LAST_UPDATED_DATE) = #{year}
+									</if>									
+							) a
+						where
+							r.requisition_id = a.requisition_id
+							and r.test_category = 'MICRO'
+					) re,
+					IH_DW.DIM_LAB_ORDER lo,
+					IH_DW.DIM_LAB_ORDER_DETAILS lod,
+					STATERPT_OWNER.dl_all_patients p,
+					IH_DW.DIM_ACCOUNT a,
+					IH_DW.DIM_FACILITY f,
+					IH_DW.DIM_PHYSICIAN dph,
+					IH_DW.DIM_LAB dl,
+					IH_DW.DIM_PATIENT dp,
+					IH_DW.SPECTRA_MRN_ASSOCIATIONS asso
+				where
+					lo.requisition_id = re.requisition_id
+					and re.LAB_ORDER_FK = lo.LAB_ORDER_PK
+					and lo.initiate_id = p.eid
+					and re.LAB_ORDER_DETAILS_FK = lod.LAB_ORDER_DETAILS_PK
+					and lo.LAB_ORDER_PK = lod.LAB_ORDER_FK
+					and lo.account_fk = a.account_pk	
+					and a.facility_fk = f.facility_pk
+					and lo.ORDERING_PHYSICIAN_NPI = dph.NPI
+					and re.lab_fk = dl.lab_pk
+					and lo.lab_fk = dl.lab_pk
+					and lo.SPECTRA_MRN_ASSC_FK = asso.SPECTRA_MRN_ASSC_pk
+					and dp.SPECTRA_MRN_FK = asso.SPECTRA_MRN_fK 
+					and dp.FACILITY_FK = asso.FACILITY_fK
+					<if test="stateInList != null">
+						and (UPPER(p.state) in 
+						<foreach item="stateIn" index="index" collection="stateInList" open="(" separator="," close=")">
+							#{stateIn}
+						</foreach>
+						)
+					</if>					
+			) eip	
+		WHERE 
+			(
+				<if test="microOrganismNameLikeBlock != null">
+					${microOrganismNameLikeBlock}
+				</if>
+			)
+			AND (eip.MICRO_ISOLATE LIKE 'Isolate%')
+			and eip.result_test_code in (
+				select
+					distinct(result_test_code)
+				from
+					IH_DW.DIM_RESULT_TEST
+			)
+			and (eip.LAB_FK = 5 OR eip.LAB_FK = 6)	
+			and upper(eip.facility_name) not like '%TEST%'
+			and eip.result_test_name not like 'Isolate%'
+	</select>
+-->
+
+<!-- 20181003
+	<select id="selectMugsiResults" parameterType="ResultExtractDto"  resultMap="stateResultDtoMap">
+		select
+			eip.*
+		from
+			(
+				select 
+					f.FACILITY_ID,
+					a.CID,
+					re.ACCESSION_NUMBER,
+					null ethnic_group,
+					dp.RACE patient_race,
+					lo.EXTERNAL_MRN,
+          			nvl(p.lname, '') PATIENT_LAST_NAME,
+          			nvl(p.fname, '') PATIENT_FIRST_NAME,
+          			p.mname PATIENT_MIDDLE_NAME,
+					  (
+						CASE
+						  WHEN p.DOB is null THEN null
+						  WHEN upper(p.DOB) = 'NULL' THEN null
+						  WHEN test_date(p.DOB) = 'Valid' THEN
+							(
+							  CASE 
+								WHEN (EXTRACT(YEAR FROM sysdate) - to_number(SUBSTR(replace(p.DOB, '-'), 1, 4))) &lt;= 0 THEN NULL 
+								ELSE to_date(p.DOB, 'YYYY-MM-DD')
+							  END
+							)
+						  ELSE NULL	
+						END
+					  ) date_of_birth,					
+					p.sex gender,
+					p.ssn patient_ssn,
+					dph.NPI,
+					dph.PHYSICIAN_NAME ordering_physician_name,
+					lod.REPORT_NOTES,
+					lod.SPECIMEN_RECEIVED_DATE_TIME specimen_receive_date,
+					lod.COLLECTION_DATE collection_date,
+					lod.COLLECTION_TIME collection_time,
+					lod.COLLECTION_DATE_TIME,
+					lod.DRAW_FREQUENCY draw_freq,
+					lod.RESULT_RPT_CHNG_DATE_TIME res_rprt_status_chng_dt_time,
+					lod.ORDER_DETAIL_STATUS,
+					re.ORDER_TEST_CODE,
+					re.ORDER_TEST_NAME,
+					re.RESULT_TEST_CODE,
+					re.RESULT_TEST_NAME,
+					re.RESULT_STATUS,
+					re.TEXTUAL_RESULT,
+					re.TEXTUAL_RESULT_FULL,
+					re.NUMERIC_RESULT,
+					re.UNIT_OF_MEASURE units,
+					re.REFERENCE_RANGE,
+					re.ABNORMAL_FLAG,
+					re.RELEASE_DATE_TIME,
+					re.RESULT_COMMENT result_comments,
+					re.PERFORMING_LAB performing_lab_id,
+					lod.TEST_CATEGORY order_method,
+					lod.SPECIMEN_METHOD_DESC specimen_source,
+					re.REQUISITION_ID order_number,
+					dl.LAB_ID logging_site,
+					( 
+						CASE 
+							WHEN p.DOB IS NULL THEN 0 
+							WHEN upper(p.DOB) = 'NULL' THEN 0
+							ELSE trunc(months_between(sysdate, to_date(p.DOB, 'YYYY-MM-DD'))/12) 
+						END 
+					) age, 
+					f.DISPLAY_NAME facility_name,
+					null cond_code,
+					lo.PATIENT_TYPE,
+					lod.ORDER_OCCURRENCE_ID source_of_comment,
+					lo.INITIATE_ID	patient_id,
+					lo.ALTERNATE_PATIENT_ID,
+					lo.REQUISITION_STATUS,
+					f.ADDRESS_LINE1 facility_address1,
+					f.ADDRESS_LINE2 facility_address2,
+					f.CITY facility_city,
+					f.STATE facility_state,
+					f.ZIP facility_zip,
+					f.PHONE_NUMBER facility_phone,
+					p.stline1 patient_account_address1,
+					p.stline2 patient_account_address2,
+					p.CITY patient_account_city,
+					p.STATE patient_account_state,
+					p.zipcode patient_account_zip,
+					p.phnumber patient_home_phone,
+					re.LOINC_CODE,
+					re.LOINC_NAME,
+					re.VALUE_TYPE,
+					f.EAST_WEST_FLAG,
+					f.INTERNAL_EXTERNAL_FLAG,
+					re.LAST_UPDATED_DATE last_update_time,
+					re.RESULT_SEQUENCE sequence_no,
+					f.ACCOUNT_STATUS facility_account_status,
+					f.FACILITY_ACTIVE_FLAG,
+					re.MICRO_ISOLATE,
+					re.MICRO_ORGANISM_NAME,
+					re.lab_fk,
+					f.CLINICAL_MANAGER,
+					f.MEDICAL_DIRECTOR,
+          			f.FACILITY_ID acti_facility_id,
+          			f.FMC_NUMBER
+				from
+					(
+						select
+							r.*
+						from
+							IH_DW.RESULTS r,
+							(
+								select
+									distinct(requisition_id)
+								from
+									IH_DW.DW_ODS_ACTIVITY
+								where
+									requisition_id is not null
+									<if test="day != null">
+										and EXTRACT(DAY FROM LAST_UPDATED_DATE) = #{day}
+									</if>
+									<if test="month != null">
+										and EXTRACT(MONTH FROM LAST_UPDATED_DATE) = #{month}
+									</if>
+									<if test="year != null">
+										and EXTRACT(YEAR FROM LAST_UPDATED_DATE) = #{year}
+									</if>									
+							) a
+						where
+							r.requisition_id = a.requisition_id
+							and r.test_category = 'MICRO'
+							and r.abnormal_flag = 'R'
+					) re,
+					IH_DW.DIM_LAB_ORDER lo,
+					IH_DW.DIM_LAB_ORDER_DETAILS lod,
+					STATERPT_OWNER.PatientMaster p,
+					IH_DW.DIM_ACCOUNT a,
+					IH_DW.DIM_FACILITY f,
+					IH_DW.DIM_PHYSICIAN dph,
+					IH_DW.DIM_LAB dl,
+					IH_DW.DIM_PATIENT dp,
+					IH_DW.SPECTRA_MRN_ASSOCIATIONS asso
+				where
+					lo.requisition_id = re.requisition_id
+					and re.LAB_ORDER_FK = lo.LAB_ORDER_PK
+					and lo.initiate_id = p.eid
+					and re.LAB_ORDER_DETAILS_FK = lod.LAB_ORDER_DETAILS_PK
+					and lo.LAB_ORDER_PK = lod.LAB_ORDER_FK
+					and lo.account_fk = a.account_pk	
+					and a.facility_fk = f.facility_pk
+					and lo.ORDERING_PHYSICIAN_NPI = dph.NPI
+					and re.lab_fk = dl.lab_pk
+					and lo.lab_fk = dl.lab_pk
+					and lo.SPECTRA_MRN_ASSC_FK = asso.SPECTRA_MRN_ASSC_pk
+					and dp.SPECTRA_MRN_FK = asso.SPECTRA_MRN_fK 
+					and dp.FACILITY_FK = asso.FACILITY_fK
+			) eip	
+		WHERE 
+			(
+				<if test="microOrganismNameLikeBlock != null">
+					${microOrganismNameLikeBlock}
+				</if>
+			)
+			AND (eip.MICRO_ISOLATE LIKE 'Isolate%')
+			and eip.result_test_code in (
+				select
+					distinct(result_test_code)
+				from
+					IH_DW.DIM_RESULT_TEST
+			)
+			and (eip.LAB_FK = 5 OR eip.LAB_FK = 6)	
+			and upper(eip.facility_name) not like '%TEST%'
+			and eip.result_test_name not like 'Isolate%'
+	</select>
+-->
+
+	<select id="selectMugsiResults" parameterType="ResultExtractDto"  resultMap="stateResultDtoMap">
+		select
+			eip.*
+		from
+			(
+				select 
+					f.FACILITY_ID,
+					a.CID,
+					re.ACCESSION_NUMBER,
+					null ethnic_group,
+					dp.RACE patient_race,
+					lo.EXTERNAL_MRN,
+          			nvl(p.lname, '') PATIENT_LAST_NAME,
+          			nvl(p.fname, '') PATIENT_FIRST_NAME,
+          			p.mname PATIENT_MIDDLE_NAME,
+					  (
+						CASE
+						  WHEN p.DOB is null THEN null
+						  WHEN upper(p.DOB) = 'NULL' THEN null
+						  WHEN test_date(p.DOB) = 'Valid' THEN
+							(
+							  CASE 
+								WHEN (EXTRACT(YEAR FROM sysdate) - to_number(SUBSTR(replace(p.DOB, '-'), 1, 4))) &lt;= 0 THEN NULL 
+								ELSE to_date(p.DOB, 'YYYY-MM-DD')
+							  END
+							)
+						  ELSE NULL	
+						END
+					  ) date_of_birth,					
+					p.sex gender,
+					p.ssn patient_ssn,
+					dph.NPI,
+					dph.PHYSICIAN_NAME ordering_physician_name,
+					lod.REPORT_NOTES,
+					lod.SPECIMEN_RECEIVED_DATE_TIME specimen_receive_date,
+					lod.COLLECTION_DATE collection_date,
+					lod.COLLECTION_TIME collection_time,
+					lod.COLLECTION_DATE_TIME,
+					lod.DRAW_FREQUENCY draw_freq,
+					lod.RESULT_RPT_CHNG_DATE_TIME res_rprt_status_chng_dt_time,
+					lod.ORDER_DETAIL_STATUS,
+					re.ORDER_TEST_CODE,
+					re.ORDER_TEST_NAME,
+					re.RESULT_TEST_CODE,
+					re.RESULT_TEST_NAME,
+					re.RESULT_STATUS,
+					re.TEXTUAL_RESULT,
+					re.TEXTUAL_RESULT_FULL,
+					re.NUMERIC_RESULT,
+					re.UNIT_OF_MEASURE units,
+					re.REFERENCE_RANGE,
+					re.ABNORMAL_FLAG,
+					re.RELEASE_DATE_TIME,
+					re.RESULT_COMMENT result_comments,
+					re.PERFORMING_LAB performing_lab_id,
+					lod.TEST_CATEGORY order_method,
+					lod.SPECIMEN_METHOD_DESC specimen_source,
+					re.REQUISITION_ID order_number,
+					dl.LAB_ID logging_site,
+					( 
+						CASE 
+							WHEN p.DOB IS NULL THEN 0 
+							WHEN upper(p.DOB) = 'NULL' THEN 0
+							ELSE trunc(months_between(sysdate, to_date(p.DOB, 'YYYY-MM-DD'))/12) 
+						END 
+					) age, 
+					f.DISPLAY_NAME facility_name,
+					null cond_code,
+					lo.PATIENT_TYPE,
+					lod.ORDER_OCCURRENCE_ID source_of_comment,
+					lo.INITIATE_ID	patient_id,
+					lo.ALTERNATE_PATIENT_ID,
+					lo.REQUISITION_STATUS,
+					f.ADDRESS_LINE1 facility_address1,
+					f.ADDRESS_LINE2 facility_address2,
+					f.CITY facility_city,
+					f.STATE facility_state,
+					f.ZIP facility_zip,
+					f.PHONE_NUMBER facility_phone,
+					p.stline1 patient_account_address1,
+					p.stline2 patient_account_address2,
+					p.CITY patient_account_city,
+					p.STATE patient_account_state,
+					p.zipcode patient_account_zip,
+					p.phnumber patient_home_phone,
+					re.LOINC_CODE,
+					re.LOINC_NAME,
+					re.VALUE_TYPE,
+					f.EAST_WEST_FLAG,
+					f.INTERNAL_EXTERNAL_FLAG,
+					re.LAST_UPDATED_DATE last_update_time,
+					re.RESULT_SEQUENCE sequence_no,
+					f.ACCOUNT_STATUS facility_account_status,
+					f.FACILITY_ACTIVE_FLAG,
+					re.MICRO_ISOLATE,
+					re.MICRO_ORGANISM_NAME,
+					re.lab_fk,
+					f.CLINICAL_MANAGER,
+					f.MEDICAL_DIRECTOR,
+          			f.FACILITY_ID acti_facility_id,
+          			f.FMC_NUMBER
+				from
+					STATERPT_OWNER.MICRO_RESULTS_EXTRACT re,
+					IH_DW.DIM_LAB_ORDER lo,
+					IH_DW.DIM_LAB_ORDER_DETAILS lod,
+					STATERPT_OWNER.PatientMaster p,
+					IH_DW.DIM_ACCOUNT a,
+					IH_DW.DIM_FACILITY f,
+					IH_DW.DIM_PHYSICIAN dph,
+					IH_DW.DIM_LAB dl,
+					IH_DW.DIM_PATIENT dp,
+					IH_DW.SPECTRA_MRN_ASSOCIATIONS asso
+				where
+					lo.requisition_id = re.requisition_id
+					and re.LAB_ORDER_FK = lo.LAB_ORDER_PK
+					and lo.initiate_id = p.eid
+					and re.LAB_ORDER_DETAILS_FK = lod.LAB_ORDER_DETAILS_PK
+					and lo.LAB_ORDER_PK = lod.LAB_ORDER_FK
+					and lo.account_fk = a.account_pk	
+					and a.facility_fk = f.facility_pk
+					and lo.ORDERING_PHYSICIAN_NPI = dph.NPI
+					and re.lab_fk = dl.lab_pk
+					and lo.lab_fk = dl.lab_pk
+					and lo.SPECTRA_MRN_ASSC_FK = asso.SPECTRA_MRN_ASSC_pk
+					and dp.SPECTRA_MRN_FK = asso.SPECTRA_MRN_fK 
+					and dp.FACILITY_FK = asso.FACILITY_fK
+					and re.abnormal_flag = 'R'
+			) eip	
+		WHERE 
+			(
+				<if test="microOrganismNameLikeBlock != null">
+					${microOrganismNameLikeBlock}
+				</if>
+			)
+			AND (eip.MICRO_ISOLATE LIKE 'Isolate%')
+			and eip.result_test_code in (
+				select
+					distinct(result_test_code)
+				from
+					IH_DW.DIM_RESULT_TEST
+			)
+			and (eip.LAB_FK = 5 OR eip.LAB_FK = 6)	
+			and upper(eip.facility_name) not like '%TEST%'
+			and eip.result_test_name not like 'Isolate%'
+	</select>
+
+
+<!--	
+	<select id="selectAbcResults" parameterType="ResultExtractDto"  resultMap="stateResultDtoMap">
+		select
+			eip.*
+		from
+			(
+				select 
+					f.FACILITY_ID,
+					a.CID,
+					re.ACCESSION_NUMBER,
+					null ethnic_group,
+					dp.RACE patient_race,
+					lo.EXTERNAL_MRN,
+          			nvl(p.lname, '') PATIENT_LAST_NAME,
+          			nvl(p.fname, '') PATIENT_FIRST_NAME,
+          			p.mname PATIENT_MIDDLE_NAME,
+					  (
+						CASE
+						  WHEN p.DOB is null THEN null
+						  WHEN upper(p.DOB) = 'NULL' THEN null
+						  WHEN test_date(p.DOB) = 'Valid' THEN
+							(
+							  CASE 
+								WHEN (EXTRACT(YEAR FROM sysdate) - to_number(SUBSTR(replace(p.DOB, '-'), 1, 4))) &lt;= 0 THEN NULL 
+								ELSE to_date(p.DOB, 'YYYY-MM-DD')
+							  END
+							)
+						  ELSE NULL	
+						END
+					  ) date_of_birth,
+					p.sex gender,
+					p.ssn patient_ssn,
+					dph.NPI,
+					dph.PHYSICIAN_NAME ordering_physician_name,
+					lod.REPORT_NOTES,
+					lod.SPECIMEN_RECEIVED_DATE_TIME specimen_receive_date,
+					lod.COLLECTION_DATE collection_date,
+					lod.COLLECTION_TIME collection_time,
+					lod.COLLECTION_DATE_TIME,
+					lod.DRAW_FREQUENCY draw_freq,
+					lod.RESULT_RPT_CHNG_DATE_TIME res_rprt_status_chng_dt_time,
+					lod.ORDER_DETAIL_STATUS,
+					re.ORDER_TEST_CODE,
+					re.ORDER_TEST_NAME,
+					re.RESULT_TEST_CODE,
+					re.RESULT_TEST_NAME,
+					re.RESULT_STATUS,
+					re.TEXTUAL_RESULT,
+					re.TEXTUAL_RESULT_FULL,
+					re.NUMERIC_RESULT,
+					re.UNIT_OF_MEASURE units,
+					re.REFERENCE_RANGE,
+					re.ABNORMAL_FLAG,
+					re.RELEASE_DATE_TIME,
+					re.RESULT_COMMENT result_comments,
+					re.PERFORMING_LAB performing_lab_id,
+					lod.TEST_CATEGORY order_method,
+					lod.SPECIMEN_METHOD_DESC specimen_source,
+					re.REQUISITION_ID order_number,
+					dl.LAB_ID logging_site,
+					  (
+						CASE
+						  WHEN p.DOB is null THEN 0
+						  WHEN test_date(p.DOB) = 'Valid' THEN
+							(
+							  CASE 
+								WHEN (EXTRACT(YEAR FROM sysdate) - to_number(SUBSTR(replace(p.DOB, '-'), 1, 4))) &lt;= 0 THEN 0 
+								ELSE trunc(months_between(sysdate, to_date(p.DOB, 'YYYY-MM-DD'))/12)
+							  END
+							)
+						  ELSE NULL	
+						END
+					  ) age,
+					f.DISPLAY_NAME facility_name,
+					null cond_code,
+					lo.PATIENT_TYPE,
+					lod.ORDER_OCCURRENCE_ID source_of_comment,
+					lo.INITIATE_ID	patient_id,
+					lo.ALTERNATE_PATIENT_ID,
+					lo.REQUISITION_STATUS,
+					f.ADDRESS_LINE1 facility_address1,
+					f.ADDRESS_LINE2 facility_address2,
+					f.CITY facility_city,
+					f.STATE facility_state,
+					f.ZIP facility_zip,
+					f.PHONE_NUMBER facility_phone,
+					p.stline1 patient_account_address1,
+					p.stline2 patient_account_address2,
+					p.CITY patient_account_city,
+					p.STATE patient_account_state,
+					p.zipcode patient_account_zip,
+					p.phnumber patient_home_phone,
+					re.LOINC_CODE,
+					re.LOINC_NAME,
+					re.VALUE_TYPE,
+					f.EAST_WEST_FLAG,
+					f.INTERNAL_EXTERNAL_FLAG,
+					re.LAST_UPDATED_DATE last_update_time,
+					re.RESULT_SEQUENCE sequence_no,
+					f.ACCOUNT_STATUS facility_account_status,
+					f.FACILITY_ACTIVE_FLAG,
+					re.MICRO_ISOLATE,
+					re.MICRO_ORGANISM_NAME,
+					re.lab_fk,
+					f.CLINICAL_MANAGER,
+					f.MEDICAL_DIRECTOR,
+          			f.FACILITY_ID acti_facility_id,
+          			f.FMC_NUMBER
+				from
+					(
+						select
+							r.*
+						from
+							IH_DW.RESULTS r,
+							(
+								select
+									distinct(requisition_id)
+								from
+									IH_DW.DW_ODS_ACTIVITY
+								where
+									requisition_id is not null
+									<if test="day != null">
+										and EXTRACT(DAY FROM LAST_UPDATED_DATE) = #{day}
+									</if>
+									<if test="month != null">
+										and EXTRACT(MONTH FROM LAST_UPDATED_DATE) = #{month}
+									</if>
+									<if test="year != null">
+										and EXTRACT(YEAR FROM LAST_UPDATED_DATE) = #{year}
+									</if>									
+							) a
+						where
+							r.requisition_id = a.requisition_id
+							and r.test_category = 'MICRO'
+					) re,
+					IH_DW.DIM_LAB_ORDER lo,
+					IH_DW.DIM_LAB_ORDER_DETAILS lod,
+					STATERPT_OWNER.PatientMaster p,
+					IH_DW.DIM_ACCOUNT a,
+					IH_DW.DIM_FACILITY f,
+					IH_DW.DIM_PHYSICIAN dph,
+					IH_DW.DIM_LAB dl,
+					IH_DW.DIM_PATIENT dp,
+					IH_DW.SPECTRA_MRN_ASSOCIATIONS asso
+				where
+					lo.requisition_id = re.requisition_id
+					and re.LAB_ORDER_FK = lo.LAB_ORDER_PK
+					and lo.initiate_id = p.eid
+					and re.LAB_ORDER_DETAILS_FK = lod.LAB_ORDER_DETAILS_PK
+					and lo.LAB_ORDER_PK = lod.LAB_ORDER_FK
+					and lo.account_fk = a.account_pk	
+					and a.facility_fk = f.facility_pk
+					and lo.ORDERING_PHYSICIAN_NPI = dph.NPI
+					and re.lab_fk = dl.lab_pk
+					and lo.lab_fk = dl.lab_pk
+					and lo.SPECTRA_MRN_ASSC_FK = asso.SPECTRA_MRN_ASSC_pk
+					and dp.SPECTRA_MRN_FK = asso.SPECTRA_MRN_fK 
+					and dp.FACILITY_FK = asso.FACILITY_fK
+			) eip	
+		WHERE 
+			(
+				<if test="microOrganismNameLikeBlock != null">
+					${microOrganismNameLikeBlock}
+				</if>
+			)
+			<if test="microOrganismNameNotLikeBlock != null">
+			and
+			(
+				${microOrganismNameNotLikeBlock}
+			)
+			</if>
+			<if test="orderTestCodeInList != null">
+				and eip.order_test_code in 
+				<foreach item="orderTestCodeIn" index="index" collection="orderTestCodeInList" open="(" separator="," close=")">
+					#{orderTestCodeIn}
+				</foreach>
+			</if>			
+			and (eip.LAB_FK = 5 OR eip.LAB_FK = 6)
+			and upper(eip.result_test_name) like upper('%Isolate%')
+			and upper(eip.facility_name) not like '%TEST%'	
+	</select>	
+-->
+
+<!--
+	<select id="selectAbcResults" parameterType="ResultExtractDto"  resultMap="stateResultDtoMap">
+		select
+			eip.*
+		from
+			(
+				select 
+					f.FACILITY_ID,
+					a.CID,
+					re.ACCESSION_NUMBER,
+					null ethnic_group,
+					dp.RACE patient_race,
+					lo.EXTERNAL_MRN,
+          			nvl(p.lname, '') PATIENT_LAST_NAME,
+          			nvl(p.fname, '') PATIENT_FIRST_NAME,
+          			p.mname PATIENT_MIDDLE_NAME,
+					  (
+						CASE
+						  WHEN p.DOB is null THEN null
+						  WHEN upper(p.DOB) = 'NULL' THEN null
+						  WHEN test_date(p.DOB) = 'Valid' THEN
+							(
+							  CASE 
+								WHEN (EXTRACT(YEAR FROM sysdate) - to_number(SUBSTR(replace(p.DOB, '-'), 1, 4))) &lt;= 0 THEN NULL 
+								ELSE to_date(p.DOB, 'YYYY-MM-DD')
+							  END
+							)
+						  ELSE NULL	
+						END
+					  ) date_of_birth,
+					p.sex gender,
+					p.ssn patient_ssn,
+					dph.NPI,
+					dph.PHYSICIAN_NAME ordering_physician_name,
+					lod.REPORT_NOTES,
+					lod.SPECIMEN_RECEIVED_DATE_TIME specimen_receive_date,
+					lod.COLLECTION_DATE collection_date,
+					lod.COLLECTION_TIME collection_time,
+					lod.COLLECTION_DATE_TIME,
+					lod.DRAW_FREQUENCY draw_freq,
+					lod.RESULT_RPT_CHNG_DATE_TIME res_rprt_status_chng_dt_time,
+					lod.ORDER_DETAIL_STATUS,
+					re.ORDER_TEST_CODE,
+					re.ORDER_TEST_NAME,
+					re.RESULT_TEST_CODE,
+					re.RESULT_TEST_NAME,
+					re.RESULT_STATUS,
+					re.TEXTUAL_RESULT,
+					re.TEXTUAL_RESULT_FULL,
+					re.NUMERIC_RESULT,
+					re.UNIT_OF_MEASURE units,
+					re.REFERENCE_RANGE,
+					re.ABNORMAL_FLAG,
+					re.RELEASE_DATE_TIME,
+					re.RESULT_COMMENT result_comments,
+					re.PERFORMING_LAB performing_lab_id,
+					lod.TEST_CATEGORY order_method,
+					lod.SPECIMEN_METHOD_DESC specimen_source,
+					re.REQUISITION_ID order_number,
+					dl.LAB_ID logging_site,
+					  (
+						CASE
+						  WHEN p.DOB is null THEN 0
+						  WHEN test_date(p.DOB) = 'Valid' THEN
+							(
+							  CASE 
+								WHEN (EXTRACT(YEAR FROM sysdate) - to_number(SUBSTR(replace(p.DOB, '-'), 1, 4))) &lt;= 0 THEN 0 
+								ELSE trunc(months_between(sysdate, to_date(p.DOB, 'YYYY-MM-DD'))/12)
+							  END
+							)
+						  ELSE NULL	
+						END
+					  ) age,
+					f.DISPLAY_NAME facility_name,
+					null cond_code,
+					lo.PATIENT_TYPE,
+					lod.ORDER_OCCURRENCE_ID source_of_comment,
+					lo.INITIATE_ID	patient_id,
+					lo.ALTERNATE_PATIENT_ID,
+					lo.REQUISITION_STATUS,
+					f.ADDRESS_LINE1 facility_address1,
+					f.ADDRESS_LINE2 facility_address2,
+					f.CITY facility_city,
+					f.STATE facility_state,
+					f.ZIP facility_zip,
+					f.PHONE_NUMBER facility_phone,
+					p.stline1 patient_account_address1,
+					p.stline2 patient_account_address2,
+					p.CITY patient_account_city,
+					p.STATE patient_account_state,
+					p.zipcode patient_account_zip,
+					p.phnumber patient_home_phone,
+					re.LOINC_CODE,
+					re.LOINC_NAME,
+					re.VALUE_TYPE,
+					f.EAST_WEST_FLAG,
+					f.INTERNAL_EXTERNAL_FLAG,
+					re.LAST_UPDATED_DATE last_update_time,
+					re.RESULT_SEQUENCE sequence_no,
+					f.ACCOUNT_STATUS facility_account_status,
+					f.FACILITY_ACTIVE_FLAG,
+					re.MICRO_ISOLATE,
+					re.MICRO_ORGANISM_NAME,
+					re.lab_fk,
+					f.CLINICAL_MANAGER,
+					f.MEDICAL_DIRECTOR,
+          			f.FACILITY_ID acti_facility_id,
+          			f.FMC_NUMBER
+				from
+					(
+						select
+							r.*
+						from
+							IH_DW.RESULTS r,
+							(
+								select
+									distinct(requisition_id)
+								from
+									IH_DW.DW_ODS_ACTIVITY
+								where
+									requisition_id is not null
+									<if test="day != null">
+										and EXTRACT(DAY FROM LAST_UPDATED_DATE) = #{day}
+									</if>
+									<if test="month != null">
+										and EXTRACT(MONTH FROM LAST_UPDATED_DATE) = #{month}
+									</if>
+									<if test="year != null">
+										and EXTRACT(YEAR FROM LAST_UPDATED_DATE) = #{year}
+									</if>									
+							) a
+						where
+							r.requisition_id = a.requisition_id
+							and r.test_category = 'MICRO'
+					) re,
+					IH_DW.DIM_LAB_ORDER lo,
+					IH_DW.DIM_LAB_ORDER_DETAILS lod,
+					STATERPT_OWNER.PatientMaster p,
+					IH_DW.DIM_ACCOUNT a,
+					IH_DW.DIM_FACILITY f,
+					IH_DW.DIM_PHYSICIAN dph,
+					IH_DW.DIM_LAB dl,
+					IH_DW.DIM_PATIENT dp,
+					IH_DW.SPECTRA_MRN_ASSOCIATIONS asso
+				where
+					lo.requisition_id = re.requisition_id
+					and re.LAB_ORDER_FK = lo.LAB_ORDER_PK
+					and lo.initiate_id = p.eid
+					and re.LAB_ORDER_DETAILS_FK = lod.LAB_ORDER_DETAILS_PK
+					and lo.LAB_ORDER_PK = lod.LAB_ORDER_FK
+					and lo.account_fk = a.account_pk	
+					and a.facility_fk = f.facility_pk
+					and lo.ORDERING_PHYSICIAN_NPI = dph.NPI
+					and re.lab_fk = dl.lab_pk
+					and lo.lab_fk = dl.lab_pk
+					and lo.SPECTRA_MRN_ASSC_FK = asso.SPECTRA_MRN_ASSC_pk
+					and dp.SPECTRA_MRN_FK = asso.SPECTRA_MRN_fK 
+					and dp.FACILITY_FK = asso.FACILITY_fK
+			) eip	
+		WHERE 
+			(eip.LAB_FK = 5 OR eip.LAB_FK = 6)
+			and upper(eip.result_test_name) like upper('%Isolate%')
+			and upper(eip.facility_name) not like '%TEST%'		
+			<if test="microOrganismNameLikeBlock != null">
+			and
+			(
+				${microOrganismNameLikeBlock}
+			)
+			</if>
+			<if test="microOrganismNameNotLikeBlock != null">
+			and
+			(
+				${microOrganismNameNotLikeBlock}
+			)
+			</if>
+			<if test="orderTestCodeInList != null">
+				and eip.order_test_code in 
+				<foreach item="orderTestCodeIn" index="index" collection="orderTestCodeInList" open="(" separator="," close=")">
+					#{orderTestCodeIn}
+				</foreach>
+			</if>
+			<if test="specimenSourceList != null">
+				and eip.specimen_source in
+				<foreach item="specimenSource" index="index" collection="specimenSourceList" open="(" separator="," close=")">
+					#{specimenSource}
+				</foreach>
+			</if>			
+	</select>
+-->	
+
+<!-- 20181105 changed to use STATERPT_OWNER.MICRO_RESULTS_EXTRACT	
+	<select id="selectAbcResults" parameterType="ResultExtractDto"  resultMap="stateResultDtoMap">
+		select
+			eip.*
+		from
+			(
+				select
+					distinct(re.ACCESSION_NUMBER), 
+					f.FACILITY_ID,
+					a.CID,
+					null ethnic_group,
+					dp.RACE patient_race,
+					lo.EXTERNAL_MRN,
+          			nvl(p.lname, '') PATIENT_LAST_NAME,
+          			nvl(p.fname, '') PATIENT_FIRST_NAME,
+          			p.mname PATIENT_MIDDLE_NAME,
+					  (
+						CASE
+						  WHEN p.DOB is null THEN null
+						  WHEN upper(p.DOB) = 'NULL' THEN null
+						  WHEN test_date(p.DOB) = 'Valid' THEN
+							(
+							  CASE 
+								WHEN (EXTRACT(YEAR FROM sysdate) - to_number(SUBSTR(replace(p.DOB, '-'), 1, 4))) &lt;= 0 THEN NULL 
+								ELSE to_date(p.DOB, 'YYYY-MM-DD')
+							  END
+							)
+						  ELSE NULL	
+						END
+					  ) date_of_birth,
+					p.sex gender,
+					p.ssn patient_ssn,
+					dph.NPI,
+					dph.PHYSICIAN_NAME ordering_physician_name,
+					lod.REPORT_NOTES,
+					lod.SPECIMEN_RECEIVED_DATE_TIME specimen_receive_date,
+					lod.COLLECTION_DATE collection_date,
+					lod.COLLECTION_TIME collection_time,
+					lod.COLLECTION_DATE_TIME,
+					lod.DRAW_FREQUENCY draw_freq,
+					lod.RESULT_RPT_CHNG_DATE_TIME res_rprt_status_chng_dt_time,
+					lod.ORDER_DETAIL_STATUS,
+					re.ORDER_TEST_CODE,
+					re.ORDER_TEST_NAME,
+					re.RESULT_TEST_CODE,
+					re.RESULT_TEST_NAME,
+					re.RESULT_STATUS,
+					re.TEXTUAL_RESULT,
+					re.TEXTUAL_RESULT_FULL,
+					re.NUMERIC_RESULT,
+					re.UNIT_OF_MEASURE units,
+					re.REFERENCE_RANGE,
+					re.ABNORMAL_FLAG,
+					re.RELEASE_DATE_TIME,
+					trim(dbms_lob.substr( re.RESULT_COMMENT, 4000, 1 )) as RESULT_COMMENT,
+					re.PERFORMING_LAB performing_lab_id,
+					lod.TEST_CATEGORY order_method,
+					lod.SPECIMEN_METHOD_DESC specimen_source,
+					re.REQUISITION_ID order_number,
+					dl.LAB_ID logging_site,
+					  (
+						CASE
+						  WHEN p.DOB is null THEN 0
+						  WHEN test_date(p.DOB) = 'Valid' THEN
+							(
+							  CASE 
+								WHEN (EXTRACT(YEAR FROM sysdate) - to_number(SUBSTR(replace(p.DOB, '-'), 1, 4))) &lt;= 0 THEN 0 
+								ELSE trunc(months_between(sysdate, to_date(p.DOB, 'YYYY-MM-DD'))/12)
+							  END
+							)
+						  ELSE NULL	
+						END
+					  ) age,
+					f.DISPLAY_NAME facility_name,
+					null cond_code,
+					lo.PATIENT_TYPE,
+					lod.ORDER_OCCURRENCE_ID source_of_comment,
+					lo.INITIATE_ID	patient_id,
+					lo.ALTERNATE_PATIENT_ID,
+					lo.REQUISITION_STATUS,
+					f.ADDRESS_LINE1 facility_address1,
+					f.ADDRESS_LINE2 facility_address2,
+					f.CITY facility_city,
+					f.STATE facility_state,
+					f.ZIP facility_zip,
+					f.PHONE_NUMBER facility_phone,
+					p.stline1 patient_account_address1,
+					p.stline2 patient_account_address2,
+					p.CITY patient_account_city,
+					p.STATE patient_account_state,
+					p.zipcode patient_account_zip,
+					p.phnumber patient_home_phone,
+					re.LOINC_CODE,
+					re.LOINC_NAME,
+					re.VALUE_TYPE,
+					f.EAST_WEST_FLAG,
+					f.INTERNAL_EXTERNAL_FLAG,
+					re.LAST_UPDATED_DATE last_update_time,
+					re.RESULT_SEQUENCE sequence_no,
+					f.ACCOUNT_STATUS facility_account_status,
+					f.FACILITY_ACTIVE_FLAG,
+					re.MICRO_ISOLATE,
+					re.MICRO_ORGANISM_NAME,
+					re.lab_fk,
+					f.CLINICAL_MANAGER,
+					f.MEDICAL_DIRECTOR,
+          			f.FACILITY_ID acti_facility_id,
+          			f.FMC_NUMBER
+				from
+					(
+						select
+							r.*
+						from
+							IH_DW.RESULTS r,
+							(
+								select
+									distinct(requisition_id)
+								from
+									IH_DW.DW_ODS_ACTIVITY
+								where
+									requisition_id is not null
+									<if test="day != null">
+										and EXTRACT(DAY FROM LAST_UPDATED_DATE) = #{day}
+									</if>
+									<if test="month != null">
+										and EXTRACT(MONTH FROM LAST_UPDATED_DATE) = #{month}
+									</if>
+									<if test="year != null">
+										and EXTRACT(YEAR FROM LAST_UPDATED_DATE) = #{year}
+									</if>									
+							) a
+						where
+							r.requisition_id = a.requisition_id
+							and r.test_category = 'MICRO'
+					) re,
+					IH_DW.DIM_LAB_ORDER lo,
+					IH_DW.DIM_LAB_ORDER_DETAILS lod,
+					STATERPT_OWNER.PatientMaster p,
+					IH_DW.DIM_ACCOUNT a,
+					IH_DW.DIM_FACILITY f,
+					IH_DW.DIM_PHYSICIAN dph,
+					IH_DW.DIM_LAB dl,
+					IH_DW.DIM_PATIENT dp,
+					IH_DW.SPECTRA_MRN_ASSOCIATIONS asso
+				where
+					lo.requisition_id = re.requisition_id
+					and re.LAB_ORDER_FK = lo.LAB_ORDER_PK
+					and lo.initiate_id = p.eid
+					and re.LAB_ORDER_DETAILS_FK = lod.LAB_ORDER_DETAILS_PK
+					and lo.LAB_ORDER_PK = lod.LAB_ORDER_FK
+					and lo.account_fk = a.account_pk	
+					and a.facility_fk = f.facility_pk
+					and lo.ORDERING_PHYSICIAN_NPI = dph.NPI
+					and re.lab_fk = dl.lab_pk
+					and lo.lab_fk = dl.lab_pk
+					and lo.SPECTRA_MRN_ASSC_FK = asso.SPECTRA_MRN_ASSC_pk
+					and dp.SPECTRA_MRN_FK = asso.SPECTRA_MRN_fK 
+					and dp.FACILITY_FK = asso.FACILITY_fK
+			) eip	
+		WHERE 
+			(eip.LAB_FK = 5 OR eip.LAB_FK = 6)
+			and upper(eip.result_test_name) like upper('%Isolate%')
+			and upper(eip.facility_name) not like '%TEST%'		
+			<if test="microOrganismNameLikeBlock != null">
+			and
+			(
+				${microOrganismNameLikeBlock}
+			)
+			</if>
+			<if test="microOrganismNameNotLikeBlock != null">
+			and
+			(
+				${microOrganismNameNotLikeBlock}
+			)
+			</if>
+			<if test="orderTestCodeInList != null">
+				and eip.order_test_code in 
+				<foreach item="orderTestCodeIn" index="index" collection="orderTestCodeInList" open="(" separator="," close=")">
+					#{orderTestCodeIn}
+				</foreach>
+			</if>
+			<if test="specimenSourceList != null">
+				and eip.specimen_source in
+				<foreach item="specimenSource" index="index" collection="specimenSourceList" open="(" separator="," close=")">
+					#{specimenSource}
+				</foreach>
+			</if>			
+	</select>	
+-->
+
+	<select id="selectAbcResults" parameterType="ResultExtractDto"  resultMap="stateResultDtoMap">
+		select
+			eip.*
+		from
+			(
+				select
+					distinct(re.ACCESSION_NUMBER), 
+					f.FACILITY_ID,
+					a.CID,
+					null ethnic_group,
+					dp.RACE patient_race,
+					lo.EXTERNAL_MRN,
+          			nvl(p.lname, '') PATIENT_LAST_NAME,
+          			nvl(p.fname, '') PATIENT_FIRST_NAME,
+          			p.mname PATIENT_MIDDLE_NAME,
+					  (
+						CASE
+						  WHEN p.DOB is null THEN null
+						  WHEN upper(p.DOB) = 'NULL' THEN null
+						  WHEN test_date(p.DOB) = 'Valid' THEN
+							(
+							  CASE 
+								WHEN (EXTRACT(YEAR FROM sysdate) - to_number(SUBSTR(replace(p.DOB, '-'), 1, 4))) &lt;= 0 THEN NULL 
+								ELSE to_date(p.DOB, 'YYYY-MM-DD')
+							  END
+							)
+						  ELSE NULL	
+						END
+					  ) date_of_birth,
+					p.sex gender,
+					p.ssn patient_ssn,
+					dph.NPI,
+					dph.PHYSICIAN_NAME ordering_physician_name,
+					lod.REPORT_NOTES,
+					lod.SPECIMEN_RECEIVED_DATE_TIME specimen_receive_date,
+					lod.COLLECTION_DATE collection_date,
+					lod.COLLECTION_TIME collection_time,
+					lod.COLLECTION_DATE_TIME,
+					lod.DRAW_FREQUENCY draw_freq,
+					lod.RESULT_RPT_CHNG_DATE_TIME res_rprt_status_chng_dt_time,
+					lod.ORDER_DETAIL_STATUS,
+					re.ORDER_TEST_CODE,
+					re.ORDER_TEST_NAME,
+					re.RESULT_TEST_CODE,
+					re.RESULT_TEST_NAME,
+					re.RESULT_STATUS,
+					re.TEXTUAL_RESULT,
+					re.TEXTUAL_RESULT_FULL,
+					re.NUMERIC_RESULT,
+					re.UNIT_OF_MEASURE units,
+					re.REFERENCE_RANGE,
+					re.ABNORMAL_FLAG,
+					re.RELEASE_DATE_TIME,
+					trim(dbms_lob.substr( re.RESULT_COMMENT, 4000, 1 )) as RESULT_COMMENT,
+					re.PERFORMING_LAB performing_lab_id,
+					lod.TEST_CATEGORY order_method,
+					lod.SPECIMEN_METHOD_DESC specimen_source,
+					re.REQUISITION_ID order_number,
+					dl.LAB_ID logging_site,
+					  (
+						CASE
+						  WHEN p.DOB is null THEN 0
+						  WHEN test_date(p.DOB) = 'Valid' THEN
+							(
+							  CASE 
+								WHEN (EXTRACT(YEAR FROM sysdate) - to_number(SUBSTR(replace(p.DOB, '-'), 1, 4))) &lt;= 0 THEN 0 
+								ELSE trunc(months_between(sysdate, to_date(p.DOB, 'YYYY-MM-DD'))/12)
+							  END
+							)
+						  ELSE NULL	
+						END
+					  ) age,
+					f.DISPLAY_NAME facility_name,
+					null cond_code,
+					lo.PATIENT_TYPE,
+					lod.ORDER_OCCURRENCE_ID source_of_comment,
+					lo.INITIATE_ID	patient_id,
+					lo.ALTERNATE_PATIENT_ID,
+					lo.REQUISITION_STATUS,
+					f.ADDRESS_LINE1 facility_address1,
+					f.ADDRESS_LINE2 facility_address2,
+					f.CITY facility_city,
+					f.STATE facility_state,
+					f.ZIP facility_zip,
+					f.PHONE_NUMBER facility_phone,
+					p.stline1 patient_account_address1,
+					p.stline2 patient_account_address2,
+					p.CITY patient_account_city,
+					p.STATE patient_account_state,
+					p.zipcode patient_account_zip,
+					p.phnumber patient_home_phone,
+					re.LOINC_CODE,
+					re.LOINC_NAME,
+					re.VALUE_TYPE,
+					f.EAST_WEST_FLAG,
+					f.INTERNAL_EXTERNAL_FLAG,
+					re.LAST_UPDATED_DATE last_update_time,
+					re.RESULT_SEQUENCE sequence_no,
+					f.ACCOUNT_STATUS facility_account_status,
+					f.FACILITY_ACTIVE_FLAG,
+					re.MICRO_ISOLATE,
+					re.MICRO_ORGANISM_NAME,
+					re.lab_fk,
+					f.CLINICAL_MANAGER,
+					f.MEDICAL_DIRECTOR,
+          			f.FACILITY_ID acti_facility_id,
+          			f.FMC_NUMBER
+				from
+					STATERPT_OWNER.MICRO_RESULTS_EXTRACT re,
+					IH_DW.DIM_LAB_ORDER lo,
+					IH_DW.DIM_LAB_ORDER_DETAILS lod,
+					STATERPT_OWNER.PatientMaster p,
+					IH_DW.DIM_ACCOUNT a,
+					IH_DW.DIM_FACILITY f,
+					IH_DW.DIM_PHYSICIAN dph,
+					IH_DW.DIM_LAB dl,
+					IH_DW.DIM_PATIENT dp,
+					IH_DW.SPECTRA_MRN_ASSOCIATIONS asso
+				where
+					lo.requisition_id = re.requisition_id
+					and re.LAB_ORDER_FK = lo.LAB_ORDER_PK
+					and lo.initiate_id = p.eid
+					and re.LAB_ORDER_DETAILS_FK = lod.LAB_ORDER_DETAILS_PK
+					and lo.LAB_ORDER_PK = lod.LAB_ORDER_FK
+					and lo.account_fk = a.account_pk	
+					and a.facility_fk = f.facility_pk
+					and lo.ORDERING_PHYSICIAN_NPI = dph.NPI
+					and re.lab_fk = dl.lab_pk
+					and lo.lab_fk = dl.lab_pk
+					and lo.SPECTRA_MRN_ASSC_FK = asso.SPECTRA_MRN_ASSC_pk
+					and dp.SPECTRA_MRN_FK = asso.SPECTRA_MRN_fK 
+					and dp.FACILITY_FK = asso.FACILITY_fK
+			) eip	
+		WHERE 
+			(eip.LAB_FK = 5 OR eip.LAB_FK = 6)
+			and upper(eip.result_test_name) like upper('%Isolate%')
+			and upper(eip.facility_name) not like '%TEST%'		
+			<if test="microOrganismNameLikeBlock != null">
+			and
+			(
+				${microOrganismNameLikeBlock}
+			)
+			</if>
+			<if test="microOrganismNameNotLikeBlock != null">
+			and
+			(
+				${microOrganismNameNotLikeBlock}
+			)
+			</if>
+			<if test="orderTestCodeInList != null">
+				and eip.order_test_code in 
+				<foreach item="orderTestCodeIn" index="index" collection="orderTestCodeInList" open="(" separator="," close=")">
+					#{orderTestCodeIn}
+				</foreach>
+			</if>
+			<if test="specimenSourceList != null">
+				and eip.specimen_source in
+				<foreach item="specimenSource" index="index" collection="specimenSourceList" open="(" separator="," close=")">
+					#{specimenSource}
+				</foreach>
+			</if>			
+	</select>		
+	
+	<!-- intra labs no demo -->
+<!--	
+	<select id="selectIntraLabsNoDemo" parameterType="java.util.Map"  resultMap="stateResultDtoMap">
+		select
+			*
+		from
+			"STATERPT_OWNER"."INTRA_LABS_SENDOUT_NO_DEMO"
+		where
+			order_number is not null
+			<if test="orderNumber != null">
+				and order_number = #{orderNumber}
+			</if>
+			<if test="accessionNumber != null">
+				and accession_number = #{accessionNumber}
+			</if>
+			<if test="reportableState != null">
+				and reportable_state = #{reportableState}
+			</if>
+			<if test="notifiedFlag != null">
+				and notified_flag = #{notifiedFlag}
+			</if>			
+	</select>
+	
+	<update id="updateIntraLabsNoDemo" parameterType="StateResultDto">
+		update 
+			"STATERPT_OWNER"."INTRA_LABS_SENDOUT_NO_DEMO"
+		set
+			<if test="notifiedFlag != null">
+				NOTIFIED_FLAG = #{notifiedFlag},
+			</if>
+			NOTIFIED_TIME = SYSTIMESTAMP(6)
+		where 
+			ORDER_NUMBER = #{orderNumber}
+	</update>	
+	
+	<insert id="insertIntraLabsNoDemo" parameterType="StateResultDto">
+		INSERT INTO STATERPT_OWNER.INTRA_LABS_SENDOUT_NO_DEMO(
+			ACCESSION_NUMBER,
+			FACILITY_ID,
+			CID,
+			ETHNIC_GROUP,
+			PATIENT_RACE,
+			EXTERNAL_MRN,
+			PATIENT_LAST_NAME,
+			PATIENT_FIRST_NAME,
+			PATIENT_MIDDLE_NAME,
+			DATE_OF_BIRTH,
+			GENDER,
+			PATIENT_SSN,
+			NPI,
+			ORDERING_PHYSICIAN_NAME,
+			REPORT_NOTES,
+			SPECIMEN_RECEIVE_DATE,
+			COLLECTION_DATE,
+			COLLECTION_TIME,
+			COLLECTION_DATE_TIME,
+			DRAW_FREQ,
+			RES_RPRT_STATUS_CHNG_DT_TIME,
+			ORDER_DETAIL_STATUS,
+			ORDER_TEST_CODE,
+			ORDER_TEST_NAME,
+			RESULT_TEST_CODE,
+			RESULT_TEST_NAME,
+			RESULT_STATUS,
+			TEXTUAL_RESULT,
+			TEXTUAL_RESULT_FULL,
+			NUMERIC_RESULT,
+			UNITS,
+			REFERENCE_RANGE,
+			ABNORMAL_FLAG,
+			RELEASE_DATE_TIME,
+			RESULT_COMMENTS,
+			PERFORMING_LAB_ID,
+			ORDER_METHOD,
+			SPECIMEN_SOURCE,
+			ORDER_NUMBER,
+			LOGGING_SITE,
+			AGE,
+			FACILITY_NAME,
+			COND_CODE,
+			PATIENT_TYPE,
+			SOURCE_OF_COMMENT,
+			PATIENT_ID,
+			ALTERNATE_PATIENT_ID,
+			REQUISITION_STATUS,
+			FACILITY_ADDRESS1,
+			FACILITY_ADDRESS2,
+			FACILITY_CITY,
+			FACILITY_STATE,
+			FACILITY_ZIP,
+			FACILITY_PHONE,
+			PATIENT_ACCOUNT_ADDRESS1,
+			PATIENT_ACCOUNT_ADDRESS2,
+			PATIENT_ACCOUNT_CITY,
+			PATIENT_ACCOUNT_STATE,
+			PATIENT_ACCOUNT_ZIP,
+			PATIENT_HOME_PHONE,
+			LOINC_CODE,
+			LOINC_NAME,
+			VALUE_TYPE,
+			EAST_WEST_FLAG,
+			INTERNAL_EXTERNAL_FLAG,
+			LAST_UPDATE_TIME,
+			SEQUENCE_NO,
+			FACILITY_ACCOUNT_STATUS,
+			FACILITY_ACTIVE_FLAG,
+			MICRO_ISOLATE,
+			MICRO_ORGANISM_NAME,
+			LAB_FK,
+			CLINICAL_MANAGER,
+			MEDICAL_DIRECTOR,
+			ACTI_FACILITY_ID,
+			FMC_NUMBER,
+			REPORTABLE_STATE,
+			SOURCE_STATE,
+			NOTIFIED_FLAG,
+			NOTIFIED_TIME
+		) VALUES (
+			#{accessionNo},
+			#{facilityId},
+			#{cid}, 
+			#{ethnicGroup},
+			#{patientRace},
+			#{mrn},
+			#{patientLastName},
+			#{patientFirstName},
+			#{patientMiddleName},
+			#{dateOfBirth},
+			#{gender},
+			#{patientSsn},
+			#{npi},
+			#{orderingPhysicianName},
+			#{reportNotes},
+			#{specimenReceiveDate},
+			#{collectionDate},
+			#{collectionTime},
+			#{collectionDateTime},
+			#{drawFreq},
+			#{resRprtStatusChngDtTime},
+			#{orderDetailStatus},
+			#{orderTestCode},
+			#{orderTestName},
+			#{resultTestCode},
+			#{resultTestName},
+			#{resultStatus},
+			#{textualResult},
+			#{textualResultFull},
+			#{numericResult},
+			#{units},
+			#{referenceRange},
+			#{abnormalFlag},
+			#{releaseDateTime},
+			#{resultComments},
+			#{performingLabId},
+			#{orderMethod},
+			#{specimenSource},
+			#{orderNumber},
+			#{loggingSite},
+			#{age},
+			#{facilityName},
+			#{condCode},
+			#{patientType},
+			#{sourceOfComment},
+			#{patientId},
+			#{altPatientId},
+			#{requisitionStatus},
+			#{facilityAddress1},
+			#{facilityAddress2},
+			#{facilityCity},
+			#{facilityState},
+			#{facilityZip},
+			#{facilityPhone},
+			#{patientAccountAddress1},
+			#{patientAccountAddress2},
+			#{patientAccountCity},
+			#{patientAccountState},
+			#{patientAccountZip},
+			#{patientHomePhone},
+			#{loincCode},
+			#{loincName},
+			#{valueType},
+			#{eastWestFlag},
+			#{internalExternalFlag},
+			#{lastUpdateTime},
+			#{sequenceNo},
+			#{facilityAccountStatus},
+			#{facilityActiveFlag},
+			#{microIsolate},
+			#{microOrganismName},
+			#{labFk},
+			#{clinicalManager},
+			#{medicalDirector},
+			#{actiFacilityId},
+			#{fmcNumber},
+			#{reportableState},
+			#{sourceState},
+			#{notifiedFlag},
+			#{notifiedTime}		
+		)
+	</insert>
+-->	
+	<!-- end intra labs no demo -->
+	
+	<!-- lov test category -->
+<!--	
+	<select id="selectLovTestCategory" parameterType="java.util.Map"  resultMap="lovTestCategoryDtoMap">
+		  select
+			TEST_CATEGORY,
+			TEST_CATEGORY_DESCRIPTION,
+			CUSTOM_DEPARTMENT
+		  from  
+			IH_DW.LOV_TEST_CATEGORY
+		  where
+		  	TEST_CATEGORY_PK is not null
+		  	<if test="customDepartment != null">
+				and CUSTOM_DEPARTMENT = #{customDepartment}
+			</if>
+		  	<if test="testCategory != null">
+				and TEST_CATEGORY = #{testCategory}
+			</if>			
+	</select>
+-->	
+	<!-- end lov test category -->
+</mapper>

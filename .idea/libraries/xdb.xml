@@ -1,0 +1,11 @@
+<component name="libraryTable">
+  <library name="xdb">
+    <CLASSES>
+      <root url="jar://C:/asrlib/lib/xdb.jar!/" />
+      <root url="jar://C:/asrlib/lib/xercesImpl-2.9.1.jar!/" />
+      <root url="jar://C:/asrlib/lib/xmlparserv2.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES />
+  </library>
+</component>

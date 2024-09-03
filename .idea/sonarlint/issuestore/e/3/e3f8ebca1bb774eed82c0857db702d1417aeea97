@@ -1,0 +1,93 @@
+
+D
+java:S3740"/Provide the parametrized type for this generic.(…õ‘b
+D
+java:S3740"/Provide the parametrized type for this generic.(…õ‘b
+U
+java:S4719,":Replace Charset.forName() call with StandardCharsets.UTF_8(ÄÀ’´úÿÿÿÿ
+h	java:S1000"NRename this method name to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(ŞùµÔşÿÿÿÿ
+c	java:S1004"NRename this method name to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(­èò·
+S	java:S106F"9Replace this use of System.out or System.err by a logger.(Âº™êúÿÿÿÿ
+h
+java:S3776M"RRefactor this method to reduce its Cognitive Complexity from 16 to the 15 allowed.(¼¥š®
+W	java:S899W"BDo something with the "boolean" value returned by "createNewFile".(Ú†ç
+E
+java:S2093U"*Change this "try" to a try-with-resources.(¡»¢üùÿÿÿÿ
+W	java:S899~"BDo something with the "boolean" value returned by "createNewFile".(Ú†ç
+R	java:S125…"<This block of commented-out lines of code should be removed.(Ó˜½…
+E
+java:S2093|"*Change this "try" to a try-with-resources.(¡»¢üùÿÿÿÿ
+‚
+java:S1130•"lRemove the declaration of thrown exception 'java.io.IOException', as it cannot be thrown from method's body.(½ìÛH
+W	java:S125¦"<This block of commented-out lines of code should be removed.(µâíµùÿÿÿÿ
+W	java:S125¹"<This block of commented-out lines of code should be removed.(¯Ï§ûúÿÿÿÿ
+ƒ
+java:S1130Á"lRemove the declaration of thrown exception 'java.io.IOException', as it cannot be thrown from method's body.(ß£‰Ğ
+W	java:S125Å"<This block of commented-out lines of code should be removed.(ÕòìÈşÿÿÿÿ
+ˆ
+java:S1130Ì"lRemove the declaration of thrown exception 'java.io.IOException', as it cannot be thrown from method's body.(‡ÑÊìùÿÿÿÿ
+@
+java:S1481Ò")Remove this unused "file" local variable.(ä³ïó
+W	java:S125Ó"<This block of commented-out lines of code should be removed.(‚Òºúÿÿÿÿ
+W	java:S125…"<This block of commented-out lines of code should be removed.(ªœå‚úÿÿÿÿ
+S
+java:S1854Ï"<Remove this useless assignment to local variable "destFile".(‡é©¸
+R	java:S125º"<This block of commented-out lines of code should be removed.(ÎêĞ†
+W	java:S125Á"<This block of commented-out lines of code should be removed.( ‘ûüÿÿÿÿ
+W	java:S125Ê"<This block of commented-out lines of code should be removed.(á”Òúÿÿÿÿ
+D
+java:S1481Ï"-Remove this unused "destFile" local variable.(‡é©¸
+W	java:S125Ğ"<This block of commented-out lines of code should be removed.(õÂğ¬øÿÿÿÿ
+W	java:S125Ú"<This block of commented-out lines of code should be removed.(ûäÍáùÿÿÿÿ
+o
+java:S3776—"SRefactor this method to reduce its Cognitive Complexity from 116 to the 15 allowed.(Å¿²©üÿÿÿÿ
+_
+java:S1858"H"state" is already a string, there's no need to call "toString()" on it.(ŞÌ¹Î
+g
+java:S1858 "K"fileName" is already a string, there's no need to call "toString()" on it.(ğ¯äûÿÿÿÿ
+W	java:S125¶"<This block of commented-out lines of code should be removed.(Ä“Ùùÿÿÿÿ
+R	java:S125Ç"<This block of commented-out lines of code should be removed.(‰²…Ã
+F
+java:S1068-"+Remove this unused "encoder" private field.(öŞúÎûÿÿÿÿ
+F
+java:S1068."+Remove this unused "decoder" private field.(çøŒÓûÿÿÿÿ
+I
+java:S11440".Remove this unused private "str_to_bb" method.(ŞùµÔşÿÿÿÿ
+D
+java:S11444".Remove this unused private "bb_to_str" method.(­èò·
+K
+java:S1066Ä"/Merge this if statement with the enclosing one.(ìï„šøÿÿÿÿ
+K
+java:S1066Ï"/Merge this if statement with the enclosing one.(ìï„šøÿÿÿÿ
+K
+java:S1066"/Merge this if statement with the enclosing one.(ìï„šøÿÿÿÿ
+K
+java:S1066›"/Merge this if statement with the enclosing one.(ìï„šøÿÿÿÿ
+F
+java:S1066«"/Merge this if statement with the enclosing one.(óÃÊ×
+K
+java:S1066¶"/Merge this if statement with the enclosing one.(ìï„šøÿÿÿÿ
+K
+java:S1066š"/Merge this if statement with the enclosing one.(ìï„šøÿÿÿÿ
+s
+java:S2629"\Invoke method(s) only conditionally. Use the built-in formatting to construct this argument.(ŞÌ¹Î
+x
+java:S2629 "\Invoke method(s) only conditionally. Use the built-in formatting to construct this argument.(ğ¯äûÿÿÿÿ
+S
+java:S2629§"7Use the built-in formatting to construct this argument.(°íÚñıÿÿÿÿ
+N
+java:S2629¬"7Use the built-in formatting to construct this argument.(­·Êº
+N
+java:S2629­"7Use the built-in formatting to construct this argument.(­™›
+x
+java:S2629´"\Invoke method(s) only conditionally. Use the built-in formatting to construct this argument.(ÎÔ®öùÿÿÿÿ
+P
+java:S1143g"5Remove this return statement from this finally block.(ÄÿÉÊúÿÿÿÿ
+P
+java:S1143o"5Remove this return statement from this finally block.(ÄÿÉÊúÿÿÿÿ
+[
+java:S2259®"DA "NullPointerException" could be thrown; "target" is nullable here.(ìîÌß
+]
+java:S2259¤"FA "NullPointerException" could be thrown; "fileName" is nullable here.(Ïé¦ç
+^
+java:S2095&"IUse try-with-resources or close this "FileChannel" in a "finally" clause.(™³®5

@@ -1,0 +1,156 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE configuration PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-config.dtd">
+<configuration>
+	<properties resource="com/spectra/asr/config/mybatis/database.properties">
+	</properties>
+	<settings>
+		<!-- changes from the defaults -->
+		<setting name="lazyLoadingEnabled" value="false" />
+
+		<setting name="logImpl" value="NO_LOGGING"/>
+
+		<setting name="jdbcTypeForNull" value="NULL" />
+	</settings>
+	<typeAliases>
+		<typeAlias type="com.spectra.asr.mybatis.handler.xml.OraXmlTypeHandler" alias="OraXmlTypeHandler"/>
+		<!--
+		<typeAlias type="com.spectra.asr.mybatis.handler.xml.OraClobTypeHandler" alias="OraClobTypeHandler"/>
+		-->
+		<typeAlias type="com.spectra.asr.mybatis.handler.xml.OraClobToDocumentTypeHandler" alias="OraClobToDocumentTypeHandler"/>
+		<typeAlias type="com.spectra.asr.mybatis.handler.xml.OraXmlTypeFromStringBuilderHandler" alias="OraXmlTypeFromStringBuilderHandler"/>
+		<typeAlias type="com.spectra.asr.mybatis.handler.xml.OraXmlTypeStringHandler" alias="OraXmlTypeStringHandler"/>
+
+		<!--
+		<typeAlias type="com.spectra.ala.dto.ui.test.TestDto" alias="TestDto"/>
+		<typeAlias type="com.spectra.test.master.dto.loader.test.definition.TestDefinitionDto" alias="TestDefinitionDto"/>
+		<typeAlias type="com.spectra.test.master.dto.common.sequence.CommonSequenceDto" alias="CommonSequenceDto"/>
+		<typeAlias type="com.spectra.test.master.dto.history.test.definition.TestDefinitionHistoryDto" alias="TestDefinitionHistoryDto"/>
+		<typeAlias type="com.spectra.test.master.dto.history.common.sequence.CommonSequenceHistoryDto" alias="CommonSequenceHistoryDto"/>
+		<typeAlias type="com.spectra.test.master.dto.ui.json.OptionItem" alias="OptionItem"/>
+		<typeAlias type="com.spectra.test.master.dto.loinc.LoincDto" alias="LoincDto"/>
+		<typeAlias type="com.spectra.test.master.dto.loinc.TmLoincDto" alias="TmLoincDto"/>
+		<typeAlias type="com.spectra.test.master.dto.history.loinc.TMLoincHistoryDto" alias="TMLoincHistoryDto"/>
+		<typeAlias type="com.spectra.test.master.dto.loinc.LoincMapToDto" alias="LoincMapToDto"/>
+		
+		<typeAlias type="com.spectra.test.master.dto.snomed.ConceptDto" alias="ConceptDto"/>
+		<typeAlias type="com.spectra.test.master.dto.snomed.DescriptionDto" alias="DescriptionDto"/>
+		<typeAlias type="com.spectra.test.master.dto.snomed.RelationshipDto" alias="RelationshipDto"/>
+		<typeAlias type="com.spectra.test.master.dto.snomed.ConceptDescriptionDto" alias="ConceptDescriptionDto"/>
+		<typeAlias type="com.spectra.test.master.dto.snomed.RelationshipDescriptionDto" alias="RelationshipDescriptionDto"/>
+		
+		<typeAlias type="com.spectra.test.master.dto.term.TermDto" alias="TermDto"/>
+
+		<typeAlias type="com.spectra.physician.master.dto.provider.ProviderDto" alias="ProviderDto"/>
+		-->
+<!--		
+		<typeAlias type="com.spectra.result.transporter.dto.rr.RepositoryResultDto" alias="RepositoryResultDto"/>
+		<typeAlias type="com.spectra.result.transporter.dto.shiel.ShielPatient" alias="ShielPatient"/>
+		<typeAlias type="com.spectra.demographic.loader.dto.state.StateZipCodeDto" alias="StateZipCodeDto"/>
+		<typeAlias type="com.spectra.result.transporter.dto.rr.test.TestPropertiesDto" alias="TestPropertiesDto"/>
+		<typeAlias type="com.spectra.result.transporter.dto.rr.test.TestPropertiesHistDto" alias="TestPropertiesHistDto"/>
+		<typeAlias type="com.spectra.result.transporter.dto.rr.test.PositivityFilterDto" alias="PositivityFilterDto"/>
+		<typeAlias type="com.spectra.result.transporter.dto.rr.state.StatePropertiesDto" alias="StatePropertiesDto"/>
+-->		
+
+		<typeAlias type="com.spectra.asr.dto.state.StateMasterDto" alias="StateMasterDto"/>
+		
+		<typeAlias type="com.spectra.asr.dao.type.handler.ResultExtractDtoTypeHander" alias="ResultExtractDtoTypeHander"/>
+		<typeAlias type="com.spectra.asr.dto.state.extract.ResultExtractDto" alias="ResultExtractDto"/>
+		<typeAlias type="com.spectra.asr.dto.state.StateResultDto" alias="StateResultDto"/>
+		<typeAlias type="com.spectra.asr.dto.state.condition.ConditionMasterDto" alias="ConditionMasterDto"/>
+		<typeAlias type="com.spectra.asr.dto.state.condition.ConditionFilterDto" alias="ConditionFilterDto"/>
+		<typeAlias type="com.spectra.asr.dto.state.zip.StateZipCodeDto" alias="StateZipCodeDto"/>
+		
+		<typeAlias type="com.spectra.asr.dto.generator.GeneratorDto" alias="GeneratorDto"/>
+		<typeAlias type="com.spectra.asr.dto.generator.GeneratorFieldDto" alias="GeneratorFieldDto"/>
+		<typeAlias type="com.spectra.asr.dto.generator.GeneratorFieldsMapDto" alias="GeneratorFieldsMapDto"/>
+		<typeAlias type="com.spectra.asr.dto.distributor.DistributorDto" alias="DistributorDto"/>
+		<typeAlias type="com.spectra.asr.dto.distributor.DistributorItemDto" alias="DistributorItemDto"/>
+		<typeAlias type="com.spectra.asr.dto.distributor.DistributorItemsMapDto" alias="DistributorItemsMapDto"/>
+		<typeAlias type="com.spectra.asr.dto.audit.AsrAuditDto" alias="AsrAuditDto"/>
+		<typeAlias type="com.spectra.asr.dto.log.ResultsSentLogDto" alias="ResultsSentLogDto"/>
+		<typeAlias type="com.spectra.asr.dto.portal.EntityResultCountDto" alias="EntityResultCountDto"/>
+		<typeAlias type="com.spectra.asr.dto.demographic.AsrActivityNoDemoDto" alias="AsrActivityNoDemoDto"/>
+		
+		<typeAlias type="com.spectra.asr.dto.demographic.AsrPhysicianDto" alias="AsrPhysicianDto"/>
+		
+		<typeAlias type="com.spectra.asr.dto.cm.CMFacilityDto" alias="CMFacilityDto"/>
+		<typeAlias type="com.spectra.asr.dto.state.extract.LovTestCategoryDto" alias="LovTestCategoryDto"/>
+		<typeAlias type="com.spectra.asr.dto.lab.LabDto" alias="LabDto"/>
+		
+		<typeAlias type="com.spectra.asr.dto.micro.MicroConsolidatedDto" alias="MicroConsolidatedDto"/>
+	</typeAliases>
+	<typeHandlers>
+		<typeHandler javaType="org.w3c.dom.Document" handler="OraXmlTypeHandler"/>
+		<!--
+		<typeHandler javaType="string" jdbcType="CLOB" handler="OraClobTypeHandler"/>
+		-->
+		<typeHandler javaType="org.w3c.dom.Document" handler="OraClobToDocumentTypeHandler"/>
+		<typeHandler javaType="java.lang.StringBuilder" handler="OraXmlTypeFromStringBuilderHandler"/>
+		<!--
+		<typeHandler javaType="java.lang.String" handler="OraXmlTypeStringHandler"/>
+		-->
+		
+		<typeHandler javaType="com.spectra.asr.dto.state.extract.ResultExtractDto" jdbcType="STRUCT" handler="ResultExtractDtoTypeHander"/>
+	</typeHandlers>  
+	
+    <environments default="dev">
+        <environment id="staterpt">
+            <transactionManager type="JDBC"/>
+<!--            
+            <dataSource type="JNDI">
+                <property name="data_source" value="${db.hub.staterpt.connection.datasource}"/>
+            </dataSource>
+-->            
+
+			<dataSource type="POOLED">
+				<property name="driver" value="${db.hub.staterpt.connection.driver.class}"/>
+				<property name="url" value="${db.hub.staterpt.connection.url}"/>
+				<property name="username" value="${db.hub.staterpt.connection.username}"/>
+				<property name="password" value="${db.hub.staterpt.connection.password}"/>
+			</dataSource> 
+
+        </environment>
+        
+        <environment id="cmdb">
+            <transactionManager type="JDBC"/>
+			<dataSource type="POOLED">
+				<property name="driver" value="${db.cm.connection.driver.class}"/>
+				<property name="url" value="${db.cm.connection.url}"/>
+				<property name="username" value="${db.cm.connection.username}"/>
+				<property name="password" value="${db.cm.connection.password}"/>
+			</dataSource> 
+
+        </environment>        
+    </environments>	
+	
+    <mappers>
+        <!--<package name="org.mybatis.builder"/>-->
+        <!--
+        <mapper resource="com/spectra/test/master/mapper/mybatis/loader/LoaderMapper.xml"/>
+        <mapper resource="com/spectra/test/master/mapper/mybatis/history/UIHistoryMapper.xml"/>
+        -->
+        <!--
+        <mapper resource="com/spectra/test/master/mapper/mybatis/ora/loader/LoaderMapper.xml"/>        
+        <mapper resource="com/spectra/test/master/mapper/mybatis/ora/history/UIHistoryMapper.xml"/>
+        <mapper resource="com/spectra/test/master/mapper/mybatis/ora/ui/UIMapper.xml"/>
+        <mapper resource="com/spectra/test/master/mapper/mybatis/ora/ui/SnomedMapper.xml"/>
+        <mapper resource="com/spectra/test/master/mapper/mybatis/ora/ui/TermMapper.xml"/>
+
+        <mapper resource="com/spectra/physician/master/mapper/mybatis/ms/provider/ProviderMapper.xml"/>
+        -->
+
+        <mapper resource="com/spectra/asr/mapper/mybatis/ora/hub/StaterptMapper.xml"/>
+        <mapper resource="com/spectra/asr/mapper/mybatis/ora/hub/condition/ConditionMapper.xml"/>
+        <mapper resource="com/spectra/asr/mapper/mybatis/ora/hub/generator/GeneratorMapper.xml"/>
+        <mapper resource="com/spectra/asr/mapper/mybatis/ora/hub/distributor/DistributorMapper.xml"/>
+        <mapper resource="com/spectra/asr/mapper/mybatis/ora/hub/audit/AuditMapper.xml"/>
+        <mapper resource="com/spectra/asr/mapper/mybatis/ora/hub/log/ResultsSentLogMapper.xml"/>
+        <mapper resource="com/spectra/asr/mapper/mybatis/ora/hub/portal/PortalMapper.xml"/>
+        <mapper resource="com/spectra/asr/mapper/mybatis/ora/hub/demographic/DemographicMapper.xml"/>
+        
+        <mapper resource="com/spectra/asr/mapper/mybatis/ms/cm/CMFacilityMapper.xml"/>
+        <mapper resource="com/spectra/asr/mapper/mybatis/ora/hub/condition/MicroConditionMapper.xml"/>
+    </mappers>	
+</configuration>

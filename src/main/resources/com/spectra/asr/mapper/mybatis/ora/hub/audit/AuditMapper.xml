@@ -1,0 +1,179 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!-- Created by: http://blog.idleworx.com, http://www.idleworx.com -->
+<mapper namespace="com.spectra.asr.mapper.mybatis.ora.hub.audit.AuditMapper">
+	<resultMap id="asrAuditDtoMap" type="AsrAuditDto">
+		<result property="state" column="STATE" />
+		<result property="stateAbbreviation" column="STATE_ABBREVIATION" />
+		<result property="asrAuditPk" column="ASR_AUDIT_PK" />
+		<result property="stateFk" column="STATE_FK" />
+		<result property="conditionMasterFk" column="CONDITION_MASTER_FK" />
+		<result property="microConditionMasterFk" column="MICRO_CONDITION_MASTER_FK" />
+		<result property="conditionFilterFk" column="CONDITION_FILTER_FK" />
+		<result property="generatorFk" column="GENERATOR_FK" />
+		<result property="generatorFieldFk" column="GENERATOR_FIELD_FK" />
+		<result property="generatorFieldsMapFk" column="GENERATOR_FIELDS_MAP_FK" />
+		<result property="distributorFk" column="DISTRIBUTOR_FK" />
+		<result property="distributorItemFk" column="DISTRIBUTOR_ITEM_FK" />
+		<result property="distributorItemsMapFk" column="DISTRIBUTOR_ITEMS_MAP_FK" />
+		<result property="status" column="STATUS" />
+		<result property="createdDate" column="CREATED_DATE" />
+		<result property="createdBy" column="CREATED_BY" />
+		<result property="lastUpdatedDate" column="LAST_UPDATED_DATE" />
+		<result property="lastUpdatedBy" column="LAST_UPDATED_BY" />
+	</resultMap>
+
+	<select id="selectAsrAudit" parameterType="AsrAuditDto"  resultMap="asrAuditDtoMap">
+		select
+			s.state,
+			s.state_abbreviation,	
+			aud.*
+		from
+			STATERPT_OWNER.ASR_AUDIT aud,
+			STATERPT_OWNER.STATE_MASTER s,			
+			STATERPT_OWNER.CONDITION_MASTER cm,
+			STATERPT_OWNER.CONDITION_FILTERS cf,
+			STATERPT_OWNER.DISTRIBUTOR d,
+			STATERPT_OWNER.DISTRIBUTOR_ITEMS di,
+			STATERPT_OWNER.DISTRIBUTOR_ITEMS_MAP dim,
+			STATERPT_OWNER.GENERATOR g,
+			STATERPT_OWNER.GENERATOR_FIELDS gf,
+			STATERPT_OWNER.GENERATOR_FIELDS_MAP gfm,
+			STATERPT_OWNER.MICRO_CONDITION_MASTER mcm
+		where
+			aud.asr_audit_pk is not null
+			<if test="status != null">
+				and aud.status = #{status}
+			</if>
+			<if test="state != null">
+				and s.state = #{state}
+			</if>			
+			<if test="stateAbbreviation != null">
+				and s.state_abbreviation = #{stateAbbreviation}
+			</if>
+			<if test="asrAuditPk != null">
+				and aud.asr_audit_pk = #{asrAuditPk}
+			</if>
+			<if test="stateFk != null">
+				and aud.state_fk = #{stateFk}
+				and s.state_pk = aud.state_fk
+			</if>
+			<if test="conditionMasterFk != null">
+				and aud.condition_master_fk = #{conditionMasterFk}
+				and cm.condition_master_pk = aud.condition_master_fk
+			</if>
+			<if test="conditionFilterFk != null">
+				and aud.condition_filter_fk = #{conditionFilterFk}
+				and cf.condition_filter_pk = aud.condition_filter_fk
+			</if>
+			<if test="generatorFk != null">
+				and aud.generator_fk = #{generatorFk}
+				and g.generator_pk = aud.generator_fk
+			</if>
+			<if test="generatorFieldFk != null">
+				and aud.generator_field_fk = #{generatorFieldFk}
+				and gf.generator_field_pk = aud.generator_field_fk
+			</if>
+			<if test="generatorFieldsMapFk != null">
+				and aud.generator_fields_map_fk = #{generatorFieldsMapFk}
+				and gfm.generator_fields_map_pk = aud.generator_fields_map_fk
+			</if>
+			<if test="distributorFk != null">
+				and aud.distributor_fk = #{distributorFk}
+				and d.distributor_pk = aud.distributor_fk
+			</if>
+			<if test="distributorItemFk != null">
+				and aud.distributor_item_fk = #{distributorItemFk}
+				and di.distributor_item_pk = aud.distributor_item_fk
+			</if>
+			<if test="distributorItemsMapFk != null">
+				and aud.distributor_items_map_fk = #{distributorItemsMapFk}
+				and dim.distributor_items_map_pk = aud.distributor_items_map_fk
+			</if>
+			<if test="microConditionMasterFk != null">
+				and aud.micro_condition_master_fk = #{microConditionMasterFk}
+				and mcm.condition_master_pk = aud.micro_condition_master_fk
+			</if>			
+	</select>		
+
+	<update id="updateAsrAudit" parameterType="AsrAuditDto">
+		update 
+			STATERPT_OWNER.ASR_AUDIT
+		set
+			<if test="stateFk != null">
+				STATE_FK = #{stateFk},
+			</if>		
+			<if test="conditionMasterFk != null">
+				CONDITION_MASTER_FK = #{conditionMasterFk},
+			</if>
+			<if test="conditionFilterFk != null">
+				CONDITION_FILTER_FK = #{conditionFilterFk},
+			</if>
+			<if test="generatorFk != null">
+				GENERATOR_FK = #{generatorFk},
+			</if>
+			<if test="generatorFieldFk != null">
+				GENERATOR_FIELD_FK = #{generatorFieldFk},
+			</if>			
+			<if test="generatorFieldsMapFk != null">
+				GENERATOR_FIELDS_MAP_FK = #{generatorFieldsMapFk},
+			</if>
+			<if test="distributorFk != null">
+				DISTRIBUTOR_FK = #{distributorFk},
+			</if>
+			<if test="distributorItemFk != null">
+				DISTRIBUTOR_ITEM_FK = #{distributorItemFk},
+			</if>
+			<if test="distributorItemsMapFk != null">
+				DISTRIBUTOR_ITEMS_MAP_FK = #{distributorItemsMapFk},
+			</if>
+			<if test="microConditionMasterFk != null">
+				MICRO_CONDITION_MASTER_FK = #{microConditionMasterFk},
+			</if>			
+			<if test="status != null">
+				STATUS = #{status},
+			</if>			
+			<if test="lastUpdatedBy != null">
+				LAST_UPDATED_BY = #{lastUpdatedBy},
+			</if>
+			LAST_UPDATED_DATE = SYSTIMESTAMP(6)
+		where 
+			ASR_AUDIT_PK = #{asrAuditPk}
+	</update>
+
+	<insert id="insertAsrAudit" parameterType="AsrAuditDto">
+		INSERT INTO STATERPT_OWNER.ASR_AUDIT(
+			STATE_FK,
+			CONDITION_MASTER_FK,
+			MICRO_CONDITION_MASTER_FK,
+			CONDITION_FILTER_FK,			
+			GENERATOR_FK,
+			GENERATOR_FIELD_FK,
+			GENERATOR_FIELDS_MAP_FK,			
+			DISTRIBUTOR_FK,
+			DISTRIBUTOR_ITEM_FK,
+			DISTRIBUTOR_ITEMS_MAP_FK,
+			STATUS,
+			CREATED_DATE,
+			CREATED_BY,
+			LAST_UPDATED_DATE,
+			LAST_UPDATED_BY		
+		) VALUES (
+			#{stateFk},
+			#{conditionMasterFk},
+			#{microConditionMasterFk},
+			#{conditionFilterFk},
+			#{generatorFk},
+			#{generatorFieldFk},
+			#{generatorFieldsMapFk},
+			#{distributorFk},
+			#{distributorItemFk},
+			#{distributorItemsMapFk},
+			#{status},
+			CURRENT_TIMESTAMP,
+			#{createdBy},
+			CURRENT_TIMESTAMP,
+			#{lastUpdatedBy}
+		)
+	</insert>
+</mapper>

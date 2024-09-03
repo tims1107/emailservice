@@ -1,0 +1,290 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!-- Created by: http://blog.idleworx.com, http://www.idleworx.com -->
+<mapper namespace="com.spectra.asr.mapper.mybatis.ms.cm.CMFacilityMapper">
+
+	<resultMap id="cmFacilityDtoMap" type="CMFacilityDto">
+		<result property="hlabNum" column="hlab_num" />
+		<result property="facilityNum" column="facility_num" />
+		<result property="fmcNumber" column="fmc_number" />
+		<result property="facilityPref" column="facility_pref" />
+		<result property="facilityName" column="facility_name" />
+		<result property="address1" column="address1" />
+		<result property="address2" column="address2" />
+		<result property="city" column="city" />
+		<result property="facilityState" column="facility_state" />
+		<result property="zip" column="zip" />
+		<result property="phone" column="phone" />
+		<result property="accountCategory" column="account_category" />
+		<result property="accountStatus" column="account_status" />
+		<result property="typeOfService" column="type_of_service" />
+		<result property="sourceLab" column="source_lab" />
+	</resultMap>
+	
+	<select id="selectCmFacilities" parameterType="java.util.Map" resultMap="cmFacilityDtoMap">
+		select
+			cm.*
+		from
+			(
+				select
+					hlab_num,
+					facility_num,
+					fmc_number,
+					facility_pref,
+					facility_name,
+					address1,
+					address2,
+					city,
+					facility_state,
+					zip,
+					phone,
+					account_category,
+					account_status,
+					type_of_service,
+					'East' source_lab
+				from
+					"CDBHLab"."dbo"."vw_EastFacility"
+				where
+					hlab_num is not null
+					<if test="hlabNum != null">
+						and hlab_num = #{hlabNum}
+					</if>	
+					<if test="fmcNum != null">
+						and fmc_number = #{fmcNum}
+					</if>	
+			union
+				select
+					hlab_num,
+					facility_num,
+					fmc_number,
+					facility_pref,
+					facility_name,
+					address1,
+					address2,
+					city,
+					facility_state,
+					zip,
+					phone,
+					account_category,
+					account_status,
+					type_of_service,
+					'West' source_lab
+				from
+					"CDBHLab"."dbo"."vw_WestFacility"
+				where
+					hlab_num is not null
+					<if test="hlabNum != null">
+						and hlab_num = #{hlabNum}
+					</if>	
+					<if test="fmcNum != null">
+						and fmc_number = #{fmcNum}
+					</if>	
+			) cm			
+	</select>	
+	
+<!--	
+	<insert id="insertProviderDto" parameterType="ProviderDto">
+		INSERT INTO @DB_OWNER@PhysicianDataPLAC(
+			NPI,
+			staff_type,
+			first_name,
+			middle_name,
+			last_name,
+			full_name,
+			title,
+			phone,
+			fax,
+			pg_name,
+			city,
+			state,
+			zip,
+			DateCreated,
+			DateSyncedWithCorp
+		) VALUES (
+			#{npi},
+			#{providerType},
+			#{firstName}, 
+			#{middleName},
+			#{lastName},
+			#{fullName},
+			#{salutation},
+			#{phoneWork},
+			#{phoneFax},
+			#{practiceGrpName},
+			#{city},
+			#{state},
+			#{zip},
+			CURRENT_TIMESTAMP,
+			CURRENT_TIMESTAMP
+		)
+	</insert>	
+	<update id="updateProviderDto" parameterType="ProviderDto">
+		update 
+			@DB_OWNER@PhysicianDataPLAC
+		set
+			<if test="providerType != null">
+				staff_type = #{providerType},
+			</if>
+			<if test="firstName != null">
+				first_name = #{firstName},
+			</if>	
+			<if test="middleName != null">
+				middle_name = #{middleName},
+			</if>
+			<if test="lastName != null">
+				last_name = #{lastName},
+			</if>
+			<if test="fullName != null">
+				full_name = #{fullName},
+			</if>
+			<if test="salutation != null">
+				title = #{salutation},
+			</if>
+			<if test="phoneWork != null">
+				phone = #{phoneWork},
+			</if>
+			<if test="practiceGrpName != null">
+				pg_name = #{practiceGrpName},
+			</if>			
+			<if test="phoneFax != null">
+				fax = #{phoneFax},
+			</if>
+			<if test="city != null">
+				city = #{city},
+			</if>
+			<if test="state != null">
+				state = #{state},
+			</if>
+			<if test="zip != null">
+				zip = #{zip},
+			</if>
+			DateSyncedWithCorp = CURRENT_TIMESTAMP
+		where 
+			NPI = #{npi}
+	</update>	
+	
+	<select id="selectAllNotSyncedWithCorp" parameterType="java.lang.String" resultMap="providerDtoMap">
+		select
+			*
+		from
+			@DB_OWNER@PhysicianDataPLAC
+		where
+			DateSyncedWithCorp is null
+		order by
+			npi			
+	</select>	
+-->	
+
+<!--
+	<select id="selectAllDistinctNpi" parameterType="java.lang.String" resultType="java.lang.String">
+		select
+			distinct(npi)
+		from
+			@DB_OWNER_CM@PhysicianData	
+		where
+			npi is not null
+		order by
+			npi				
+	</select>
+	<select id="selectAllPhysicianData" parameterType="java.lang.String" resultMap="providerDtoMap">
+		select
+			*
+		from
+			@DB_OWNER_CM@PhysicianData
+		where
+			npi is not null
+		order by
+			npi	
+	</select>
+	<select id="selectPhysicianDataByNpi" parameterType="java.lang.String" resultMap="providerDtoMap">
+		select
+			*
+		from
+			@DB_OWNER_CM@PhysicianData
+		where
+			npi is not null
+			and npi = #{npi}
+		order by
+			npi	
+	</select>
+	<insert id="insertPhysicianData" parameterType="ProviderDto">
+		INSERT INTO @DB_OWNER_CM@PhysicianData(
+			NPI,
+			staff_type,
+			first_name,
+			middle_name,
+			last_name,
+			full_name,
+			title,
+			phone,
+			fax,
+			pg_name,
+			city,
+			state,
+			zip,
+			DateCreated,
+			DateSyncedWithCorp
+		) VALUES (
+			#{npi},
+			#{providerType},
+			#{firstName}, 
+			#{middleName},
+			#{lastName},
+			#{fullName},
+			#{salutation},
+			#{phoneWork},
+			#{phoneFax},
+			#{practiceGrpName},
+			#{city},
+			#{state},
+			#{zip},
+			CURRENT_TIMESTAMP,
+			CURRENT_TIMESTAMP
+		)
+	</insert>	
+	<update id="updatePhysicianData" parameterType="ProviderDto">
+		update 
+			@DB_OWNER_CM@PhysicianData
+		set
+			<if test="providerType != null">
+				staff_type = #{providerType},
+			</if>
+			<if test="firstName != null">
+				first_name = #{firstName},
+			</if>	
+			<if test="middleName != null">
+				middle_name = #{middleName},
+			</if>
+			<if test="lastName != null">
+				last_name = #{lastName},
+			</if>
+			<if test="fullName != null">
+				full_name = #{fullName},
+			</if>
+			<if test="salutation != null">
+				title = #{salutation},
+			</if>
+			<if test="phoneWork != null">
+				phone = #{phoneWork},
+			</if>
+			<if test="practiceGrpName != null">
+				pg_name = #{practiceGrpName},
+			</if>			
+			<if test="phoneFax != null">
+				fax = #{phoneFax},
+			</if>
+			<if test="city != null">
+				city = #{city},
+			</if>
+			<if test="state != null">
+				state = #{state},
+			</if>
+			<if test="zip != null">
+				zip = #{zip},
+			</if>
+			DateSyncedWithCorp = CURRENT_TIMESTAMP
+		where 
+			NPI = #{npi}
+	</update>	
+-->	
+</mapper>

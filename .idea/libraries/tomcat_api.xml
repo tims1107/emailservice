@@ -1,0 +1,15 @@
+<component name="libraryTable">
+  <library name="tomcat-api">
+    <CLASSES>
+      <root url="jar://C:/asrlib/lib/tomcat-api.jar!/" />
+      <root url="jar://C:/asrlib/lib/tomcat-coyote.jar!/" />
+      <root url="jar://C:/asrlib/lib/tomcat-dbcp.jar!/" />
+      <root url="jar://C:/asrlib/lib/tomcat-jdbc.jar!/" />
+      <root url="jar://C:/asrlib/lib/tomcat-juli-7.0.16.jar!/" />
+      <root url="jar://C:/asrlib/lib/tomcat-util.jar!/" />
+      <root url="jar://C:/asrlib/lib/TomcatJNDI-1.0.0.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES />
+  </library>
+</component>

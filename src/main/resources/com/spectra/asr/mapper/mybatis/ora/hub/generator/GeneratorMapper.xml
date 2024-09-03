@@ -1,0 +1,736 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!-- Created by: http://blog.idleworx.com, http://www.idleworx.com -->
+<mapper namespace="com.spectra.asr.mapper.mybatis.ora.hub.generator.GeneratorMapper">
+<!--
+	<cache-ref namespace="com.spectra.asr.mapper.mybatis.ora.hub.StaterptMapper" />
+
+	<resultMap id="stateZipCodeDtoMap" type="StateZipCodeDto">
+		<result property="city" column="CITY" />
+		<result property="county" column="COUNTY" />	
+		<result property="state" column="STATE" />	
+		<result property="stateAbbr" column="STATE_ABBREV" />	
+		<result property="zip" column="ZIP" />	
+		<result property="lastUpdateTime" column="LAST_UPDATE_TIME" />	
+		<result property="source" column="SOURCE" />	
+	</resultMap>
+-->	
+	
+	<resultMap id="generatorDtoMap" type="GeneratorDto">
+		<result property="state" column="STATE" />
+		<result property="stateAbbreviation" column="STATE_ABBREVIATION" />
+		<result property="generatorPk" column="GENERATOR_PK" />
+		<result property="stateFk" column="STATE_FK" />
+		<result property="fileMask" column="FILE_MASK" />
+		<result property="hl7Package" column="HL7_PACKAGE" />
+		<result property="conversionContext" column="CONVERSION_CONTEXT" />
+		<result property="conversionStrategy" column="CONVERSION_STRATEGY" />
+		<result property="writerContext" column="WRITER_CONTEXT" />
+		<result property="writeBy" column="WRITE_BY" />
+		<result property="stateTarget" column="STATE_TARGET" />
+		<result property="countyTarget" column="COUNTY_TARGET" />
+		<result property="status" column="STATUS" />
+		<result property="createdDate" column="CREATED_DATE" />
+		<result property="createdBy" column="CREATED_BY" />
+		<result property="lastUpdatedDate" column="LAST_UPDATED_DATE" />
+		<result property="lastUpdatedBy" column="LAST_UPDATED_BY" />
+	</resultMap>
+	
+	<resultMap id="generatorFieldDtoMap" type="GeneratorFieldDto">
+		<result property="state" column="STATE" />
+		<result property="stateAbbreviation" column="STATE_ABBREVIATION" />
+		<result property="generatorFieldPk" column="GENERATOR_FIELD_PK" />
+		<result property="generatorFk" column="GENERATOR_FK" />
+		<result property="generatorField" column="GENERATOR_FIELD" />
+		<result property="generatorFieldType" column="GENERATOR_FIELD_TYPE" />
+		<result property="generatorFieldSequence" column="GENERATOR_FIELD_SEQUENCE" />
+		<result property="generatorFieldValue" column="GENERATOR_FIELD_VALUE" />
+		<result property="generatorFieldsGroup" column="GENERATOR_FIELDS_GROUP" />
+		<result property="status" column="STATUS" />
+		<result property="createdDate" column="CREATED_DATE" />
+		<result property="createdBy" column="CREATED_BY" />
+		<result property="lastUpdatedDate" column="LAST_UPDATED_DATE" />
+		<result property="lastUpdatedBy" column="LAST_UPDATED_BY" />
+	</resultMap>
+	
+	<resultMap id="generatorFieldsMapDtoMap" type="GeneratorFieldsMapDto">
+		<result property="state" column="STATE" />
+		<result property="stateAbbreviation" column="STATE_ABBREVIATION" />	
+		<result property="generatorFieldsMapPk" column="GENERATOR_FIELDS_MAP_PK" />
+		<result property="generatorFk" column="GENERATOR_FK" />
+		<result property="generatorFieldsGroup" column="GENERATOR_FIELDS_GROUP" />
+		<result property="status" column="STATUS" />
+		<result property="createdDate" column="CREATED_DATE" />
+		<result property="createdBy" column="CREATED_BY" />
+		<result property="lastUpdatedDate" column="LAST_UPDATED_DATE" />
+		<result property="lastUpdatedBy" column="LAST_UPDATED_BY" />
+	</resultMap>	
+
+	
+	<select id="selectLastGeneratorFieldsMap" parameterType="java.lang.String"  resultMap="generatorFieldsMapDtoMap">
+		select
+			*
+		from
+			STATERPT_OWNER.GENERATOR_FIELDS_MAP
+		where
+			GENERATOR_FIELDS_MAP_PK = (
+				select
+					max(GENERATOR_FIELDS_MAP_PK)
+				from
+					STATERPT_OWNER.GENERATOR_FIELDS_MAP
+				where
+					status = 'active'
+			)	
+	</select>
+	
+	<select id="selectMaxGeneratorFieldsGroup" parameterType="string"  resultType="java.lang.Integer">
+		select
+			max(generator_fields_group)
+		from
+			STATERPT_OWNER.GENERATOR_FIELDS
+		where
+			status = 'active'
+	</select>
+	
+	<select id="selectGeneratorFieldsMap" parameterType="GeneratorFieldsMapDto"  resultMap="generatorFieldsMapDtoMap">
+		select
+			s.state,
+			s.state_abbreviation,	
+			gfm.*
+		from
+			STATERPT_OWNER.GENERATOR_FIELDS_MAP gfm,
+			STATERPT_OWNER.GENERATOR g,
+			STATERPT_OWNER.STATE_MASTER s				
+		where
+			gfm.generator_fk = g.generator_pk
+			and g.state_fk = s.state_master_pk		
+			<if test="generatorFk != null">
+				and g.generator_pk = #{generatorFk}
+			</if>
+			<if test="generatorFieldsGroup != null">
+				and gfm.generator_fields_group = #{generatorFieldsGroup}
+			</if>
+			<if test="state != null">
+				and s.state = #{state}
+			</if>	
+			<if test="stateAbbreviation != null">
+				and s.state_abbreviation = #{stateAbbreviation}
+			</if>
+			<if test="status != null">
+				and gfm.status = #{status}
+			</if>			
+	</select>
+
+	<update id="updateGeneratorFieldsMap" parameterType="GeneratorFieldsMapDto">
+		update 
+			STATERPT_OWNER.GENERATOR_FIELDS_MAP
+		set
+			<if test="generatorFk != null">
+				GENERATOR_FK = #{generatorFk},
+			</if>		
+			<if test="generatorFieldsGroup != null">
+				GENERATOR_FIELDS_GROUP = #{generatorFieldsGroup},
+			</if>
+			<if test="status != null">
+				STATUS = #{status},
+			</if>			
+			<if test="lastUpdatedBy != null">
+				LAST_UPDATED_BY = #{lastUpdatedBy},
+			</if>
+			LAST_UPDATED_DATE = SYSTIMESTAMP(6)
+		where 
+			GENERATOR_FIELDS_MAP_PK = #{generatorFieldsMapPk}
+			and GENERATOR_FK = #{generatorFk}	
+	</update>
+
+	<insert id="insertGeneratorFieldsMap" parameterType="GeneratorFieldsMapDto">
+		INSERT INTO STATERPT_OWNER.GENERATOR_FIELDS_MAP(
+			GENERATOR_FK,
+			GENERATOR_FIELDS_GROUP,
+			STATUS,
+			CREATED_DATE,
+			CREATED_BY,
+			LAST_UPDATED_DATE,
+			LAST_UPDATED_BY
+		) VALUES (
+			#{generatorFk},
+			#{generatorFieldsGroup},
+			#{status},
+			CURRENT_TIMESTAMP,
+			#{createdBy},
+			CURRENT_TIMESTAMP,
+			#{lastUpdatedBy}
+		)
+	</insert>
+
+	<select id="selectLastGeneratorField" parameterType="java.lang.String"  resultMap="generatorFieldDtoMap">
+		select
+			gf.*
+		from
+			STATERPT_OWNER.GENERATOR_FIELDS gf
+		where
+			gf.GENERATOR_FIELD_PK = (
+				select
+					max(GENERATOR_FIELD_PK)
+				from
+					STATERPT_OWNER.GENERATOR_FIELDS
+				where
+					status = 'active'
+			)	
+	</select>
+
+	<select id="selectGeneratorField" parameterType="GeneratorFieldDto"  resultMap="generatorFieldDtoMap">
+		select
+			s.state,
+			s.state_abbreviation,
+			gf.GENERATOR_FIELD_PK,
+			g.generator_pk,
+			gf.GENERATOR_FIELD,
+			gf.GENERATOR_FIELD_TYPE,
+			gf.GENERATOR_FIELD_SEQUENCE,
+			gf.CREATED_DATE,
+			gf.CREATED_BY,
+			gf.LAST_UPDATED_DATE,
+			gf.LAST_UPDATED_BY,
+			gf.GENERATOR_FIELD_VALUE,
+			gf.GENERATOR_FIELDS_GROUP
+		from
+			STATERPT_OWNER.GENERATOR_FIELDS gf,
+			STATERPT_OWNER.GENERATOR_FIELDS_MAP gfm,
+			STATERPT_OWNER.GENERATOR g,
+			STATERPT_OWNER.STATE_MASTER s
+		where
+			<choose>
+				<when test="generatorFk != null">
+					g.generator_pk = #{generatorFk}
+				</when>
+				<otherwise>
+					gf.generator_fk is null
+				</otherwise>
+			</choose>		
+			and gfm.generator_fk = g.generator_pk
+			and gfm.generator_fields_group = gf.generator_fields_group
+			and g.state_fk = s.state_master_pk	
+			<if test="generatorFieldPk != null">
+				and gf.generator_field_pk = #{generatorFieldPk}
+			</if>			
+			<if test="generatorFk != null">
+				and gfm.generator_fk = #{generatorFk}
+			</if>			
+			<if test="state != null">
+				and s.state = #{state}
+			</if>			
+			<if test="stateAbbreviation != null">
+				and s.state_abbreviation = #{stateAbbreviation}
+			</if>
+			<if test="generatorField != null">
+				and gf.generator_field = #{generatorField}
+			</if>
+			<if test="generatorFieldType != null">
+				and gf.generator_field_type = #{generatorFieldType}
+			</if>
+			<if test="generatorFieldValue != null">
+				and gf.generator_field_value = #{generatorFieldValue}
+			</if>
+			<if test="generatorFieldSequence != null">
+				and gf.generator_field_sequence = #{generatorFieldSequence}
+			</if>
+			<if test="status != null">
+				and gf.status = #{status}
+			</if>			
+			<if test="createdBy != null">
+				and gf.created_by = #{createdBy}
+			</if>
+			<if test="lastUpdatedBy != null">
+				and gf.last_updated_by = #{lastUpdatedBy}
+			</if>			
+		order by
+			s.state
+	</select>
+
+	<select id="selectDistinctGeneratorFieldType" parameterType="GeneratorFieldDto"  resultMap="generatorFieldDtoMap">
+		select
+			distinct(gf.GENERATOR_FIELD_TYPE)
+		from
+			STATERPT_OWNER.GENERATOR_FIELDS gf,
+			STATERPT_OWNER.GENERATOR_FIELDS_MAP gfm,
+			STATERPT_OWNER.GENERATOR g,
+			STATERPT_OWNER.STATE_MASTER s
+		where
+			<choose>
+				<when test="generatorFk != null">
+					g.generator_pk = #{generatorFk}
+				</when>
+				<otherwise>
+					gf.generator_fk is null
+				</otherwise>
+			</choose>
+			<if test="excludeGeneratorFieldList != null">
+				and (gf.generator_field not in 
+				<foreach item="excludeGeneratorField" index="index" collection="excludeGeneratorFieldList" open="(" separator="," close=")">
+					#{excludeGeneratorField}
+				</foreach>
+				)
+			</if>			
+			and gfm.generator_fk = g.generator_pk
+			and gfm.generator_fields_group = gf.generator_fields_group
+			and g.state_fk = s.state_master_pk	
+			<if test="generatorFieldPk != null">
+				and gf.generator_field_pk = #{generatorFieldPk}
+			</if>			
+			<if test="generatorFk != null">
+				and gfm.generator_fk = #{generatorFk}
+			</if>			
+			<if test="state != null">
+				and s.state = #{state}
+			</if>			
+			<if test="stateAbbreviation != null">
+				and s.state_abbreviation = #{stateAbbreviation}
+			</if>
+			<if test="generatorField != null">
+				and gf.generator_field = #{generatorField}
+			</if>
+			<if test="generatorFieldType != null">
+				and gf.generator_field_type = #{generatorFieldType}
+			</if>
+			<if test="generatorFieldValue != null">
+				and gf.generator_field_value = #{generatorFieldValue}
+			</if>
+			<if test="generatorFieldSequence != null">
+				and gf.generator_field_sequence = #{generatorFieldSequence}
+			</if>
+			<if test="status != null">
+				and gf.status = #{status}
+			</if>			
+			<if test="createdBy != null">
+				and gf.created_by = #{createdBy}
+			</if>
+			<if test="lastUpdatedBy != null">
+				and gf.last_updated_by = #{lastUpdatedBy}
+			</if>			
+		order by
+			s.state
+	</select>
+
+<!--
+
+	<select id="selectGeneratorField" parameterType="GeneratorFieldDto"  resultMap="generatorFieldDtoMap">
+		select
+			s.state,
+			s.state_abbreviation,
+			gf.GENERATOR_FIELD_PK,
+			g.generator_pk,
+			gf.GENERATOR_FIELD,
+			gf.GENERATOR_FIELD_TYPE,
+			gf.GENERATOR_FIELD_SEQUENCE,
+			gf.CREATED_DATE,
+			gf.CREATED_BY,
+			gf.LAST_UPDATED_DATE,
+			gf.LAST_UPDATED_BY,
+			gf.GENERATOR_FIELD_VALUE,
+			gf.GENERATOR_FIELDS_GROUP
+		from
+			STATERPT_OWNER.GENERATOR_FIELDS gf,
+			STATERPT_OWNER.GENERATOR_FIELDS_MAP gfm,
+			STATERPT_OWNER.GENERATOR g,
+			STATERPT_OWNER.STATE_MASTER s
+		where
+			<choose>
+				<when test="generatorFk != null">
+					gf.generator_fk = #{generatorFk}
+				</when>
+				<otherwise>
+					gf.generator_fk is null
+				</otherwise>
+			</choose>		
+			and gfm.generator_fk = g.generator_pk
+			and gfm.generator_fields_group = gf.generator_fields_group
+			and g.state_fk = s.state_master_pk	
+			<if test="generatorFieldPk != null">
+				and gf.generator_field_pk = #{generatorFieldPk}
+			</if>			
+			<if test="generatorFk != null">
+				and gfm.generator_fk = #{generatorFk}
+			</if>			
+			<if test="state != null">
+				and s.state = #{state}
+			</if>			
+			<if test="stateAbbreviation != null">
+				and s.state_abbreviation = #{stateAbbreviation}
+			</if>
+			<if test="generatorField != null">
+				and gf.generator_field = #{generatorField}
+			</if>
+			<if test="generatorFieldType != null">
+				and gf.generator_field_type = #{generatorFieldType}
+			</if>
+			<if test="generatorFieldValue != null">
+				and gf.generator_field_value = #{generatorFieldValue}
+			</if>
+			<if test="generatorFieldSequence != null">
+				and gf.generator_field_sequence = #{generatorFieldSequence}
+			</if>
+			<if test="status != null">
+				and gf.status = #{status}
+			</if>			
+			<if test="createdBy != null">
+				and gf.created_by = #{createdBy}
+			</if>
+			<if test="lastUpdatedBy != null">
+				and gf.last_updated_by = #{lastUpdatedBy}
+			</if>			
+		order by
+			s.state
+	</select>
+
+-->
+
+<!--
+	<select id="selectGeneratorField" parameterType="GeneratorFieldDto"  resultMap="generatorFieldDtoMap">
+		select
+			s.state,
+			s.state_abbreviation,
+			gf.*
+		from
+			STATERPT_OWNER.GENERATOR_FIELDS gf,
+			STATERPT_OWNER.GENERATOR_FIELDS_MAP gfm,
+			STATERPT_OWNER.GENERATOR g,
+			STATERPT_OWNER.STATE_MASTER s
+		where
+			<choose>
+				<when test="generatorFk != null">
+					gf.generator_fk = #{generatorFk}
+				</when>
+				<otherwise>
+					gf.generator_fk is null
+				</otherwise>
+			</choose>		
+			and gfm.generator_fk = g.generator_pk
+			and gfm.generator_fields_group = gf.generator_fields_group
+			and g.state_fk = s.state_master_pk	
+			<if test="generatorFieldPk != null">
+				and gf.generator_field_pk = #{generatorFieldPk}
+			</if>			
+			<if test="generatorFk != null">
+				and gfm.generator_fk = #{generatorFk}
+			</if>			
+			<if test="state != null">
+				and s.state = #{state}
+			</if>			
+			<if test="stateAbbreviation != null">
+				and s.state_abbreviation = #{stateAbbreviation}
+			</if>
+			<if test="generatorField != null">
+				and gf.generator_field = #{generatorField}
+			</if>
+			<if test="generatorFieldType != null">
+				and gf.generator_field_type = #{generatorFieldType}
+			</if>
+			<if test="generatorFieldValue != null">
+				and gf.generator_field_value = #{generatorFieldValue}
+			</if>
+			<if test="generatorFieldSequence != null">
+				and gf.generator_field_sequence = #{generatorFieldSequence}
+			</if>			
+			<if test="createdBy != null">
+				and gf.created_by = #{createdBy}
+			</if>
+			<if test="lastUpdatedBy != null">
+				and gf.last_updated_by = #{lastUpdatedBy}
+			</if>			
+		order by
+			s.state
+	</select>
+-->
+
+<!--	
+	<select id="selectGeneratorField" parameterType="GeneratorFieldDto"  resultMap="generatorFieldDtoMap">
+		select
+			s.state,
+			s.state_abbreviation,
+			gf.*
+		from
+			STATERPT_OWNER.GENERATOR_FIELDS gf,
+			STATERPT_OWNER.GENERATOR g,
+			STATERPT_OWNER.STATE_MASTER s
+		where
+			gf.generator_fk = g.generator_pk
+			and g.state_fk = s.state_master_pk	
+			<if test="generatorFieldPk != null">
+				and gf.generator_field_pk = #{generatorFieldPk}
+			</if>			
+			<if test="generatorFk != null">
+				and gf.generator_fk = #{generatorFk}
+			</if>			
+			<if test="state != null">
+				and s.state = #{state}
+			</if>			
+			<if test="stateAbbreviation != null">
+				and s.state_abbreviation = #{stateAbbreviation}
+			</if>
+			<if test="generatorField != null">
+				and gf.generator_field = #{generatorField}
+			</if>
+			<if test="generatorFieldType != null">
+				and gf.generator_field_type = #{generatorFieldType}
+			</if>
+			<if test="generatorFieldValue != null">
+				and gf.generator_field_value = #{generatorFieldValue}
+			</if>
+			<if test="generatorFieldSequence != null">
+				and gf.generator_field_sequence = #{generatorFieldSequence}
+			</if>			
+			<if test="createdBy != null">
+				and gf.created_by = #{createdBy}
+			</if>
+			<if test="lastUpdatedBy != null">
+				and gf.last_updated_by = #{lastUpdatedBy}
+			</if>			
+		order by
+			s.state
+	</select>
+-->	
+
+
+	<select id="selectGeneratorFieldTypeByStateAbbrev" parameterType="java.util.Map"  resultMap="generatorFieldDtoMap">
+		select
+			distinct(gf.generator_field_type)
+		from
+			STATERPT_OWNER.GENERATOR g,
+			STATERPT_OWNER.STATE_MASTER s,
+			STATERPT_OWNER.GENERATOR_FIELDS gf,
+			STATERPT_OWNER.GENERATOR_FIELDS_MAP gfm				
+		where
+			g.state_fk = s.state_master_pk
+			<if test="entityType != null">
+				and s.entity_type = #{entityType}
+			</if>	
+			and g.status = 'active'
+			and g.generator_pk = gfm.generator_fk
+			and gf.generator_fields_group = gfm.generator_fields_group
+			and gf.generator_field_type &lt;&gt; 'PATH_DIR'
+			<if test="stateAbbreviation != null">
+				and s.state_abbreviation = #{stateAbbreviation}
+			</if>
+			<if test="statePk != null">
+				and s.state_master_pk = #{statePk}
+			</if>			
+		order by
+			gf.generator_field_type	
+	</select>
+
+	<select id="selectLastGenerator" parameterType="java.lang.String"  resultMap="generatorDtoMap">
+		select
+			s.state,
+			s.state_abbreviation,
+			g.*
+		from
+			STATERPT_OWNER.GENERATOR g,
+			STATERPT_OWNER.STATE_MASTER s
+		where
+			g.GENERATOR_PK = (
+				select
+					max(GENERATOR_PK)
+				from
+					STATERPT_OWNER.GENERATOR
+				where
+					status = 'active'
+			)
+			and g.state_fk = s.state_master_pk	
+	</select>
+	
+	<select id="selectGenerator" parameterType="GeneratorDto"  resultMap="generatorDtoMap">
+		select
+			s.state,
+			s.state_abbreviation,
+			g.*
+		from
+			"STATERPT_OWNER"."GENERATOR" g,
+			"STATERPT_OWNER"."STATE_MASTER" s
+		where
+			g.state_fk = s.state_master_pk
+			<if test="generatorPk != null">
+				and g.generator_pk = #{generatorPk}
+			</if>
+			<if test="stateFk != null">
+				and g.state_fk = #{stateFk}
+			</if>
+			<if test="entityType != null">
+				and s.entity_type = #{entityType}
+			</if>	
+			<if test="state != null">
+				and s.state = #{state}
+			</if>	
+			<if test="stateAbbreviation != null">
+				and s.state_abbreviation = #{stateAbbreviation}
+			</if>
+			<if test="fileMask != null">
+				and g.file_mask = #{fileMask}
+			</if>
+			<if test="hl7Package != null">
+				and g.hl7_package = #{hl7Package}
+			</if>
+			<if test="conversionContext != null">
+				and g.conversion_context = #{conversionContext}
+			</if>
+			<if test="conversionStrategy != null">
+				and g.conversion_strategy = #{conversionStrategy}
+			</if>			
+			<if test="writerContext != null">
+				and g.writer_context = #{writerContext}
+			</if>
+			<if test="writeBy != null">
+				and g.write_by = #{writeBy}
+			</if>
+			<if test="status != null">
+				and g.status = #{status}
+			</if>			
+			<if test="createdBy != null">
+				and g.created_by = #{createdBy}
+			</if>
+			<if test="lastUpdatedBy != null">
+				and g.last_updated_by = #{lastUpdatedBy}
+			</if>			
+		order by
+			s.state	
+	</select>
+
+	<update id="updateGenerator" parameterType="GeneratorDto">
+		update 
+			STATERPT_OWNER.GENERATOR
+		set
+			<if test="stateFk != null">
+				STATE_FK = #{stateFk},
+			</if>
+			<if test="fileMask != null">
+				FILE_MASK = #{fileMask},
+			</if>
+			<if test="hl7Package != null">
+				HL7_PACKAGE = #{hl7Package},
+			</if>
+			<if test="conversionContext != null">
+				CONVERSION_CONTEXT = #{conversionContext},
+			</if>
+			<if test="conversionStrategy != null">
+				CONVERSION_STRATEGY = #{conversionStrategy},
+			</if>			
+			<if test="writerContext != null">
+				WRITER_CONTEXT = #{writerContext},
+			</if>
+			<if test="writeBy != null">
+				WRITE_BY = #{writeBy},
+			</if>
+			<if test="stateTarget != null">
+				STATE_TARGET = #{stateTarget},
+			</if>
+			<if test="countyTarget != null">
+				COUNTY_TARGET = #{countyTarget},
+			</if>
+			<if test="status != null">
+				STATUS = #{status},
+			</if>			
+			<if test="lastUpdatedBy != null">
+				LAST_UPDATED_BY = #{lastUpdatedBy},
+			</if>
+			LAST_UPDATED_DATE = SYSTIMESTAMP(6)
+		where 
+			GENERATOR_PK = #{generatorPk}
+			and STATE_FK = #{stateFk}
+	</update>
+
+	<update id="updateGeneratorField" parameterType="GeneratorFieldDto">
+		update 
+			STATERPT_OWNER.GENERATOR_FIELDS
+		set
+			<if test="generatorFieldsGroup != null">
+				GENERATOR_FIELDS_GROUP = #{generatorFieldsGroup},
+			</if>		
+			<if test="generatorFk != null">
+				GENERATOR_FK = #{generatorFk},
+			</if>
+			<if test="generatorField != null">
+				GENERATOR_FIELD = #{generatorField},
+			</if>
+			<if test="generatorFieldType != null">
+				GENERATOR_FIELD_TYPE = #{generatorFieldType},
+			</if>
+			<if test="generatorFieldSequence != null">
+				GENERATOR_FIELD_SEQUENCE = #{generatorFieldSequence},
+			</if>
+			<if test="generatorFieldValue != null">
+				GENERATOR_FIELD_VALUE = #{generatorFieldValue},
+			</if>
+			<if test="status != null">
+				STATUS = #{status},
+			</if>			
+			<if test="lastUpdatedBy != null">
+				LAST_UPDATED_BY = #{lastUpdatedBy},
+			</if>
+			LAST_UPDATED_DATE = SYSTIMESTAMP(6)
+		where 
+			GENERATOR_FIELD_PK = #{generatorFieldPk}
+			and GENERATOR_FK = #{generatorFk}	
+	</update>
+	
+	<insert id="insertGenerator" parameterType="GeneratorDto">
+		INSERT INTO STATERPT_OWNER.GENERATOR(
+			STATE_FK,
+			FILE_MASK,
+			HL7_PACKAGE,
+			CONVERSION_CONTEXT,
+			CONVERSION_STRATEGY,
+			WRITER_CONTEXT,
+			WRITE_BY,
+			STATE_TARGET,
+			COUNTY_TARGET,
+			STATUS,
+			CREATED_DATE,
+			CREATED_BY,
+			LAST_UPDATED_DATE,
+			LAST_UPDATED_BY
+		) VALUES (
+			#{stateFk},
+			#{fileMask},
+			#{hl7Package}, 
+			#{conversionContext},
+			#{conversionStrategy},
+			#{writerContext},
+			#{writeBy},
+			#{stateTarget},
+			#{countyTarget},
+			#{status},
+			CURRENT_TIMESTAMP,
+			#{createdBy},
+			CURRENT_TIMESTAMP,
+			#{lastUpdatedBy}
+		)
+	</insert>
+	
+	<insert id="insertGeneratorField" parameterType="GeneratorFieldDto">
+		INSERT INTO STATERPT_OWNER.GENERATOR_FIELDS(
+			GENERATOR_FK,
+			GENERATOR_FIELD,
+			GENERATOR_FIELD_TYPE,
+			GENERATOR_FIELD_SEQUENCE,
+			GENERATOR_FIELD_VALUE,
+			GENERATOR_FIELDS_GROUP,
+			STATUS,
+			CREATED_DATE,
+			CREATED_BY,
+			LAST_UPDATED_DATE,
+			LAST_UPDATED_BY
+		) VALUES (
+			#{generatorFk},
+			#{generatorField},
+			#{generatorFieldType}, 
+			#{generatorFieldSequence},
+			#{generatorFieldValue},
+			#{generatorFieldsGroup},
+			#{status},
+			CURRENT_TIMESTAMP,
+			#{createdBy},
+			CURRENT_TIMESTAMP,
+			#{lastUpdatedBy}
+		)
+	</insert>	
+</mapper>
