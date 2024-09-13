@@ -22,7 +22,7 @@
     </build>
 
     <properties>
-        <org.springframework.version>3.0.0.RELEASE</org.springframework.version>
+        <org.springframework.version>6.1.13</org.springframework.version>
     </properties>
 
 <dependencies>
